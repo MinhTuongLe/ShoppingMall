@@ -1,0 +1,21 @@
+.search-section {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid #000;
+}
+
+.search-field {
+    width: 80%;
+    padding: 12px 24px;
+    color: #5193b3;
+}
+
+.button-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 18px;
+    border: 1px solid #000;
+    background-color: #5193b3;
+    color: #fff;
+}

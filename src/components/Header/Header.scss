@@ -1,0 +1,49 @@
+.header {
+    height: 15vh;
+}
+
+.header-top {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-field {
+  display: flex;
+  justify-content: flex-end;
+  color: #5193b3;
+}
+
+.brand {
+  color: #5193b3;
+}
+
+.brand span {
+  color: #f54768;
+}
+
+.header-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    background-color: #5193b3;
+    padding: 0;
+    margin: 0;
+}
+
+.header-bottom--wide {
+    width: 1400px;
+    display: flex;
+    justify-content: end;
+}
+
+.categories-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+}
+
+.categories-list--item {
+    padding: 8px 24px;
+    border: 1px solid #000;
+}
