@@ -5,27 +5,20 @@ import "./Header.scss";
 const Header = () => {
   return (
     <div className="header">
-      <div
-        className="grid wide"
-        style={{ height: "60%"}}
-      >
-        <div className="row header-top">
-          <div className="c-4">
-            <h1 className="brand">
-              Shopping<span>Mall</span>
-            </h1>
-          </div>
-          <div className="c-4">
-            <SearchBar />
-          </div>
-          <div className="cart-field c-4">
+      <div className="header-top">
+        <div className="header-top--wide">
+          <h1 className="brand">
+            Shopping<span>Mall</span>
+          </h1>
+          <SearchBar />
+          <div className="cart-field">
             <i class="fa-solid fa-cart-shopping"></i>
             <span>Cart</span>
             <span>0</span>
           </div>
         </div>
       </div>
-      <div className="header-bottom" style={{height: '40%'}}>
+      <div className="header-bottom" style={{ height: "40%" }}>
         <div className="header-bottom--wide">
           <ul className="categories-list">
             <li className="categories-list--item">Clothes</li>
