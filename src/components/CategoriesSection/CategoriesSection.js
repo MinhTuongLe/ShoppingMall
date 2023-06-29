@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../../redux/CategorySlice";
 import "./CategoriesSection.scss";
 import { Link } from "react-router-dom";
+import '../../App.scss'
 const CategoriesSection = ({ category }) => {
   const dispatch = useDispatch();
   const { data: categories } = useSelector((state) => state.category);
@@ -13,34 +14,35 @@ const CategoriesSection = ({ category }) => {
   useEffect(() => {
     dispatch(fetchCategories());
   }, []);
+
   return (
-    <Container style={{ maxWidth: "1400px" }}>
+    <div className="grid wide">
       <h1>Categories</h1>
-      <Row style={{ display: "flex", justifyContent: "center", backgroundColor: "#5193b3" }}>
-        {categories.slice(0, 5).map((category) => (
-          <Col
-            key={category.id}
-            style={{ maxWidth:'20%' }}
+      <div className="row" style={{ backgroundColor: "#5193b3" }}>
+        {categories.map((category) => (
+          <div
+            key={category}
+            className="c-2-4"
           >
             <Link
-              to={`category/${category.id}`}
+              to={`category/${category}`}
               style={{ textDecoration: "none" }}
             >
               <div>
                 <img
-                  src={category.image}
-                  alt={category.name}
+                  src={category}
+                  alt={category}
                   className="category--image"
                 />
               </div>
               <div>
-                <h6 className="category--name">{category.name}</h6>
+                <h6 className="category--name">{category}</h6>
               </div>
             </Link>
-          </Col>
+          </div>
         ))}        
-      </Row>
-    </Container>
+      </div>
+    </div>
   );
 };
 

@@ -31,17 +31,17 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className="header-bottom" style={{ height: "40%" }}>
+      <div className="header-bottom">
         <div className="header-bottom--wide">
           <ul className="categories-list">
             {categories.map((category) => (
-              <li key={category.id}>
+              <li key={category}>
                 <Link
                   className="categories-list--item"
-                  to={`category/${category.id}`}
+                  to={`category/${category}`}
                 >
                   {" "}
-                  {category.name}
+                  {category}
                 </Link>
               </li>
             ))}

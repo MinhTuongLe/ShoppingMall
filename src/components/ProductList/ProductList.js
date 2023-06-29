@@ -3,25 +3,25 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./ProductList.scss";
+import '../../App.scss'
 const ProductList = ({ products }) => {
   const currentURL = window.location.href;
   let maxProducts = 10;
   if (currentURL.includes("/category")) maxProducts = 20;
   return (
-    <Container style={{ maxWidth: "1400px" }}>
+    <div className="grid wide">
       <h1>{products[0] && 'Our Products'}</h1>
-      <Row
+      <div
+      className="row"
         style={{
-          display: "flex",
-          justifyContent: "center",
           backgroundColor: "#5193b3",
         }}
       >
         {products.slice(0, maxProducts).map((product) => (
-          <Col key={product.id} style={{ maxWidth: "20%" }}>
+          <div key={product.id} className="c-2-4">
             <div className="product--image-section">
               <img
-                src={product.images}
+                src={product.images[0]}
                 alt={product.title}
                 className="product--image"
               />
@@ -29,10 +29,10 @@ const ProductList = ({ products }) => {
             <div>
               <h6 className="product--name">{product.title}</h6>
             </div>
-          </Col>
+          </div>
         ))}
-      </Row>
-    </Container>
+      </div>
+    </div>
   );
 };
 
