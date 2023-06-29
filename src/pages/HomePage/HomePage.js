@@ -35,7 +35,6 @@ const HomePage = () => {
   return (
     <div className="homepage">
       <Slider />
-      {/* <CategoriesSection category={categories}/> */}
       <ProductList products={products} />
       {categories &&
         categories.map((category, index) => (

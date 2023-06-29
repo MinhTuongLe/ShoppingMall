@@ -2,13 +2,15 @@
     display: flex;
     justify-content: space-around;
     border: 1px solid #000;
-    width: 500px;
+    border-radius: 12px;
+    width: 40%;
 }
 
 .search-field {
     width: 80%;
     padding: 12px 24px;
     color: #5193b3;
+    font-size: 1.4rem;
 }
 
 .button-search {
@@ -16,7 +18,7 @@
     justify-content: center;
     align-items: center;
     padding: 0 18px;
-    border: 1px solid #000;
-    background-color: #5193b3;
-    color: #fff;
+    border-radius: 5px;
+    color: #5193b3;
+    font-size: 1.4rem;
 }
