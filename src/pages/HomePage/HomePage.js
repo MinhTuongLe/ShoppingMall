@@ -27,7 +27,7 @@ const HomePage = () => {
   useEffect(() => {
     if (categories && categories.length > 0) {
       categories.forEach((category) => {
-        dispatch(fetchProductsByCategory(category, 'ALL'));
+        dispatch(fetchProductsByCategory(category, "ALL"));
       });
     }
   }, [categories]);

@@ -8,6 +8,14 @@ import SliderImage4 from "../../assets/images/slider-img-4.png";
 import SliderImage5 from "../../assets/images/slider-img-5.png";
 import { Button } from "react-bootstrap";
 const Slider = () => {
+  const handleScrollToBody = () => {
+    const getProductsList = document.getElementById('productList')
+    const productsListOffset = getProductsList.offsetTop;
+    window.scrollTo({
+      top: productsListOffset,
+      behavior: 'smooth'
+    })
+  };
   return (
     <Carousel interval={3000} style={{ height: "85vh" }}>
       <Carousel.Item className="carousel-item">
@@ -20,7 +28,7 @@ const Slider = () => {
         <Carousel.Caption>
           <h3>First New Information</h3>
           <p>Nepal's largest premium electronics brand.</p>
-          <Button
+          <Button onClick={handleScrollToBody}
             style={{
               backgroundColor: "#5193b3",
               border: "1px solid #fff",
@@ -42,7 +50,7 @@ const Slider = () => {
         <Carousel.Caption>
           <h3>Second New Information</h3>
           <p>We deliver happiness & surprises everyday.</p>
-          <Button
+          <Button onClick={handleScrollToBody}
             style={{
               backgroundColor: "#5193b3",
               border: "1px solid #fff",
@@ -64,7 +72,7 @@ const Slider = () => {
         <Carousel.Caption>
           <h3>Third New Information</h3>
           <p>Better home applicants.</p>
-          <Button
+          <Button onClick={handleScrollToBody}
             style={{
               backgroundColor: "#5193b3",
               border: "1px solid #fff",
@@ -86,7 +94,7 @@ const Slider = () => {
         <Carousel.Caption>
           <h3>Fourth New Information</h3>
           <p>Better home applicants.</p>
-          <Button
+          <Button onClick={handleScrollToBody}
             style={{
               backgroundColor: "#5193b3",
               border: "1px solid #fff",
@@ -108,7 +116,7 @@ const Slider = () => {
         <Carousel.Caption>
           <h3>Fifth New Information</h3>
           <p>Better home applicants.</p>
-          <Button
+          <Button onClick={handleScrollToBody}
             style={{
               backgroundColor: "#5193b3",
               border: "1px solid #fff",

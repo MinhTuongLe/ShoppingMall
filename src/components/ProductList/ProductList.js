@@ -9,7 +9,7 @@ const ProductList = ({ products }) => {
   let maxProducts = 10;
   if (currentURL.includes("/category")) maxProducts = 20;
   return (
-    <div className="grid wide">
+    <div className="grid wide" id="productList">
       <h1>{products[0] && 'Our Products'}</h1>
       <div
       className="row"
