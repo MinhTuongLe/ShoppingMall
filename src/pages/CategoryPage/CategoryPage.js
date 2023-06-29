@@ -3,7 +3,7 @@ import React from 'react'
 const CategoryPage = () => {
   return (
     <div>
-      CategoryPage
+      <h1>CategoryPage</h1>
     </div>
   )
 }
