@@ -35,13 +35,13 @@ const Header = () => {
             <i class="fa-solid fa-caret-down"></i>
             <ul className={`categories-list ${showCategoryList ? 'height-70vh' : ''}`}>
               {categories.map((category) => (
-                <li key={category}>
+                <li key={category.id}>
                   <Link
                     className="categories-list--item"
-                    to={`category/${category}`}
+                    to = {`/category/${category.id}`}
                   >
                     {" "}
-                    {category}
+                    {category.name}
                   </Link>
                 </li>
               ))}

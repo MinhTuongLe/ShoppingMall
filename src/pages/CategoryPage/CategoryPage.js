@@ -1,8 +1,5 @@
 import React, { useEffect } from "react";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsByCategory } from "../../redux/CategorySlice";
 import "./CategoryPage.scss";
@@ -18,7 +15,7 @@ const CategoryPage = () => {
 
   return (
     <div className="grid wide category-page">
-      <h1>{products[0] && products[0].category}</h1>
+      <h1>{products[0] && products[0].category.name}</h1>
       <div
         className="row"
         style={{
@@ -26,11 +23,10 @@ const CategoryPage = () => {
         }}
       >
         {products.map((product) => (
-          <div key={product.id} className="c-2-4">
+          <Link key={product.id} className="c-2-4" to={`/product/${product.id}`}>
             <div className="product--image-section">
               <img
-                // src={product.images[0]}
-                src="https://fastly.picsum.photos/id/318/640/640.jpg?hmac=5cOMICOxIroPZAdiGA4-M50bvlhNo05T5t_FufYyRtI"
+                src={product.images}
                 alt={product.title}
                 className="product--image"
               />
@@ -38,7 +34,7 @@ const CategoryPage = () => {
             <div>
               <h6 className="product--name">{product.title}</h6>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

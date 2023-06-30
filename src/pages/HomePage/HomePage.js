@@ -20,30 +20,26 @@ const HomePage = () => {
   );
 
   useEffect(() => {
-    dispatch(fetchCategories());
     dispatch(fetchProducts());
-  }, []);
-
-  useEffect(() => {
-    if (categories && categories.length > 0) {
-      categories.forEach((category) => {
-        dispatch(fetchProductsByCategory(category, "ALL"));
-      });
-    }
-  }, [categories]);
+    dispatch(fetchCategories());
+    categories.forEach((category) => {
+      dispatch(fetchProductsByCategory(category.id, "ALL"));
+    });
+  }, [dispatch, categories]);
 
   return (
     <div className="homepage">
       <Slider />
       <ProductList products={products} />
-      {categories &&
-        categories.map((category, index) => (
-          <section key={index}>
-            {productsByCategory[index] && (
-              <CategorySection products={productsByCategory[index]} />
-            )}
-          </section>
-        ))}
+      {categories.map((category, index) => (
+        <section key={category.id}>
+          {productsByCategory[index] && (
+            <CategorySection
+              products={productsByCategory[index]}
+            />
+          )}
+        </section>
+      ))}
     </div>
   );
 };

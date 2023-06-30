@@ -27,7 +27,7 @@ export default CategorySlice.reducer;
 export const fetchCategories = () => {
     return async function fetchCategories(dispatch) {
         try {
-            const response = await fetch(`${BASE_URL}products/categories`)
+            const response = await fetch(`${BASE_URL}categories`)
             const data = await response.json()
             dispatch(setCategories(data))
         } catch (error) {
@@ -39,13 +39,13 @@ export const fetchCategories = () => {
 export const fetchProductsByCategory = (categoryId, type) => {
   return async function fetchProductsByCategory(dispatch) {
     try {
-      const response = await fetch(`${BASE_URL}products/category/${categoryId}`)
+      const response = await fetch(`${BASE_URL}categories/${categoryId}/products`);
       const data = await response.json();
       if (type === 'ALL') {
-        dispatch(setCategoriesAllProducts(data.products.slice(0, 5)))
+        dispatch(setCategoriesAllProducts(data.slice(0, 5)))
       }
       if (type === 'EACH') {
-        dispatch(setCategoriesEachProducts(data.products.slice(0, 10)))
+        dispatch(setCategoriesEachProducts(data.slice(0, 10)))
       }
     } catch (error) {
       console.log(error)

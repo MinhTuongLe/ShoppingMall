@@ -21,7 +21,7 @@ export const fetchProducts = () => {
         try {
             const response = await fetch(`${BASE_URL}products`)
             const data = await response.json()
-            dispatch(setProducts(data.products))
+            dispatch(setProducts(data))
         } catch (error) {
             console.log(error)
         }
