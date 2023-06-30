@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./ProductDetailsPage.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProductById } from "../../redux/ProductDetailsSlice";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { addToCart } from "../../redux/CartSlice";
 
 const ProductDetails = () => {
@@ -50,6 +50,21 @@ const ProductDetails = () => {
 
   return (
     <div className="product-details-page">
+      <div>
+        <Link to="/">
+          <i className="fas fa-home"></i>
+          <i className="fas fa-chevron-right"></i>
+        </Link>
+        <Link to="/">
+          <span>Products</span>
+          <i className="fas fa-chevron-right"></i>
+        </Link>
+        <Link to={`/category/${productDetails.category.id}`}>
+        <span>{productDetails.category.name && productDetails.category.name}</span>
+          <i className="fas fa-chevron-right"></i>
+        </Link>
+        <Link>{productDetails.title && productDetails.title}</Link>
+      </div>
       {productDetails.id && <h1>{productDetails.id}</h1>}
       {productDetails.title && <h1>{productDetails.title}</h1>}
       <div>
