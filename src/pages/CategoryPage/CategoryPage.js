@@ -8,7 +8,8 @@ import ProductList from "../../components/ProductList/ProductList";
 const CategoryPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { catEachProducts: products } = useSelector((state) => state.category);
+  const { catEachProducts: products, catEachProductsStatus: status } =
+    useSelector((state) => state.category);
 
   useEffect(() => {
     dispatch(fetchProductsByCategory(id, "EACH"));
@@ -27,7 +28,7 @@ const CategoryPage = () => {
         </Link>
         <Link>{products[0] && products[0].category.name}</Link>
       </div>
-      <ProductList products={products} />
+      <ProductList products={products} status={status} />
     </div>
   );
 };

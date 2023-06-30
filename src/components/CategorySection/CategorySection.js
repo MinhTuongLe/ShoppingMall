@@ -2,8 +2,12 @@ import React from "react";
 import './CategorySection.scss'
 import '../../App.scss'
 import { Link } from "react-router-dom";
-
-const CategorySection = ({ products }) => {
+import Error from "../Error/Error";
+import Loader from "../Loader/Loader";
+import { STATUS } from "../../utils/status";
+const CategorySection = ({ products, status }) => {
+  if (status === STATUS.ERROR) return <Error />;
+  if (status === STATUS.LOADING) return <Loader />;
   return (
     <div className="grid wide">
       <h1>{products[0] && products[0].category.name}</h1>

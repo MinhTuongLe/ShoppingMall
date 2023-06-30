@@ -13,8 +13,8 @@ import ProductList from "../../components/ProductList/ProductList";
 const HomePage = () => {
   const dispatch = useDispatch();
   const { data: categories } = useSelector((state) => state.category);
-  const { data: products } = useSelector((state) => state.product);
-  const { catAllProducts: productsByCategory } = useSelector(
+  const { data: products, status: productStatus } = useSelector((state) => state.product);
+  const { catAllProducts: productsByCategory, catAllProductsStatus } = useSelector(
     (state) => state.category
   );
 
@@ -29,12 +29,13 @@ const HomePage = () => {
   return (
     <div className="homepage">
       <Slider />
-      <ProductList products={products} />
+      <ProductList products={products}/>
       {categories.map((category, index) => (
         <section key={category.id}>
           {productsByCategory[index] && (
             <CategorySection
               products={productsByCategory[index]}
+              status={catAllProductsStatus[index]}
             />
           )}
         </section>

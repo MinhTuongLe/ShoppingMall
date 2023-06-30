@@ -1,16 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {BASE_URL} from '../utils/apiURL'
+import { BASE_URL } from "../utils/apiURL";
+import { STATUS } from "../utils/status";
 
 const CategorySlice = createSlice({
   name: "category",
   initialState: {
     data: [],
+    status: STATUS.IDLE,
     catAllProducts: [],
+    catAllProductsStatus: STATUS.IDLE,
     catEachProducts: [],
+    catEachProductsStatus: STATUS.IDLE,
   },
   reducers: {
     setCategories(state, action) {
       state.data = action.payload;
+    },
+    setStatus(state, action) {
+      state.status = action.payload;
     },
     setCategoriesAllProducts(state, action) {
       state.catAllProducts.push(action.payload);
@@ -18,37 +25,62 @@ const CategorySlice = createSlice({
     setCategoriesEachProducts(state, action) {
       state.catEachProducts = action.payload;
     },
+    setCategoriesAllProductsStatus(state, action) {
+      state.catAllProductsStatus = action.payload;
+    },
+    setCategoriesEachProductsStatus(state, action) {
+      state.catEachProductsStatus = action.payload;
+    },
   },
 });
 
-export const {setCategories, setCategoriesAllProducts, setCategoriesEachProducts } = CategorySlice.actions;
+export const {
+  setCategories,
+  setStatus,
+  setCategoriesAllProducts,
+  setCategoriesEachProducts,
+  setCategoriesAllProductsStatus,
+  setCategoriesEachProductsStatus,
+} = CategorySlice.actions;
 export default CategorySlice.reducer;
 
 export const fetchCategories = () => {
-    return async function fetchCategories(dispatch) {
-        try {
-            const response = await fetch(`${BASE_URL}categories`)
-            const data = await response.json()
-            dispatch(setCategories(data))
-        } catch (error) {
-            console.log(error)
-        }
+  return async function fetchCategories(dispatch) {
+    dispatch(setStatus(STATUS.LOADING));
+
+    try {
+      const response = await fetch(`${BASE_URL}categories`);
+      const data = await response.json();
+      dispatch(setCategories(data));
+      dispatch(setStatus(STATUS.IDLE));
+    } catch (error) {
+      dispatch(setStatus(STATUS.ERROR));
     }
-}
+  };
+};
 
 export const fetchProductsByCategory = (categoryId, type) => {
   return async function fetchProductsByCategory(dispatch) {
+    if(type === 'ALL') dispatch(setCategoriesAllProductsStatus(STATUS.LOADING));
+    if(type === 'EACH') dispatch(setCategoriesEachProductsStatus(STATUS.LOADING));
     try {
-      const response = await fetch(`${BASE_URL}categories/${categoryId}/products`);
+      const response = await fetch(
+        `${BASE_URL}categories/${categoryId}/products`
+      );
       const data = await response.json();
-      if (type === 'ALL') {
-        dispatch(setCategoriesAllProducts(data.slice(0, 5)))
+      if (type === "ALL") {
+        dispatch(setCategoriesAllProducts(data.slice(0, 5)));
+        dispatch(setCategoriesAllProductsStatus(STATUS.IDLE));
+
       }
-      if (type === 'EACH') {
-        dispatch(setCategoriesEachProducts(data))
+      if (type === "EACH") {
+        dispatch(setCategoriesEachProducts(data));
+        dispatch(setCategoriesEachProductsStatus(STATUS.IDLE));
+
       }
     } catch (error) {
-      console.log(error)
+      dispatch(setCategoriesAllProductsStatus(STATUS.ERROR));
+
     }
-  }
-}
+  };
+};

@@ -1,7 +1,12 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import { STATUS } from "../../utils/status";
+import Loader from "../Loader/Loader";
+import Error from "../Error/Error";
 
-const ProductList = ({ products }) => {
+
+const ProductList = ({ products, status }) => {
   const navigate = useNavigate();
   const currentURL = window.location.href;
   let isHomePage = true;
@@ -10,7 +15,8 @@ const ProductList = ({ products }) => {
     maxProducts = Infinity;
     isHomePage = false;
   }
-
+  if (status === STATUS.ERROR) return <Error />;
+  if (status === STATUS.LOADING) return <Loader />;
   const handleViewProductDetails = (productId) => {
     navigate(`/product/${productId}`);
   };
@@ -46,9 +52,20 @@ const ProductList = ({ products }) => {
           </Link>
         ))}
       </div>
-     {isHomePage &&  <Link to="/products">
-        <button>Show All Products</button>
-      </Link>}
+      {isHomePage && (
+        <Link to="/products">
+          <Button
+            style={{
+              backgroundColor: "#5193b3",
+              border: "1px solid #fff",
+              marginBottom: "24px",
+              marginTop: "12px",
+            }}
+          >
+            Show All Products
+          </Button>
+        </Link>
+      )}
     </div>
   );
 };

@@ -37,7 +37,7 @@ const CartPage = () => {
               {cartItems.map((cartItem) => (
                 <div>
                   <Link to={`/product/${cartItem.id}`}>
-                    <img src={cartItem.images} alt="item-picture" />
+                    <img src={cartItem.images} alt="item-picture"/>
                   </Link>
                   <button onClick={() => dispatch(removeFromCart(cartItem.id))}>
                     <i class="fa-solid fa-trash"></i>
