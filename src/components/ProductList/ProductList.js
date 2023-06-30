@@ -1,17 +1,13 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setProductDetailsData } from "../../redux/ProductDetailsSlice";
 
 const ProductList = ({ products }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const currentURL = window.location.href;
   let maxProducts = 10;
   if (currentURL.includes("/category")) maxProducts = 20;
 
-  const handleViewProductDetails = (productId, data) => {
-    dispatch(setProductDetailsData(data));
+  const handleViewProductDetails = (productId) => {
     navigate(`/product/${productId}`);
   };
 
@@ -30,7 +26,7 @@ const ProductList = ({ products }) => {
             className="c-2-4"
             onClick={(e) => {
               e.preventDefault();
-              handleViewProductDetails(product.id, product);
+              handleViewProductDetails(product.id);
             }}
           >
             <div className="product--image-section">
