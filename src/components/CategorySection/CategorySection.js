@@ -8,7 +8,7 @@ const CategorySection = ({ products }) => {
     <div className="grid wide">
       <h1>{products[0] && products[0].category.name}</h1>
       <div
-      className="row"
+      className="row row-formated"
         style={{
           backgroundColor: "#5193b3",
         }}

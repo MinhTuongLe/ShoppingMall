@@ -15,7 +15,7 @@ const ProductList = ({ products }) => {
     <div className="grid wide" id="productList">
       <h1>{products[0] && "Our Products"}</h1>
       <div
-        className="row"
+        className="row row-formated"
         style={{
           backgroundColor: "#5193b3",
         }}

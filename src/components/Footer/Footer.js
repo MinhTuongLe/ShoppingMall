@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <div className="grid footer-section">
       <div className="grid wide">
-        <div className="row footer-top-section">
+        <div className="row footer-top-section row-formated">
           <div className="c-3 footer-col">
             <h3>Links</h3>
             <ul className="footer-col--list">
@@ -71,7 +71,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="row footer-bottom-section">
+        <div className="row footer-bottom-section row-formated">
           <h6 className="copy-right">© {getCurrentYear} All Rights Reserved</h6>
         </div>
       </div>

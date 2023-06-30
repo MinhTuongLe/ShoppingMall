@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import "./HomePage.scss";
 import Slider from "../../components/Slider/Slider";
-import CategoriesSection from "../../components/CategoriesSection/CategoriesSection";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchCategories,

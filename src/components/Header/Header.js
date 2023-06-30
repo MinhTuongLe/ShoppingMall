@@ -5,19 +5,21 @@ import "./Header.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../../redux/CategorySlice";
 import { Link } from "react-router-dom";
+import { getCartTotal } from "../../redux/CartSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
   const { data: categories } = useSelector((state) => state.category);
-
-  const [showCategoryList, setShowCategoryList] = useState(false)
+  const { totalItems } = useSelector((state) => state.cart);
+  const [showCategoryList, setShowCategoryList] = useState(false);
 
   useEffect(() => {
     dispatch(fetchCategories());
+    dispatch(getCartTotal())
   }, []);
 
   const handleShowCategoryList = () => {
-    setShowCategoryList(!showCategoryList)
+    setShowCategoryList(!showCategoryList);
   };
 
   return (
@@ -33,12 +35,16 @@ const Header = () => {
           <div className="category-field" onClick={handleShowCategoryList}>
             <span>Categories</span>
             <i class="fa-solid fa-caret-down"></i>
-            <ul className={`categories-list ${showCategoryList ? 'height-70vh' : ''}`}>
+            <ul
+              className={`categories-list ${
+                showCategoryList ? "height-70vh" : ""
+              }`}
+            >
               {categories.map((category) => (
                 <li key={category.id}>
                   <Link
                     className="categories-list--item"
-                    to = {`/category/${category.id}`}
+                    to={`/category/${category.id}`}
                   >
                     {" "}
                     {category.name}
@@ -47,11 +53,11 @@ const Header = () => {
               ))}
             </ul>
           </div>
-          <div className="cart-field">
+          <Link className="cart-field" to="/cart">
             <i class="fa-solid fa-cart-shopping cart-icon"></i>
             <span className="cart-desc--text">Cart</span>
-            <span className="cart-desc--number">0</span>
-          </div>
+            <span className="cart-desc--number">{totalItems}</span>
+          </Link>
         </div>
       </div>
     </div>
