@@ -31,7 +31,7 @@ const ProductList = ({ products }) => {
           >
             <div className="product--image-section">
               <img
-                src={product.images}
+                src={product.images[0]}
                 alt={product.title}
                 className="product--image"
               />

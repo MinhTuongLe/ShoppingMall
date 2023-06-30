@@ -7,25 +7,31 @@ import { useParams } from "react-router-dom";
 const ProductDetails = () => {
   const { data: productDetails } = useSelector((state) => state.productDetails);
   const dispatch = useDispatch();
-  const id = useParams();
-  console.log(id);
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(fetchProductById(id.id));
+    dispatch(fetchProductById(id));
   }, []);
+
+  if (!productDetails) {
+    return null;
+  }
 
   return (
     <div className="product-details-page">
-      <h1>{productDetails.id}</h1>
-      <h1>{productDetails.title}</h1>
+      {productDetails.id && <h1>{productDetails.id}</h1>}
+      {productDetails.title && <h1>{productDetails.title}</h1>}
       <div>
-        {productDetails.images.map((image) => (
-          <img src={image} />
-        ))}
+        {productDetails.images &&
+          productDetails.images.map((image, index) => (
+            <img key={index} src={image} alt={`Product ${index}`} />
+          ))}
       </div>
-      <h1>{productDetails.description}</h1>
-      <h1>{productDetails.price}</h1>
-      <h1>{productDetails.category.name}</h1>
+      {productDetails.description && <h1>{productDetails.description}</h1>}
+      {productDetails.price && <h1>{productDetails.price}</h1>}
+      {productDetails.category && productDetails.category.name && (
+        <h1>{productDetails.category.name}</h1>
+      )}
     </div>
   );
 };

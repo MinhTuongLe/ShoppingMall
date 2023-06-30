@@ -17,7 +17,7 @@ const CategorySection = ({ products }) => {
           <Link key={product.id} className="c-2-4" to={`/product/${product.id}`}>
             <div className="product--image-section">
               <img
-                src={product.images}
+                src={product.images[0]}
                 alt={product.title}
                 className="product--image"
               />
