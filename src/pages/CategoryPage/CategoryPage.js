@@ -4,24 +4,23 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {fetchProductsByCategory} from '../../redux/CategorySlice'
-import './CategoryPage.scss'
-import '../../App.scss'
+import { fetchProductsByCategory } from "../../redux/CategorySlice";
+import "./CategoryPage.scss";
+import "../../App.scss";
 const CategoryPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { catEachProducts: products } = useSelector(
-    (state) => state.category
-  );
+  const { catEachProducts: products } = useSelector((state) => state.category);
 
   useEffect(() => {
-    dispatch(fetchProductsByCategory(id, 'EACH'))
+    dispatch(fetchProductsByCategory(id, "EACH"));
   }, [id]);
 
   return (
-    <div className="grid wide" style={{marginTop:"50px"}}>
+    <div className="grid wide category-page">
       <h1>{products[0] && products[0].category}</h1>
-      <div className="row"
+      <div
+        className="row"
         style={{
           backgroundColor: "#5193b3",
         }}
@@ -30,7 +29,8 @@ const CategoryPage = () => {
           <div key={product.id} className="c-2-4">
             <div className="product--image-section">
               <img
-                src={product.images[0]}
+                // src={product.images[0]}
+                src="https://fastly.picsum.photos/id/318/640/640.jpg?hmac=5cOMICOxIroPZAdiGA4-M50bvlhNo05T5t_FufYyRtI"
                 alt={product.title}
                 className="product--image"
               />
@@ -40,21 +40,6 @@ const CategoryPage = () => {
             </div>
           </div>
         ))}
-        {products.map((product) => (
-          <Col key={product.id} style={{ width: "20%" }}>
-            <div className="product--image-section">
-              <img
-                src={product.images[0]}
-                alt={product.title}
-                className="product--image"
-              />
-            </div>
-            <div>
-              <h6 className="product--name">{product.title}</h6>
-            </div>
-          </Col>
-        ))}
-        
       </div>
     </div>
   );
