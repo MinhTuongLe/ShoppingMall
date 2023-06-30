@@ -8,7 +8,7 @@ import { addToCart } from "../../redux/CartSlice";
 const ProductDetails = () => {
   const { data: productDetails } = useSelector((state) => state.productDetails);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
 
@@ -16,37 +16,33 @@ const ProductDetails = () => {
     setQuantity((preQuantity) => {
       let newQuantity = preQuantity + 1;
       return newQuantity;
-    })
-  }
+    });
+  };
 
   const decreaseQuantity = () => {
     setQuantity((preQuantity) => {
       let newQuantity = preQuantity - 1;
-      if(newQuantity < 1){
+      if (newQuantity < 1) {
         newQuantity = 1;
       }
       return newQuantity;
-    })
-  }
+    });
+  };
 
-  const addToCartHandler =(product) => {
+  const addToCartHandler = (product) => {
     let totalPrice = quantity * product.price;
     const tempProduct = {
       ...product,
       quantity: quantity,
-      totalPrice
-    }
-    dispatch(addToCart(tempProduct))
-    navigate('/cart')
-  }
+      totalPrice,
+    };
+    dispatch(addToCart(tempProduct));
+    navigate("/cart");
+  };
 
   useEffect(() => {
     dispatch(fetchProductById(id));
   }, []);
-
-  if (!productDetails) {
-    return null;
-  }
 
   return (
     <div className="product-details-page">
@@ -59,11 +55,19 @@ const ProductDetails = () => {
           <span>Products</span>
           <i className="fas fa-chevron-right"></i>
         </Link>
-        <Link to={`/category/${productDetails.category.id}`}>
-        <span>{productDetails.category.name && productDetails.category.name}</span>
-          <i className="fas fa-chevron-right"></i>
-        </Link>
-        <Link>{productDetails.title && productDetails.title}</Link>
+        {productDetails.category && productDetails.category.id && (
+          <Link to={`/category/${productDetails.category.id}`}>
+            <span>
+              {productDetails.category.name && productDetails.category.name}
+            </span>
+            <i className="fas fa-chevron-right"></i>
+          </Link>
+        )}
+        {productDetails.title && (
+          <Link to={`/category/${productDetails.category.id}`}>
+            {productDetails.title}
+          </Link>
+        )}
       </div>
       {productDetails.id && <h1>{productDetails.id}</h1>}
       {productDetails.title && <h1>{productDetails.title}</h1>}
@@ -82,16 +86,16 @@ const ProductDetails = () => {
         <h3>Quantity:</h3>
         <div>
           <button onClick={() => increaseQuantity()}>
-            <i class="fa-solid fa-plus"></i>
+            <i className="fa-solid fa-plus"></i>
           </button>
           <h3>{quantity}</h3>
           <button onClick={() => decreaseQuantity()}>
-            <i class="fa-solid fa-minus"></i>
+            <i className="fa-solid fa-minus"></i>
           </button>
         </div>
       </div>
-      <button onClick={()=>addToCartHandler(productDetails)}>
-        <i class="fa-solid fa-cart-shopping cart-icon"></i>
+      <button onClick={() => addToCartHandler(productDetails)}>
+        <i className="fa-solid fa-cart-shopping cart-icon"></i>
         <span>Add to Cart</span>
       </button>
     </div>
