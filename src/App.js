@@ -1,6 +1,6 @@
 import "./App.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { HomePage, CartPage, CategoryPage, ProductDetailsPage } from "./pages/index";
+import { HomePage, CartPage, CategoryPage, ProductDetailsPage, ProductsPage } from "./pages/index";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { Provider } from "react-redux";
@@ -15,6 +15,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/category/:id" element={<CategoryPage />} />
           <Route path="/product/:id" element={<ProductDetailsPage/>}/>
+          <Route path="/products" element={<ProductsPage />} />
           <Route path="/cart" element={<CartPage />} />
         </Routes>
         <Footer />

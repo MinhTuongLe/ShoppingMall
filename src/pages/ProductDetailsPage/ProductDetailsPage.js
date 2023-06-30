@@ -51,7 +51,7 @@ const ProductDetails = () => {
           <i className="fas fa-home"></i>
           <i className="fas fa-chevron-right"></i>
         </Link>
-        <Link to="/">
+        <Link to="/products">
           <span>Products</span>
           <i className="fas fa-chevron-right"></i>
         </Link>

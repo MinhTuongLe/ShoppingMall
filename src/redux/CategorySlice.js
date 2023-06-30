@@ -45,7 +45,7 @@ export const fetchProductsByCategory = (categoryId, type) => {
         dispatch(setCategoriesAllProducts(data.slice(0, 5)))
       }
       if (type === 'EACH') {
-        dispatch(setCategoriesEachProducts(data.slice(0, 10)))
+        dispatch(setCategoriesEachProducts(data))
       }
     } catch (error) {
       console.log(error)

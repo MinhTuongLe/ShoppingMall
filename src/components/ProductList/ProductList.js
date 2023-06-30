@@ -4,8 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 const ProductList = ({ products }) => {
   const navigate = useNavigate();
   const currentURL = window.location.href;
+  let isHomePage = true;
   let maxProducts = 10;
-  if (currentURL.includes("/category")) maxProducts = 20;
+  if (currentURL.includes("/category") || currentURL.includes("/products")) {
+    maxProducts = Infinity;
+    isHomePage = false;
+  }
 
   const handleViewProductDetails = (productId) => {
     navigate(`/product/${productId}`);
@@ -42,6 +46,9 @@ const ProductList = ({ products }) => {
           </Link>
         ))}
       </div>
+     {isHomePage &&  <Link to="/products">
+        <button>Show All Products</button>
+      </Link>}
     </div>
   );
 };
