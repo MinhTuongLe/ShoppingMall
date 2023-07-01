@@ -21,6 +21,7 @@ const CartPage = () => {
   useEffect(() => {
     dispatch(getCartTotal());
   }, [useSelector((state) => state.cart)]);
+  const emptyCartMsg = <h4>No items found!</h4>;
   return (
     <div className="cart-page">
       <div className="grid wide">
@@ -33,90 +34,100 @@ const CartPage = () => {
         </div>
         <div className="row row-formated">
           <h1>My Cart</h1>
-          <div style={{ backgroundColor: "orangered" }} className="c-7">
-            <div>
-              {cartItems.map((cartItem) => (
+          {cartItems.length === 0 ? (
+            emptyCartMsg
+          ) : (
+            <>
+              <div style={{ backgroundColor: "orangered" }} className="c-7">
                 <div>
-                  <Link to={`/product/${cartItem.id}`}>
-                    <img src={cartItem.images} alt="item-picture" />
-                  </Link>
-                  <button onClick={() => dispatch(removeFromCart(cartItem.id))}>
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                  <div>
-                    <h3>{cartItem.title}</h3>
+                  {cartItems.map((cartItem) => (
                     <div>
-                      <h3>Quantity:</h3>
+                      <Link to={`/product/${cartItem.id}`}>
+                        <img src={cartItem.images} alt="item-picture" />
+                      </Link>
+                      <button
+                        onClick={() => dispatch(removeFromCart(cartItem.id))}
+                      >
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
                       <div>
-                        <button
-                          onClick={() =>
-                            dispatch(
-                              modifyCartQuantity({
-                                id: cartItem.id,
-                                type: "INCREASE",
-                              })
-                            )
-                          }
-                        >
-                          <i class="fa-solid fa-plus"></i>
-                        </button>
-                        <h3>{cartItem.quantity}</h3>
-                        <button
-                          onClick={() =>
-                            dispatch(
-                              modifyCartQuantity({
-                                id: cartItem.id,
-                                type: "DECREASE",
-                              })
-                            )
-                          }
-                        >
-                          <i class="fa-solid fa-minus"></i>
-                        </button>
+                        <h3>{cartItem.title}</h3>
+                        <div>
+                          <h3>Quantity:</h3>
+                          <div>
+                            <button
+                              onClick={() =>
+                                dispatch(
+                                  modifyCartQuantity({
+                                    id: cartItem.id,
+                                    type: "INCREASE",
+                                  })
+                                )
+                              }
+                            >
+                              <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <h3>{cartItem.quantity}</h3>
+                            <button
+                              onClick={() =>
+                                dispatch(
+                                  modifyCartQuantity({
+                                    id: cartItem.id,
+                                    type: "DECREASE",
+                                  })
+                                )
+                              }
+                            >
+                              <i class="fa-solid fa-minus"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div>
+                          <div>
+                            <h3>Price:</h3>
+                            <h3>{cartItem.price}</h3>
+                          </div>
+                          <div>
+                            <h3>Sub Total:</h3>
+                            <h3>{cartItem.totalPrice}</h3>
+                          </div>
+                        </div>
                       </div>
                     </div>
+                  ))}
+                </div>
+                <button onClick={() => dispatch(clearCart())}>
+                  Clear Cart
+                </button>
+              </div>
+              <div style={{ backgroundColor: "skyblue" }} className="c-5">
+                <div>
+                  <h2>Order Summary</h2>
+                  <div>
                     <div>
-                      <div>
-                        <h3>Price:</h3>
-                        <h3>{cartItem.price}</h3>
-                      </div>
-                      <div>
-                        <h3>Sub Total:</h3>
-                        <h3>{cartItem.totalPrice}</h3>
-                      </div>
+                      <h3>Selected {totalItems} item(s). Price</h3>
+                      <h3>{totalAmount}</h3>
+                    </div>
+                    <div>
+                      <h3>Discount</h3>
+                      <h3>-0</h3>
+                    </div>
+                    <div>
+                      <h3>Delivery Cost</h3>
+                      <h3>{deliveryCharge}</h3>
                     </div>
                   </div>
+                  <div>
+                    <h3>Grand Total:</h3>
+                    <h3>{totalAmount + deliveryCharge}</h3>
+                  </div>
                 </div>
-              ))}
-            </div>
-            <button onClick={() => dispatch(clearCart())}>Clear Cart</button>
-          </div>
-          <div style={{ backgroundColor: "skyblue" }} className="c-5">
-            <div>
-              <h2>Order Summary</h2>
-              <div>
-                <div>
-                  <h3>Selected {totalItems} item(s). Price</h3>
-                  <h3>{totalAmount}</h3>
-                </div>
-                <div>
-                  <h3>Discount</h3>
-                  <h3>-0</h3>
-                </div>
-                <div>
-                  <h3>Delivery Cost</h3>
-                  <h3>{deliveryCharge}</h3>
-                </div>
+                <Link to="/">
+                  <button>Proceed to Checkout</button>
+                </Link>
               </div>
-              <div>
-                <h3>Grand Total:</h3>
-                <h3>{totalAmount + deliveryCharge}</h3>
-              </div>
-            </div>
-            <Link to="/">
-              <button>Proceed to Checkout</button>
-            </Link>
-          </div>
+            </>
+          )}
         </div>
       </div>
     </div>

@@ -5,7 +5,6 @@ import { STATUS } from "../../utils/status";
 import Loader from "../Loader/Loader";
 import Error from "../Error/Error";
 
-
 const ProductList = ({ products, status }) => {
   const navigate = useNavigate();
   const currentURL = window.location.href;
@@ -20,51 +19,58 @@ const ProductList = ({ products, status }) => {
   const handleViewProductDetails = (productId) => {
     navigate(`/product/${productId}`);
   };
+  const noProductFound = <h4>No products found!</h4>;
 
   return (
     <div className="grid wide" id="productList">
-      <h1>{products[0] && "Our Products"}</h1>
-      <div
-        className="row row-formated"
-        style={{
-          backgroundColor: "#5193b3",
-        }}
-      >
-        {products.slice(0, maxProducts).map((product) => (
-          <Link
-            key={product.id}
-            className="c-2-4"
-            onClick={(e) => {
-              e.preventDefault();
-              handleViewProductDetails(product.id);
-            }}
-          >
-            <div className="product--image-section">
-              <img
-                src={product.images[0]}
-                alt={product.title}
-                className="product--image"
-              />
-            </div>
-            <div>
-              <h6 className="product--name">{product.title}</h6>
-            </div>
-          </Link>
-        ))}
-      </div>
-      {isHomePage && (
-        <Link to="/products">
-          <Button
+      {products.length === 0 ? (
+        noProductFound
+      ) : (
+        <>
+          <h1>{products[0] && "Our Products"}</h1>
+          <div
+            className="row row-formated"
             style={{
               backgroundColor: "#5193b3",
-              border: "1px solid #fff",
-              marginBottom: "24px",
-              marginTop: "12px",
             }}
           >
-            Show All Products
-          </Button>
-        </Link>
+            {products.slice(0, maxProducts).map((product) => (
+              <Link
+                key={product.id}
+                className="c-2-4"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleViewProductDetails(product.id);
+                }}
+              >
+                <div className="product--image-section">
+                  <img
+                    src={product.images[0]}
+                    alt={product.title}
+                    className="product--image"
+                  />
+                </div>
+                <div>
+                  <h6 className="product--name">{product.title}</h6>
+                </div>
+              </Link>
+            ))}
+          </div>
+          {isHomePage && (
+            <Link to="/products">
+              <Button
+                style={{
+                  backgroundColor: "#5193b3",
+                  border: "1px solid #fff",
+                  marginBottom: "24px",
+                  marginTop: "12px",
+                }}
+              >
+                Show All Products
+              </Button>
+            </Link>
+          )}
+        </>
       )}
     </div>
   );

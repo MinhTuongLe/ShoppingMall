@@ -13,11 +13,17 @@ const SearchBar = () => {
   const handleSearchTextChanged = (e) => {
     setSearchText(e.target.value);
     dispatch(searchFilterChange(e.target.value));
-    dispatch(searchFilterChangeCategory(e.target.value))
+    dispatch(searchFilterChangeCategory(e.target.value));
   };
 
   const handleButtonSearchClicked = () => {
     if (!currentURL.includes("/category")) navigate("/products");
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleButtonSearchClicked();
+    }
   };
   return (
     <div className="search-section">
@@ -27,6 +33,7 @@ const SearchBar = () => {
         placeholder="Search here ..."
         value={searchText}
         onChange={handleSearchTextChanged}
+        onKeyPress={handleKeyPress}
       />
       <div className="button-search" onClick={handleButtonSearchClicked}>
         <i class="fa-solid fa-magnifying-glass"></i>
