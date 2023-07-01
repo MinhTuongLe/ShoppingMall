@@ -1,12 +1,12 @@
 import React from 'react';
-import spinner from '../../assets/images/spinner.svg';
+import {Spinner} from '../../assets/images/index';
 import "./Loader.scss";
 
 const Loader = () => {
   return (
     <div>
         <div className = "loader">
-            <img src = {spinner} alt = "loader" />
+            <img src = {Spinner} alt = "loader" />
         </div>
     </div>
   )

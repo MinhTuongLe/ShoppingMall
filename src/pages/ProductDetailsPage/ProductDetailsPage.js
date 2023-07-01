@@ -7,7 +7,8 @@ import { addToCart } from "../../redux/CartSlice";
 import { STATUS } from "../../utils/status";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
-
+import Carousel from "react-bootstrap/Carousel";
+import "bootstrap/dist/css/bootstrap.min.css";
 const ProductDetails = () => {
   const { data: productDetails, status: productDetailsStatus } = useSelector((state) => state.productDetails);
   const dispatch = useDispatch();
@@ -76,10 +77,25 @@ const ProductDetails = () => {
       {productDetails.id && <h1>{productDetails.id}</h1>}
       {productDetails.title && <h1>{productDetails.title}</h1>}
       <div>
-        {productDetails.images &&
-          productDetails.images.map((image, index) => (
-            <img key={index} src={image} alt={`Product ${index}`} />
-          ))}
+        {productDetails.images && (
+
+              <Carousel interval={2500} style={{ height: "85vh" }}>
+              {productDetails.images.map((image, index) => (
+                <Carousel.Item className="carousel-item">
+                  <img
+                    className="d-block w-100"
+                    src={image}
+                    alt="First slide"
+                    style={{ height: "85vh" }}
+                  />
+                  <Carousel.Caption>
+                    <h3>Image {index+1}</h3>
+                  </Carousel.Caption>
+                </Carousel.Item>
+              ))}
+            </Carousel>
+        )
+        }
       </div>
       {productDetails.description && <h1>{productDetails.description}</h1>}
       {productDetails.price && <h1>{productDetails.price}</h1>}

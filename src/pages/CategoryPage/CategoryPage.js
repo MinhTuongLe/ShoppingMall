@@ -15,7 +15,6 @@ const CategoryPage = () => {
     dispatch(fetchProductsByCategory(id, "EACH", searchText ));
   }, [id, searchText]);
 
-  console.log(searchText)
   return (
     <div className="grid wide category-page">
       <div>

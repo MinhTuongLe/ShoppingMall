@@ -37,7 +37,7 @@ const Header = () => {
             <i class="fa-solid fa-caret-down"></i>
             <ul
               className={`categories-list ${
-                showCategoryList ? "height-70vh" : ""
+                showCategoryList ? "categories-list--height" : ""
               }`}
             >
               {categories.map((category) => (
