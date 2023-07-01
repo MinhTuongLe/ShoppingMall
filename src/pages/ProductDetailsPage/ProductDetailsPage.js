@@ -4,9 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchProductById } from "../../redux/ProductDetailsSlice";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { addToCart } from "../../redux/CartSlice";
+import { STATUS } from "../../utils/status";
+import Loader from "../../components/Loader/Loader";
+import Error from "../../components/Error/Error";
 
 const ProductDetails = () => {
-  const { data: productDetails } = useSelector((state) => state.productDetails);
+  const { data: productDetails, status: productDetailsStatus } = useSelector((state) => state.productDetails);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -43,7 +46,8 @@ const ProductDetails = () => {
   useEffect(() => {
     dispatch(fetchProductById(id));
   }, []);
-
+  if (productDetailsStatus === STATUS.ERROR) return <Error />;
+  if (productDetailsStatus === STATUS.LOADING) return <Loader />;
   return (
     <div className="product-details-page">
       <div>

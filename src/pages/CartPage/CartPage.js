@@ -9,6 +9,7 @@ import {
   getCartTotal,
 } from "../../redux/CartSlice";
 import { Link } from "react-router-dom";
+
 const CartPage = () => {
   const {
     data: cartItems,
@@ -37,7 +38,7 @@ const CartPage = () => {
               {cartItems.map((cartItem) => (
                 <div>
                   <Link to={`/product/${cartItem.id}`}>
-                    <img src={cartItem.images} alt="item-picture"/>
+                    <img src={cartItem.images} alt="item-picture" />
                   </Link>
                   <button onClick={() => dispatch(removeFromCart(cartItem.id))}>
                     <i class="fa-solid fa-trash"></i>
@@ -112,7 +113,9 @@ const CartPage = () => {
                 <h3>{totalAmount + deliveryCharge}</h3>
               </div>
             </div>
-            <button>Proceed to Checkout</button>
+            <Link to="/">
+              <button>Proceed to Checkout</button>
+            </Link>
           </div>
         </div>
       </div>

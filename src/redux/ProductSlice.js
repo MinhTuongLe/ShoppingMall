@@ -27,7 +27,7 @@ export const fetchProducts = () => {
     try {
       const response = await fetch(`${BASE_URL}products`);
       const data = await response.json();
-      dispatch(setProducts(data.slice(0, 20)));
+      dispatch(setProducts(data));
       dispatch(setStatus(STATUS.IDLE));
     } catch (error) {
       dispatch(setStatus(STATUS.ERROR));
