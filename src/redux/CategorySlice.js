@@ -79,7 +79,7 @@ export const fetchProductsByCategory = (categoryId, type, searchText) => {
 
       }
       if (type === "EACH") {
-        dispatch(setCategoriesEachProducts(data.filter(product => (product.title.toLowerCase()).includes(searchText))));
+        dispatch(setCategoriesEachProducts(data.filter(product => (product.title.toLowerCase()).includes(searchText.toLowerCase()))));
         dispatch(setCategoriesEachProductsStatus(STATUS.IDLE));
 
       }

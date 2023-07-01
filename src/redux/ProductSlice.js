@@ -31,7 +31,7 @@ export const fetchProducts = (searchText) => {
     try {
       const response = await fetch(`${BASE_URL}products`);
       const data = await response.json();
-      dispatch(setProducts(data.filter(product => (product.title.toLowerCase()).includes(searchText))));
+      dispatch(setProducts(data.filter(product => (product.title.toLowerCase()).includes(searchText.toLowerCase()))));
       dispatch(setStatus(STATUS.IDLE));
     } catch (error) {
       dispatch(setStatus(STATUS.ERROR));
