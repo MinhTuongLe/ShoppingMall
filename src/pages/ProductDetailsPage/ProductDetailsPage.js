@@ -9,6 +9,8 @@ import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
 import Carousel from "react-bootstrap/Carousel";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { toast } from "react-toastify";
+
 const ProductDetails = () => {
   const { data: productDetails, status: productDetailsStatus } = useSelector((state) => state.productDetails);
   const dispatch = useDispatch();
@@ -42,6 +44,7 @@ const ProductDetails = () => {
     };
     dispatch(addToCart(tempProduct));
     navigate("/cart");
+    toast.success("Successfully add to cart!", { autoClose: 1000 });
   };
 
   useEffect(() => {

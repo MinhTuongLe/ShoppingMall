@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { searchFilterChange } from "../../redux/ProductSlice";
 import { searchFilterChangeCategory } from "../../redux/CategorySlice";
 import { useNavigate } from "react-router-dom";
+
 const SearchBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

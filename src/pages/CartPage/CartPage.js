@@ -8,7 +8,8 @@ import {
   modifyCartQuantity,
   getCartTotal,
 } from "../../redux/CartSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CartPage = () => {
   const {
@@ -18,6 +19,12 @@ const CartPage = () => {
     deliveryCharge,
   } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleProceedToCheckout = async () => {
+    await dispatch(clearCart());
+    navigate("/");
+    toast.success("Successfully checkout!", { autoClose: 1000 });
+  };
   useEffect(() => {
     dispatch(getCartTotal());
   }, [useSelector((state) => state.cart)]);
@@ -46,7 +53,12 @@ const CartPage = () => {
                         <img src={cartItem.images} alt="item-picture" />
                       </Link>
                       <button
-                        onClick={() => dispatch(removeFromCart(cartItem.id))}
+                        onClick={() => {
+                          dispatch(removeFromCart(cartItem.id));
+                          toast.success("Successfully remove from cart!", {
+                            autoClose: 1000,
+                          });
+                        }}
                       >
                         <i class="fa-solid fa-trash"></i>
                       </button>
@@ -56,27 +68,33 @@ const CartPage = () => {
                           <h3>Quantity:</h3>
                           <div>
                             <button
-                              onClick={() =>
+                              onClick={() => {
                                 dispatch(
                                   modifyCartQuantity({
                                     id: cartItem.id,
                                     type: "INCREASE",
                                   })
-                                )
-                              }
+                                );
+                                toast.success("Successfully increase item!", {
+                                  autoClose: 1000,
+                                });
+                              }}
                             >
                               <i class="fa-solid fa-plus"></i>
                             </button>
                             <h3>{cartItem.quantity}</h3>
                             <button
-                              onClick={() =>
+                              onClick={() => {
                                 dispatch(
                                   modifyCartQuantity({
                                     id: cartItem.id,
                                     type: "DECREASE",
                                   })
-                                )
-                              }
+                                );
+                                toast.success("Successfully decrease item!", {
+                                  autoClose: 1000,
+                                });
+                              }}
                             >
                               <i class="fa-solid fa-minus"></i>
                             </button>
@@ -96,7 +114,14 @@ const CartPage = () => {
                     </div>
                   ))}
                 </div>
-                <button onClick={() => dispatch(clearCart())}>
+                <button
+                  onClick={() => {
+                    dispatch(clearCart());
+                    toast.success("Successfully clear cart!", {
+                      autoClose: 1000,
+                    });
+                  }}
+                >
                   Clear Cart
                 </button>
               </div>
@@ -122,9 +147,9 @@ const CartPage = () => {
                     <h3>{totalAmount + deliveryCharge}</h3>
                   </div>
                 </div>
-                <Link to="/">
-                  <button>Proceed to Checkout</button>
-                </Link>
+                <button onClick={handleProceedToCheckout}>
+                  Proceed to Checkout
+                </button>
               </div>
             </>
           )}

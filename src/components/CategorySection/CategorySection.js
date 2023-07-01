@@ -5,7 +5,14 @@ import { Link } from "react-router-dom";
 import Error from "../Error/Error";
 import Loader from "../Loader/Loader";
 import { STATUS } from "../../utils/status";
+import { Button } from "react-bootstrap";
+
 const CategorySection = ({ products, status }) => {
+  const currentURL = window.location.href;
+  let isHomePage = true;
+  if (currentURL.includes("/category") || currentURL.includes("/products")) {
+    isHomePage = false;
+  }
   if (status === STATUS.ERROR) return <Error />;
   if (status === STATUS.LOADING) return <Loader />;
   return (
@@ -32,6 +39,20 @@ const CategorySection = ({ products, status }) => {
           </Link>
         ))}
       </div>
+      {isHomePage && (
+            <Link to={`./category/${products[0].category.id}`}>
+              <Button
+                style={{
+                  backgroundColor: "#5193b3",
+                  border: "1px solid #fff",
+                  marginBottom: "24px",
+                  marginTop: "12px",
+                }}
+              >
+                Show All Products
+              </Button>
+            </Link>
+          )}
     </div>
   );
 };
