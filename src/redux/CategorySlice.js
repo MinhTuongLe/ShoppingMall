@@ -11,6 +11,7 @@ const CategorySlice = createSlice({
     catAllProductsStatus: STATUS.IDLE,
     catEachProducts: [],
     catEachProductsStatus: STATUS.IDLE,
+    searchText: ""
   },
   reducers: {
     setCategories(state, action) {
@@ -18,6 +19,9 @@ const CategorySlice = createSlice({
     },
     setStatus(state, action) {
       state.status = action.payload;
+    },
+    searchFilterChangeCategory(state, action) {
+      state.searchText = action.payload;
     },
     setCategoriesAllProducts(state, action) {
       state.catAllProducts.push(action.payload);
@@ -41,6 +45,7 @@ export const {
   setCategoriesEachProducts,
   setCategoriesAllProductsStatus,
   setCategoriesEachProductsStatus,
+  searchFilterChangeCategory
 } = CategorySlice.actions;
 export default CategorySlice.reducer;
 
@@ -59,7 +64,7 @@ export const fetchCategories = () => {
   };
 };
 
-export const fetchProductsByCategory = (categoryId, type) => {
+export const fetchProductsByCategory = (categoryId, type, searchText) => {
   return async function fetchProductsByCategory(dispatch) {
     if(type === 'ALL') dispatch(setCategoriesAllProductsStatus(STATUS.LOADING));
     if(type === 'EACH') dispatch(setCategoriesEachProductsStatus(STATUS.LOADING));
@@ -74,7 +79,7 @@ export const fetchProductsByCategory = (categoryId, type) => {
 
       }
       if (type === "EACH") {
-        dispatch(setCategoriesEachProducts(data));
+        dispatch(setCategoriesEachProducts(data.filter(product => (product.title.toLowerCase()).includes(searchText))));
         dispatch(setCategoriesEachProductsStatus(STATUS.IDLE));
 
       }

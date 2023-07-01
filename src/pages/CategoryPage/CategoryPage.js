@@ -8,13 +8,14 @@ import ProductList from "../../components/ProductList/ProductList";
 const CategoryPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { catEachProducts: products, catEachProductsStatus: status } =
+  const { catEachProducts: products, catEachProductsStatus: status, searchText: searchText } =
     useSelector((state) => state.category);
 
   useEffect(() => {
-    dispatch(fetchProductsByCategory(id, "EACH"));
-  }, [id]);
+    dispatch(fetchProductsByCategory(id, "EACH", searchText ));
+  }, [id, searchText]);
 
+  console.log(searchText)
   return (
     <div className="grid wide category-page">
       <div>
@@ -28,7 +29,7 @@ const CategoryPage = () => {
         </Link>
         <Link>{products[0] && products[0].category.name}</Link>
       </div>
-      <ProductList products={products} status={status} />
+      <ProductList products={products} status={status}/>
     </div>
   );
 };

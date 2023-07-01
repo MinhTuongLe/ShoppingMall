@@ -12,7 +12,7 @@ const Header = () => {
   const { data: categories } = useSelector((state) => state.category);
   const { totalItems } = useSelector((state) => state.cart);
   const [showCategoryList, setShowCategoryList] = useState(false);
-
+  
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(getCartTotal())

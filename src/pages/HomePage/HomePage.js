@@ -24,7 +24,7 @@ const HomePage = () => {
 
   const categoryIds = [1, 2, 3, 4, 5];
   useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(fetchProducts(""));
     dispatch(fetchCategories());
 
     Promise.all(
