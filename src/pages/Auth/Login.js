@@ -6,21 +6,28 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
-
+import { toast } from "react-toastify";
 import { auth } from "../../firebase/firebase";
 import "../../App.scss";
+import { STATUS } from "../../utils/status";
+import Loader from "../../components/Loader/Loader";
+import Error from "../../components/Error/Error";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const {previousURL: URL} = useSelector((state) => state.cart);
-  const {previousContactURL: contactURL} = useSelector((state) => state.contact);
+  const {status: loginStatus} = useSelector(state => state.auth)
+  const { previousURL: URL } = useSelector((state) => state.cart);
+  const { previousContactURL: contactURL } = useSelector(
+    (state) => state.contact
+  );
   const redirectUser = () => {
     if (URL.includes("cart")) {
       return navigate("/cart");
     }
-    if (contactURL.includes("contact")){
-      return navigate("/contact")
+    if (contactURL.includes("contact")) {
+      return navigate("/contact");
     }
     navigate("/");
   };
@@ -30,19 +37,28 @@ const Login = () => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        toast.success("Successfully login!", { autoClose: 1000 });
         redirectUser();
       })
-      .catch((error) => {});
+      .catch((error) => {
+        toast.error("Failed login!", { autoClose: 1000 });
+      });
   };
 
   const provider = new GoogleAuthProvider();
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
+        toast.success("Successfully login!", { autoClose: 1000 });
         redirectUser();
       })
-      .catch((error) => {});
+      .catch((error) => {
+        toast.error("Failed login!", { autoClose: 1000 });
+      });
   };
+
+  if (loginStatus === STATUS.ERROR) return <Error />;
+  if (loginStatus === STATUS.LOADING) return <Loader />;
 
   return (
     <div style={{ width: "100vw" }}>

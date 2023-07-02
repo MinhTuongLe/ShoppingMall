@@ -3,18 +3,30 @@ import { Link, useNavigate } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import "../../App.scss";
+import { toast } from "react-toastify";
+import { STATUS } from "../../utils/status";
+import Loader from "../../components/Loader/Loader";
+import Error from "../../components/Error/Error";
+import { useSelector } from "react-redux";
+
 const ResetPassword = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+  const {status: loginStatus} = useSelector(state => state.auth)
+
   const resetPassword = (e) => {
     e.preventDefault();
     sendPasswordResetEmail(auth, email)
       .then(() => {
+        toast.success("Successfully reset password!", { autoClose: 1000});
         navigate('/login')
       })
-      .catch((error) => {});
+      .catch((error) => {
+        toast.error("Failed reset password!", { autoClose: 1000});
+      });
   };
-
+  if (loginStatus === STATUS.ERROR) return <Error />;
+  if (loginStatus === STATUS.LOADING) return <Loader />;
   return (
     <div style={{ width: "100vw" }}>
       <div className="grid wide">

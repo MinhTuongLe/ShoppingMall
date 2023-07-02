@@ -10,6 +10,7 @@ import { setActiveUser, removeActiveUser } from "../../redux/AuthSlice";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import ShowOnLogin, { ShowOnLogout } from "../SwitchMode/SwitchMode";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -56,9 +57,12 @@ const Header = () => {
   const logoutUser = () => {
     signOut(auth)
       .then(() => {
+        toast.success("Successfully logout!", { autoClose: 1000});
         navigate("/");
       })
-      .catch((error) => {});
+      .catch((error) => {
+        toast.error("Failed logout!", { autoClose: 1000});
+      });
   };
 
   return (

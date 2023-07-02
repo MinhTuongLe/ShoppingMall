@@ -3,16 +3,24 @@ import emailjs from "@emailjs/browser";
 import { useDispatch, useSelector } from "react-redux";
 import "../../App.scss";
 import { useNavigate } from "react-router-dom";
-import {saveContactURL } from "../../redux/ContactSlice";
-import { selectIsLoggedIn } from "../../redux/AuthSlice";
+import { saveContactURL } from "../../redux/ContactSlice";
+import { selectEmail, selectIsLoggedIn } from "../../redux/AuthSlice";
+import { toast } from "react-toastify";
+import { STATUS } from "../../utils/status";
+import Loader from "../../components/Loader/Loader";
+import Error from "../../components/Error/Error";
 
 const ContactPage = () => {
   const currentForm = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const userEmail = useSelector(selectEmail);
   const currentURL = window.location.href;
-  
+
+  const {status: loginStatus} = useSelector(state => state.auth)
+
+
   const sendFeedBack = (e) => {
     e.preventDefault();
     if (isLoggedIn) {
@@ -23,8 +31,12 @@ const ContactPage = () => {
           currentForm.current,
           "MoNGHMtErZX-Kl2CJ"
         )
-        .then((result) => {})
-        .catch((error) => {});
+        .then((result) => {
+          toast.success("Successfully send feedback!", { autoClose: 1000 });
+        })
+        .catch((error) => {
+          toast.error("Failed send feedback!", { autoClose: 1000 });
+        });
       e.target.reset();
       navigate("/");
     } else {
@@ -36,6 +48,9 @@ const ContactPage = () => {
   useEffect(() => {
     dispatch(saveContactURL(""));
   }, [useSelector((state) => state.contact)]);
+
+  if (loginStatus === STATUS.ERROR) return <Error />;
+  if (loginStatus === STATUS.LOADING) return <Loader />;
   return (
     <div style={{ width: "100vw" }}>
       <div className="grid wide">
@@ -49,7 +64,7 @@ const ContactPage = () => {
               </div>
               <div>
                 <label>Email</label>
-                <input type="text" placeholder="Your Email" />
+                <input type="text" disabled value={userEmail}/>
               </div>
               <div>
                 <label>Subject</label>

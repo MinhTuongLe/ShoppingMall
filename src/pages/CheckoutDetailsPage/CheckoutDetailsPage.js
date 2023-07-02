@@ -5,50 +5,48 @@ import { CountryDropdown } from "react-country-region-selector";
 import { clearCart, getOrderTotal } from "../../redux/CartSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-
-const initialAddressState = {
-  name: "",
-  address: "",
-  discountCode: "",
-  country: "",
-  phone: "",
-};
-
+import { STATUS } from "../../utils/status";
+import Loader from "../../components/Loader/Loader";
+import Error from "../../components/Error/Error";
 const CheckoutDetailsPage = () => {
-  const [shippingAddress, setShippingAddress] = useState({
-    ...initialAddressState,
-  });
-
   const {
     data: cartItems,
-    totalItems,
     totalAmount,
     totalProducts,
     deliveryCharge,
   } = useSelector((state) => state.cart);
-  const handleShipping = (e) => {
-    const { name, value } = e.target;
-    setShippingAddress({
-      ...shippingAddress,
-      [name]: value,
-    });
-  };
+  const {status: loginStatus} = useSelector(state => state.auth)
+
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [recipientName, setRecipientName] = useState("");
+  const [address, setAddress] = useState("");
+  const [discountCode, setDiscountCode] = useState("");
+  const [phone, setPhone] = useState("");
+  const [country, setCountry] = useState("");
+
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    navigate("/");
     try {
       dispatch(clearCart());
       toast.success("Successfully checkout!", { autoClose: 1000 });
+      navigate("/");
     } catch (error) {
       toast.error("Failed checkout!", { autoClose: 1000 });
     }
   };
+
   useEffect(() => {
     dispatch(getOrderTotal());
   }, []);
+
   const emptyCartMsg = <h4>No items found</h4>;
+
+  if (loginStatus === STATUS.ERROR) return <Error />;
+  if (loginStatus === STATUS.LOADING) return <Loader />;
+
   return (
     <div className="cart-page">
       <div className="grid wide">
@@ -75,8 +73,8 @@ const CheckoutDetailsPage = () => {
                         required
                         type="text"
                         placeholder="Recipient Name"
-                        value={shippingAddress.name}
-                        onChange={(e) => handleShipping(e)}
+                        value={recipientName}
+                        onChange={(e) => setRecipientName(e.target.value)}
                       />
                     </div>
                     <div>
@@ -85,8 +83,8 @@ const CheckoutDetailsPage = () => {
                         required
                         type="text"
                         placeholder="Address"
-                        value={shippingAddress.address}
-                        onChange={(e) => handleShipping(e)}
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
                       />
                     </div>
                     <div>
@@ -95,8 +93,8 @@ const CheckoutDetailsPage = () => {
                         required
                         type="text"
                         placeholder="Discount code"
-                        value={shippingAddress.discountCode}
-                        onChange={(e) => handleShipping(e)}
+                        value={discountCode}
+                        onChange={(e) => setDiscountCode(e.target.value)}
                       />
                     </div>
                     <div>
@@ -105,23 +103,16 @@ const CheckoutDetailsPage = () => {
                         required
                         type="text"
                         placeholder="Phone"
-                        value={shippingAddress.phone}
-                        onChange={(e) => handleShipping(e)}
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
                       />
                     </div>
                     <label>Country</label>
                     <CountryDropdown
                       required
                       valueType="short"
-                      value={shippingAddress.country}
-                      onChange={(val) =>
-                        handleShipping({
-                          target: {
-                            name: "country",
-                            value: val,
-                          },
-                        })
-                      }
+                      value={country}
+                      onChange={(val) => setCountry(val)}
                     />
                     <button type="submit">Checkout</button>
                   </div>

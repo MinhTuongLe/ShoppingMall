@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { STATUS } from "../utils/status";
 
 const AuthSlice = createSlice({
   name: "auth",
@@ -7,6 +8,7 @@ const AuthSlice = createSlice({
     email: null,
     userName: null,
     userId: null,
+    status: STATUS.IDLE,
   },
   reducers: {
     setActiveUser(state, action) {
@@ -22,10 +24,13 @@ const AuthSlice = createSlice({
       state.userName = null;
       state.userId = null;
     },
+    setStatus(state, action) {
+      state.status = action.payload;
+    },
   },
 });
 
-export const { setActiveUser, removeActiveUser } = AuthSlice.actions;
+export const {setStatus, setActiveUser, removeActiveUser } = AuthSlice.actions;
 export default AuthSlice.reducer;
 
 export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;

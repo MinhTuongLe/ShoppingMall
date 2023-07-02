@@ -12,6 +12,10 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { selectIsLoggedIn } from "../../redux/AuthSlice";
+import { STATUS } from "../../utils/status";
+import Loader from "../../components/Loader/Loader";
+import Error from "../../components/Error/Error";
+
 const CartPage = () => {
   const {
     data: cartItems,
@@ -22,20 +26,23 @@ const CartPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { status: loginStatus } = useSelector((state) => state.auth);
+
   const currentURL = window.location.href;
   const handleCheckout = () => {
     if (isLoggedIn) {
       navigate("/checkout-details");
     } else {
       dispatch(saveURL(currentURL));
-      navigate('/login')
+      navigate("/login");
     }
   };
   useEffect(() => {
     dispatch(getCartTotal());
     dispatch(saveURL(""));
   }, [useSelector((state) => state.cart)]);
-
+  if (loginStatus === STATUS.ERROR) return <Error />;
+  if (loginStatus === STATUS.LOADING) return <Loader />;
   const emptyCartMsg = <h4>No items found!</h4>;
   return (
     <div className="cart-page">

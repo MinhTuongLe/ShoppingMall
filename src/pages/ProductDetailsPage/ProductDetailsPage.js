@@ -12,7 +12,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from "react-toastify";
 
 const ProductDetails = () => {
-  const { data: productDetails, status: productDetailsStatus } = useSelector((state) => state.productDetails);
+  const { data: productDetails, status: productDetailsStatus } = useSelector(
+    (state) => state.productDetails
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -44,7 +46,7 @@ const ProductDetails = () => {
     };
     dispatch(addToCart(tempProduct));
     navigate("/cart");
-    toast.success("Successfully add to cart!", { autoClose: 1000 });
+    toast.success(`Successfully add to cart!`, { autoClose: 1000 });
   };
 
   useEffect(() => {
@@ -81,24 +83,22 @@ const ProductDetails = () => {
       {productDetails.title && <h1>{productDetails.title}</h1>}
       <div>
         {productDetails.images && (
-
-              <Carousel interval={2500} style={{ height: "85vh" }}>
-              {productDetails.images.map((image, index) => (
-                <Carousel.Item className="carousel-item">
-                  <img
-                    className="d-block w-100"
-                    src={image}
-                    alt="First slide"
-                    style={{ height: "85vh" }}
-                  />
-                  <Carousel.Caption>
-                    <h3>Image {index+1}</h3>
-                  </Carousel.Caption>
-                </Carousel.Item>
-              ))}
-            </Carousel>
-        )
-        }
+          <Carousel interval={2500} style={{ height: "85vh" }}>
+            {productDetails.images.map((image, index) => (
+              <Carousel.Item className="carousel-item">
+                <img
+                  className="d-block w-100"
+                  src={image}
+                  alt="First slide"
+                  style={{ height: "85vh" }}
+                />
+                <Carousel.Caption>
+                  <h3>Image {index + 1}</h3>
+                </Carousel.Caption>
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        )}
       </div>
       {productDetails.description && <h1>{productDetails.description}</h1>}
       {productDetails.price && <h1>{productDetails.price}</h1>}

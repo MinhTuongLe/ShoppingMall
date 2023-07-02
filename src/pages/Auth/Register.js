@@ -3,10 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import "../../App.scss";
+import { toast } from "react-toastify";
+import { STATUS } from "../../utils/status";
+import Loader from "../../components/Loader/Loader";
+import Error from "../../components/Error/Error";
+import { useSelector } from "react-redux";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
+  const {status: loginStatus} = useSelector(state => state.auth)
   const navigate = useNavigate();
 
   const registerUser = (e) => {
@@ -18,12 +24,15 @@ const Register = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const newUser = userCredential.user;
-
+        toast.success("Successfully register!", { autoClose: 1000});
         navigate("/");
       })
-      .catch((error) => {});
+      .catch((error) => {
+        toast.error("Failed register!", { autoClose: 1000});
+      });
   };
-
+  if (loginStatus === STATUS.ERROR) return <Error />;
+  if (loginStatus === STATUS.LOADING) return <Loader />;
   return (
     <div style={{ width: "100vw" }}>
       <div className="grid wide">
