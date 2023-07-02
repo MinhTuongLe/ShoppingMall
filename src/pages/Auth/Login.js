@@ -14,9 +14,13 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const {previousURL: URL} = useSelector((state) => state.cart);
+  const {previousContactURL: contactURL} = useSelector((state) => state.contact);
   const redirectUser = () => {
     if (URL.includes("cart")) {
       return navigate("/cart");
+    }
+    if (contactURL.includes("contact")){
+      return navigate("/contact")
     }
     navigate("/");
   };
@@ -69,7 +73,7 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <button>Login</button>
+                <button type="submit">Login</button>
                 <Link to="/reset-password">
                   <button>Reset password</button>
                 </Link>

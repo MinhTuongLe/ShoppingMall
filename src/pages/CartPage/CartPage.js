@@ -11,25 +11,29 @@ import {
 } from "../../redux/CartSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import { selectIsLoggedIn } from "../../redux/AuthSlice";
 const CartPage = () => {
   const {
     data: cartItems,
     totalItems,
     totalAmount,
     deliveryCharge,
-    
   } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleProceedToCheckout = async () => {
-    await dispatch(clearCart());
-    navigate("/");
-    toast.success("Successfully checkout!", { autoClose: 1000 });
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const currentURL = window.location.href;
+  const handleCheckout = () => {
+    if (isLoggedIn) {
+      navigate("/checkout-details");
+    } else {
+      dispatch(saveURL(currentURL));
+      navigate('/login')
+    }
   };
   useEffect(() => {
     dispatch(getCartTotal());
-    dispatch(saveURL(""))
+    dispatch(saveURL(""));
   }, [useSelector((state) => state.cart)]);
 
   const emptyCartMsg = <h4>No items found!</h4>;
@@ -151,9 +155,7 @@ const CartPage = () => {
                     <h3>{totalAmount + deliveryCharge}</h3>
                   </div>
                 </div>
-                <button onClick={handleProceedToCheckout}>
-                  Proceed to Checkout
-                </button>
+                <button onClick={handleCheckout}>Proceed to Checkout</button>
               </div>
             </>
           )}

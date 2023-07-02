@@ -1,9 +1,23 @@
 import React from "react";
 import "./Footer.scss";
 import "../../App.scss";
+import { useNavigate } from "react-router-dom";
+import { selectIsLoggedIn } from "../../redux/AuthSlice";
+import { useSelector } from "react-redux";
+
 const getDate = new Date();
+
 const getCurrentYear = getDate.getFullYear();
 const Footer = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
+  const handleContact = (e) => {
+    e.preventDefault();
+    if (isLoggedIn) {
+      return navigate("/contact");
+    }
+    navigate('/login')
+  };
   return (
     <div className="grid footer-section">
       <div className="grid wide">
@@ -62,7 +76,7 @@ const Footer = () => {
                   +84 834091202
                 </a>
               </li>
-              <li className="footer-col--item">
+              <li className="footer-col--item" onClick={handleContact}>
                 <a href="/">
                   <i class="fa-solid fa-envelope"></i>
                   leminhtuong09122002@gmail.com

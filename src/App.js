@@ -7,6 +7,10 @@ import {
   ProductDetailsPage,
   ProductsPage,
   Login,
+  CheckoutDetailsPage,
+  Register,
+  ResetPassword,
+  ContactPage,
 } from "./pages/index";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -28,6 +32,10 @@ function App() {
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/checkout-details" element={<CheckoutDetailsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
