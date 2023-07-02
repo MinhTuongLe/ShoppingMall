@@ -10,6 +10,7 @@ import Error from "../../components/Error/Error";
 import Carousel from "react-bootstrap/Carousel";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from "react-toastify";
+import '../../App.scss'
 
 const ProductDetails = () => {
   const { data: productDetails, status: productDetailsStatus } = useSelector(
@@ -52,6 +53,26 @@ const ProductDetails = () => {
   useEffect(() => {
     dispatch(fetchProductById(id));
   }, []);
+
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleScroll = () => {
+    if (window.pageYOffset > window.innerHeight) {
+      setShowScrollToTop(true);
+    } else {
+      setShowScrollToTop(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  
   if (productDetailsStatus === STATUS.ERROR) return <Error />;
   if (productDetailsStatus === STATUS.LOADING) return <Loader />;
   return (
@@ -121,6 +142,11 @@ const ProductDetails = () => {
         <i className="fa-solid fa-cart-shopping cart-icon"></i>
         <span>Add to Cart</span>
       </button>
+      {showScrollToTop && (
+            <button className="scroll-to-top" onClick={scrollToTop}>
+              Scroll To Top
+            </button>
+          )}
     </div>
   );
 };

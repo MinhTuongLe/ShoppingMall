@@ -10,6 +10,7 @@ import { fetchProducts } from "../../redux/ProductSlice";
 import CategorySection from "../../components/CategorySection/CategorySection";
 import ProductList from "../../components/ProductList/ProductList";
 import Loader from "../../components/Loader/Loader";
+import '../../App.scss'
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const HomePage = () => {
     useSelector((state) => state.category);
 
   const [isLoading, setIsLoading] = useState(true);
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   const categoryIds = [1, 2, 3, 4, 5];
   useEffect(() => {
@@ -35,6 +37,23 @@ const HomePage = () => {
       .then(() => setIsLoading(false))
       .catch(() => setIsLoading(false));
   }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleScroll = () => {
+    if (window.pageYOffset > window.innerHeight) {
+      setShowScrollToTop(true);
+    } else {
+      setShowScrollToTop(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="homepage">
@@ -52,6 +71,11 @@ const HomePage = () => {
               )}
             </section>
           ))}
+          {showScrollToTop && (
+            <button className="scroll-to-top" onClick={scrollToTop}>
+              Scroll To Top
+            </button>
+          )}
         </>
       )}
       {isLoading && <Loader />}

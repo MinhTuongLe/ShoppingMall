@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import { useDispatch, useSelector } from "react-redux";
 import "../../App.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { saveContactURL } from "../../redux/ContactSlice";
 import { selectEmail, selectIsLoggedIn } from "../../redux/AuthSlice";
 import { toast } from "react-toastify";
@@ -18,8 +18,7 @@ const ContactPage = () => {
   const userEmail = useSelector(selectEmail);
   const currentURL = window.location.href;
 
-  const {status: loginStatus} = useSelector(state => state.auth)
-
+  const { status: loginStatus } = useSelector((state) => state.auth);
 
   const sendFeedBack = (e) => {
     e.preventDefault();
@@ -55,8 +54,15 @@ const ContactPage = () => {
     <div style={{ width: "100vw" }}>
       <div className="grid wide">
         <div className="row row-formated">
+          <div>
+            <Link to="/">
+              <i className="fas fa-home"></i>
+              <i className="fas fa-chevron-right"></i>
+            </Link>
+            <span>Contact</span>
+          </div>
+          <h1>Contact Us</h1>
           <div className="c-6">
-            <h1>Contact Us</h1>
             <form ref={currentForm} onSubmit={sendFeedBack}>
               <div>
                 <label>Name</label>
@@ -64,7 +70,7 @@ const ContactPage = () => {
               </div>
               <div>
                 <label>Email</label>
-                <input type="text" disabled value={userEmail}/>
+                <input type="text" disabled value={userEmail} />
               </div>
               <div>
                 <label>Subject</label>

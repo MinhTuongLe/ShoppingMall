@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { STATUS } from "../../utils/status";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
+
 const CheckoutDetailsPage = () => {
   const {
     data: cartItems,
@@ -15,8 +16,7 @@ const CheckoutDetailsPage = () => {
     totalProducts,
     deliveryCharge,
   } = useSelector((state) => state.cart);
-  const {status: loginStatus} = useSelector(state => state.auth)
-
+  const { status: loginStatus } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -43,6 +43,24 @@ const CheckoutDetailsPage = () => {
   }, []);
 
   const emptyCartMsg = <h4>No items found</h4>;
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleScroll = () => {
+    if (window.pageYOffset > window.innerHeight) {
+      setShowScrollToTop(true);
+    } else {
+      setShowScrollToTop(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   if (loginStatus === STATUS.ERROR) return <Error />;
   if (loginStatus === STATUS.LOADING) return <Loader />;
@@ -55,7 +73,11 @@ const CheckoutDetailsPage = () => {
             <i className="fas fa-home"></i>
             <i className="fas fa-chevron-right"></i>
           </Link>
-          <span>Cart</span>
+          <Link to="/cart">
+            <span>Cart</span>
+            <i className="fas fa-chevron-right"></i>
+          </Link>
+          <span>Checkout-details</span>
         </div>
         <div className="row row-formated">
           {cartItems.length === 0 ? (
@@ -170,6 +192,11 @@ const CheckoutDetailsPage = () => {
           )}
         </div>
       </div>
+      {showScrollToTop && (
+        <button className="scroll-to-top" onClick={scrollToTop}>
+          Scroll To Top
+        </button>
+      )}
     </div>
   );
 };

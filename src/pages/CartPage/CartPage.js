@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./CartPage.scss";
 import "../../App.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,6 +41,25 @@ const CartPage = () => {
     dispatch(getCartTotal());
     dispatch(saveURL(""));
   }, [useSelector((state) => state.cart)]);
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleScroll = () => {
+    if (window.pageYOffset > window.innerHeight) {
+      setShowScrollToTop(true);
+    } else {
+      setShowScrollToTop(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  
   if (loginStatus === STATUS.ERROR) return <Error />;
   if (loginStatus === STATUS.LOADING) return <Loader />;
   const emptyCartMsg = <h4>No items found!</h4>;
@@ -168,6 +187,11 @@ const CartPage = () => {
           )}
         </div>
       </div>
+      {showScrollToTop && (
+            <button className="scroll-to-top" onClick={scrollToTop}>
+              Scroll To Top
+            </button>
+          )}
     </div>
   );
 };

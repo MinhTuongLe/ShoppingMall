@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsByCategory } from "../../redux/CategorySlice";
@@ -14,6 +14,25 @@ const CategoryPage = () => {
   useEffect(() => {
     dispatch(fetchProductsByCategory(id, "EACH", searchText ));
   }, [id, searchText]);
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleScroll = () => {
+    if (window.pageYOffset > window.innerHeight) {
+      setShowScrollToTop(true);
+    } else {
+      setShowScrollToTop(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  
 
   return (
     <div className="grid wide category-page">
@@ -29,6 +48,11 @@ const CategoryPage = () => {
         <Link>{products[0] && products[0].category.name}</Link>
       </div>
       <ProductList products={products} status={status}/>
+      {showScrollToTop && (
+            <button className="scroll-to-top" onClick={scrollToTop}>
+              Scroll To Top
+            </button>
+          )}
     </div>
   );
 };
