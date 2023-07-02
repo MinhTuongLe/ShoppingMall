@@ -11,6 +11,7 @@ import {
   Register,
   ResetPassword,
   ContactPage,
+  NotFoundPage
 } from "./pages/index";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -36,6 +37,7 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/checkout-details" element={<CheckoutDetailsPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>

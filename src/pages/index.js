@@ -8,6 +8,7 @@ import CheckoutDetailsPage from "./CheckoutDetailsPage/CheckoutDetailsPage";
 import Register from "./Auth/Register";
 import ResetPassword from "./Auth/ResetPassword";
 import ContactPage from "./ContactPage/ContactPage";
+import NotFoundPage from './NotFoundPage/NotFoundPage'
 export {
   HomePage,
   CategoryPage,
@@ -18,5 +19,6 @@ export {
   Register,
   ResetPassword,
   CheckoutDetailsPage,
-  ContactPage
+  ContactPage,
+  NotFoundPage
 };

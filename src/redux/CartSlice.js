@@ -17,6 +17,7 @@ const CartSlice = createSlice({
     totalAmount: 0,
     deliveryCharge: 1000,
     previousURL: "",
+    totalProducts: 0,
   },
   reducers: {
     addToCart(state, action) {
@@ -81,6 +82,15 @@ const CartSlice = createSlice({
       }, 0);
       state.totalItems = state.data.length;
     },
+    getOrderTotal(state) {
+      state.totalProducts = state.data.reduce((total, item) => {
+        if (item.quantity > 1) {
+          return total + item.quantity;
+        } else {
+          return total + 1;
+        }
+      }, 0);
+    },
     saveURL(state, action) {
       state.previousURL = action.payload;
     },
@@ -93,6 +103,7 @@ export const {
   clearCart,
   modifyCartQuantity,
   getCartTotal,
-  saveURL
+  saveURL,
+  getOrderTotal
 } = CartSlice.actions;
 export default CartSlice.reducer;
