@@ -7,6 +7,7 @@ import {
   clearCart,
   modifyCartQuantity,
   getCartTotal,
+  saveURL,
 } from "../../redux/CartSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -17,6 +18,7 @@ const CartPage = () => {
     totalItems,
     totalAmount,
     deliveryCharge,
+    
   } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,7 +29,9 @@ const CartPage = () => {
   };
   useEffect(() => {
     dispatch(getCartTotal());
+    dispatch(saveURL(""))
   }, [useSelector((state) => state.cart)]);
+
   const emptyCartMsg = <h4>No items found!</h4>;
   return (
     <div className="cart-page">

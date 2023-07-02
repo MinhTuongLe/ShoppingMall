@@ -6,6 +6,7 @@ import {
   CategoryPage,
   ProductDetailsPage,
   ProductsPage,
+  Login,
 } from "./pages/index";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -26,6 +27,7 @@ function App() {
           <Route path="/product/:id" element={<ProductDetailsPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Footer />
       </BrowserRouter>
