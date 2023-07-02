@@ -3,21 +3,27 @@ import "./Footer.scss";
 import "../../App.scss";
 import { useNavigate } from "react-router-dom";
 import { selectIsLoggedIn } from "../../redux/AuthSlice";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {saveContactURL } from "../../redux/ContactSlice";
 
 const getDate = new Date();
 
 const getCurrentYear = getDate.getFullYear();
 const Footer = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const currentURL = window.location.href;
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const handleContact = (e) => {
     e.preventDefault();
     if (isLoggedIn) {
       return navigate("/contact");
     }
+    dispatch(saveContactURL(currentURL+'/contact'))
     navigate('/login')
   };
+  
   return (
     <div className="grid footer-section">
       <div className="grid wide">
