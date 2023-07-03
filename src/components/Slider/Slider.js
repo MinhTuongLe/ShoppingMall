@@ -1,6 +1,7 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./Slider.scss";
 import { SliderImages } from "../../assets/images/index";
 import { Button } from "react-bootstrap";
 const Slider = () => {
@@ -25,6 +26,7 @@ const Slider = () => {
           <Carousel.Caption>
             <h3>First New Information</h3>
             <p>Nepal's largest premium electronics brand.</p>
+            <hr className="line"></hr>
             <Button
               onClick={handleScrollToBody}
               style={{

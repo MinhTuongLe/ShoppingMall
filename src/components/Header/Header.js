@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import "../../App.scss";
 import "./Header.scss";
@@ -11,6 +11,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import ShowOnLogin, { ShowOnLogout } from "../SwitchMode/SwitchMode";
 import { toast } from "react-toastify";
+import { Button } from "react-bootstrap";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const Header = () => {
   const { totalItems } = useSelector((state) => state.cart);
   const [showCategoryList, setShowCategoryList] = useState(false);
   const [displayName, setDisplayName] = useState("");
-
+  const categoriesListRef = useRef(null);
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(getCartTotal());
@@ -54,14 +55,31 @@ const Header = () => {
     });
   }, [dispatch, displayName]);
 
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        categoriesListRef.current &&
+        !categoriesListRef.current.contains(e.target)
+      ) {
+        setShowCategoryList(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   const logoutUser = () => {
     signOut(auth)
       .then(() => {
-        toast.success("Successfully logout!", { autoClose: 1000});
+        toast.success("Successfully logout!", { autoClose: 1000 });
         navigate("/");
       })
       .catch((error) => {
-        toast.error("Failed logout!", { autoClose: 1000});
+        toast.error("Failed logout!", { autoClose: 1000 });
       });
   };
 
@@ -75,7 +93,11 @@ const Header = () => {
             </Link>
           </h1>
           <SearchBar />
-          <div className="category-field" onClick={handleShowCategoryList}>
+          <div
+            className="category-field"
+            onClick={handleShowCategoryList}
+            ref={categoriesListRef}
+          >
             <span>Categories</span>
             <i class="fa-solid fa-caret-down"></i>
             <ul
@@ -96,13 +118,22 @@ const Header = () => {
               ))}
             </ul>
           </div>
-          <section>
+          <section className="switchmode">
             <ShowOnLogout>
-              <Link to="/login">Login</Link>
+              <Link to="/login" className="login">Login</Link>
             </ShowOnLogout>
             <ShowOnLogin>
-              <span>{displayName}</span>
-              <button onClick={logoutUser}>Logout</button>
+              <i class="fa-solid fa-user"></i>
+              <span className="display-name">{displayName}</span>
+              <Button
+                style={{
+                  backgroundColor: "#f54768",
+                  border: "1px solid #fff",
+                }}
+                onClick={logoutUser}
+              >
+                Logout
+              </Button>
             </ShowOnLogin>
           </section>
           <Link className="cart-field" to="/cart">

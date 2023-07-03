@@ -5,14 +5,18 @@ import { fetchProductsByCategory } from "../../redux/CategorySlice";
 import "./CategoryPage.scss";
 import "../../App.scss";
 import ProductList from "../../components/ProductList/ProductList";
+import { Button } from "react-bootstrap";
 const CategoryPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { catEachProducts: products, catEachProductsStatus: status, searchText: searchText } =
-    useSelector((state) => state.category);
+  const {
+    catEachProducts: products,
+    catEachProductsStatus: status,
+    searchText: searchText,
+  } = useSelector((state) => state.category);
 
   useEffect(() => {
-    dispatch(fetchProductsByCategory(id, "EACH", searchText ));
+    dispatch(fetchProductsByCategory(id, "EACH", searchText));
   }, [id, searchText]);
   const [showScrollToTop, setShowScrollToTop] = useState(false);
 
@@ -32,27 +36,33 @@ const CategoryPage = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  
 
   return (
     <div className="grid wide category-page">
-      <div>
-        <Link to="/">
+      <div className="grid wide address">
+        <Link to="/" className="address-link">
           <i className="fas fa-home"></i>
-          <i className="fas fa-chevron-right"></i>
         </Link>
-        <Link to="/">
-          <span>Category</span>
-          <i className="fas fa-chevron-right"></i>
-        </Link>
-        <Link>{products[0] && products[0].category.name}</Link>
+        <i className="fas fa-chevron-right address-link"></i>
+        <span className="address-link">Category</span>
+        <i className="fas fa-chevron-right address-link"></i>
+        <span className="address-link">
+          {products[0] && products[0].category.name}
+        </span>
       </div>
-      <ProductList products={products} status={status}/>
+      <ProductList products={products} status={status} />
       {showScrollToTop && (
-            <button className="scroll-to-top" onClick={scrollToTop}>
-              Scroll To Top
-            </button>
-          )}
+        <Button
+          className="scroll-to-top"
+          onClick={scrollToTop}
+          style={{
+            backgroundColor: "#5193b3",
+            border: "1px solid #fff",
+          }}
+        >
+          Scroll To Top
+        </Button>
+      )}
     </div>
   );
 };

@@ -17,7 +17,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const {status: loginStatus} = useSelector(state => state.auth)
+  const { status: loginStatus } = useSelector((state) => state.auth);
   const { previousURL: URL } = useSelector((state) => state.cart);
   const { previousContactURL: contactURL } = useSelector(
     (state) => state.contact
@@ -96,7 +96,10 @@ const Login = () => {
                 <span>-- or --</span>
               </form>
               <section>
-                <button onClick={signInWithGoogle}>Login with Google</button>
+                <button onClick={signInWithGoogle}>
+                  <i class="fa-brands fa-google"></i>
+                  Login with Google
+                </button>
                 <span>
                   Don't have an account? <Link to="/register">Register</Link>
                 </span>

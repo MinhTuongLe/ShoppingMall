@@ -6,7 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { STATUS } from "../../utils/status";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
-import '../../App.scss'
+import "../../App.scss";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 const ProductsPage = () => {
   const [showScrollToTop, setShowScrollToTop] = useState(false);
   const {
@@ -18,12 +20,12 @@ const ProductsPage = () => {
   useEffect(() => {
     dispatch(fetchProducts(searchText));
   }, [searchText]);
-  
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
+
   const handleScroll = () => {
     if (window.pageYOffset > window.innerHeight) {
       setShowScrollToTop(true);
@@ -31,7 +33,7 @@ const ProductsPage = () => {
       setShowScrollToTop(false);
     }
   };
-  
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -40,12 +42,26 @@ const ProductsPage = () => {
 
   return (
     <div className="products-page">
+      <div className="grid wide address">
+        <Link to="/" className="address-link">
+          <i className="fas fa-home"></i>
+        </Link>
+        <i className="fas fa-chevron-right address-link"></i>
+        <span className="address-link">Products</span>
+      </div>
       <ProductList products={products} status={productsStatus} />
       {showScrollToTop && (
-            <button className="scroll-to-top" onClick={scrollToTop}>
-              Scroll To Top
-            </button>
-          )}
+        <Button
+          className="scroll-to-top"
+          onClick={scrollToTop}
+          style={{
+            backgroundColor: "#5193b3",
+            border: "1px solid #fff",
+          }}
+        >
+          Scroll To Top
+        </Button>
+      )}
     </div>
   );
 };

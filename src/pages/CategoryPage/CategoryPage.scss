@@ -1,4 +1,14 @@
 .category-page {
-    margin-top: 50px;
     min-height: 55vh;
+}
+
+.address-link {
+    text-decoration: none;
+    color: #5193b3;
+    font-size: clamp(1rem, 1.18rem, 1.4rem);
+    margin-right: 12px;
+}
+
+.address {
+    padding: 12px 8px;
 }

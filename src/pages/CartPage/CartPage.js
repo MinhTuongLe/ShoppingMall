@@ -15,6 +15,7 @@ import { selectIsLoggedIn } from "../../redux/AuthSlice";
 import { STATUS } from "../../utils/status";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
+import { Button } from "react-bootstrap";
 
 const CartPage = () => {
   const {
@@ -59,7 +60,7 @@ const CartPage = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  
+
   if (loginStatus === STATUS.ERROR) return <Error />;
   if (loginStatus === STATUS.LOADING) return <Loader />;
   const emptyCartMsg = <h4>No items found!</h4>;
@@ -188,10 +189,17 @@ const CartPage = () => {
         </div>
       </div>
       {showScrollToTop && (
-            <button className="scroll-to-top" onClick={scrollToTop}>
-              Scroll To Top
-            </button>
-          )}
+        <Button
+          className="scroll-to-top"
+          onClick={scrollToTop}
+          style={{
+            backgroundColor: "#5193b3",
+            border: "1px solid #fff",
+          }}
+        >
+          Scroll To Top
+        </Button>
+      )}
     </div>
   );
 };

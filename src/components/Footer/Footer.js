@@ -57,11 +57,17 @@ const Footer = () => {
             <h3>Contacts</h3>
             <ul className="footer-col--list">
               <li className="footer-col--item">
-                <i class="fa-solid fa-phone"></i>
+                <i
+                  class="fa-solid fa-phone"
+                  style={{ marginRight: "12px" }}
+                ></i>
                 +84 834091202
               </li>
-              <li className="footer-col--item" onClick={handleContact}>
-                <i class="fa-solid fa-envelope"></i>
+              <li className="footer-col--item" onClick={handleContact} style={{cursor:'pointer'}}>
+                <i
+                  class="fa-solid fa-envelope"
+                  style={{ marginRight: "12px" }}
+                ></i>
                 leminhtuong09122002@gmail.com
               </li>
             </ul>

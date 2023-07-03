@@ -10,7 +10,8 @@ import { fetchProducts } from "../../redux/ProductSlice";
 import CategorySection from "../../components/CategorySection/CategorySection";
 import ProductList from "../../components/ProductList/ProductList";
 import Loader from "../../components/Loader/Loader";
-import '../../App.scss'
+import "../../App.scss";
+import { Button } from "react-bootstrap";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -72,9 +73,16 @@ const HomePage = () => {
             </section>
           ))}
           {showScrollToTop && (
-            <button className="scroll-to-top" onClick={scrollToTop}>
+            <Button
+              className="scroll-to-top"
+              onClick={scrollToTop}
+              style={{
+                backgroundColor: "#5193b3",
+                border: "1px solid #fff",
+              }}
+            >
               Scroll To Top
-            </button>
+            </Button>
           )}
         </>
       )}

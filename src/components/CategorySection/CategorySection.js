@@ -1,6 +1,6 @@
 import React from "react";
-import './CategorySection.scss'
-import '../../App.scss'
+import "./CategorySection.scss";
+import "../../App.scss";
 import { Link } from "react-router-dom";
 import Error from "../Error/Error";
 import Loader from "../Loader/Loader";
@@ -16,43 +16,47 @@ const CategorySection = ({ products, status }) => {
   if (status === STATUS.ERROR) return <Error />;
   if (status === STATUS.LOADING) return <Loader />;
   return (
-    <div className="grid wide">
-      <h1>{products[0] && products[0].category.name}</h1>
-      <div
-      className="row row-formated"
-        style={{
-          backgroundColor: "#5193b3",
-        }}
-      >
+    <div className="grid wide category-list" style={{paddingBottom:'3%'}}>
+      <h1 className="title">{products[0] && products[0].category.name}</h1>
+      <div className="row row-formated">
         {products.slice(0, 5).map((product) => (
-          <Link key={product.id} className="c-2-4" to={`/product/${product.id}`}>
+          <Link
+            key={product.id}
+            className="c-2-4 product-section"
+            to={`/product/${product.id}`}
+          >
+            <div className="product-banner">{product.category.name}</div>
+
             <div className="product--image-section">
               <img
                 src={product.images[0]}
-                alt={product.title}
+                alt="Alternate Image"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src =
+                    "https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg";
+                }}
                 className="product--image"
               />
             </div>
-            <div>
-              <h6 className="product--name">{product.title}</h6>
-            </div>
+            <h6 className="product--name">{product.title}</h6>
           </Link>
         ))}
       </div>
       {isHomePage && (
-            <Link to={`./category/${products[0].category.id}`}>
-              <Button
-                style={{
-                  backgroundColor: "#5193b3",
-                  border: "1px solid #fff",
-                  marginBottom: "24px",
-                  marginTop: "12px",
-                }}
-              >
-                Show All Products
-              </Button>
-            </Link>
-          )}
+        <Link to={`./category/${products[0].category.id}`}>
+          <Button
+            style={{
+              backgroundColor: "#5193b3",
+              border: "1px solid #fff",
+              marginBottom: "24px",
+              marginTop: "12px",
+            }}
+          >
+            Show All Products
+          </Button>
+        </Link>
+      )}
     </div>
   );
 };

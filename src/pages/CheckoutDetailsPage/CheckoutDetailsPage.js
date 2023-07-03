@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { STATUS } from "../../utils/status";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
+import { Button } from "react-bootstrap";
 
 const CheckoutDetailsPage = () => {
   const {
@@ -193,10 +194,17 @@ const CheckoutDetailsPage = () => {
         </div>
       </div>
       {showScrollToTop && (
-        <button className="scroll-to-top" onClick={scrollToTop}>
-          Scroll To Top
-        </button>
-      )}
+            <Button
+              className="scroll-to-top"
+              onClick={scrollToTop}
+              style={{
+                backgroundColor: "#5193b3",
+                border: "1px solid #fff",
+              }}
+            >
+              Scroll To Top
+            </Button>
+          )}
     </div>
   );
 };

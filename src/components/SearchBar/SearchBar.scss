@@ -1,9 +1,10 @@
 .search-section {
   display: flex;
   justify-content: space-around;
-  border: 1px solid #000;
+  border: 1px solid #5193b3;
   border-radius: 12px;
   width: 40%;
+  background-color: #fff;
 }
 
 .search-field {
@@ -17,6 +18,11 @@
 
 .search-field:focus {
   border: none;
+}
+
+.search-field::placeholder {
+  color: #5193b3;
+  font-size: clamp(1rem, 1.52rem , 1.8rem);
 }
 
 .button-search {

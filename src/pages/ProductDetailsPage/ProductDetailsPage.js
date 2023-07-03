@@ -11,6 +11,7 @@ import Carousel from "react-bootstrap/Carousel";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from "react-toastify";
 import '../../App.scss'
+import { Button } from "react-bootstrap";
 
 const ProductDetails = () => {
   const { data: productDetails, status: productDetailsStatus } = useSelector(
@@ -143,9 +144,16 @@ const ProductDetails = () => {
         <span>Add to Cart</span>
       </button>
       {showScrollToTop && (
-            <button className="scroll-to-top" onClick={scrollToTop}>
+            <Button
+              className="scroll-to-top"
+              onClick={scrollToTop}
+              style={{
+                backgroundColor: "#5193b3",
+                border: "1px solid #fff",
+              }}
+            >
               Scroll To Top
-            </button>
+            </Button>
           )}
     </div>
   );

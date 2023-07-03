@@ -1,5 +1,5 @@
 .footer-section {
-  background-color: #212529;
+  background: linear-gradient(to right top, #30576b, #5193b3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,11 +7,12 @@
 }
 
 .footer-col {
-  background-color: #ccc;
+
 }
 
 .footer-col h3 {
   color: #fff;
+  font-size: clamp(1rem, 1.52rem, 1.8rem);
 }
 
 .footer-col--list {
@@ -21,11 +22,8 @@
 
 .footer-col--item {
   list-style: none;
-}
+  font-size: clamp(1rem, 1.18rem, 1.4rem);
 
-.footer-col--item a {
-  text-decoration: none;
-  color: #fff;
 }
 
 .copy-right {
@@ -33,9 +31,10 @@
 }
 
 .footer-top-section {
+
 }
 
 .footer-bottom-section {
   text-align: center;
-  background-color: red;
+
 }
