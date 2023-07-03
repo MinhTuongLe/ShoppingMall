@@ -1,0 +1,48 @@
+.contact-page {
+  min-height: 85vh;
+}
+
+.address-link {
+  text-decoration: none;
+  color: #5193b3;
+  font-size: clamp(1rem, 1.18rem, 1.4rem);
+  margin-right: 12px;
+}
+
+.address {
+  padding: 12px 8px;
+}
+
+.contact-label {
+  font-size: clamp(1rem, 1.52rem, 1.8rem);
+  margin-right: 24px;
+  margin-bottom: 4px;
+}
+
+.contact-value {
+  font-size: clamp(1rem, 1.18rem, 1.4rem);
+}
+
+input.contact-value, textarea.contact-value {
+    width: 68%;
+    padding: 4px 8px;
+}
+
+.contact-information {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-information--list {
+    margin: 12px 0 12px 14px;
+    list-style: none;
+    font-size: clamp(1rem, 1.18rem, 1.4rem);
+}
+
+.contact-information-icon  {
+    margin-right: 12px;
+}
+
+.group-contact {
+    margin-bottom: 12px;
+}

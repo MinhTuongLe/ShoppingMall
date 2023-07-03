@@ -1,21 +1,59 @@
 .product-details-page {
-    min-height: 55vh;
-    background-color: #ccc;
+  min-height: 55vh;
+  background-color: #ccc;
 }
 
 .product-details-section {
-    height: 78vh;
+  height: 78vh;
 }
 
 h1 {
-    color: #000;
+  color: #000;
 }
 
 .product-quantity {
-    display: flex;
+  display: flex;
 }
 
 .adjust-product-quantity {
-    display: flex;
+  display: flex;
 }
 
+.product-label {
+  font-size: clamp(1rem, 1.52rem, 1.8rem);
+  margin: 12px 0;
+}
+
+.product-value {
+  font-size: clamp(1rem, 1.18rem, 1.4rem);
+  line-height: 1.8rem;
+}
+
+.product-quantity {
+  display: flex;
+  align-items: center;
+}
+
+.adjust-product-quantity {
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.button-adjust {
+  margin: 0 18px;
+}
+
+.button-addToCart {
+  margin: 36px 0 32px 16px;
+  padding: 12px 24px;
+}
+
+.button-addToCart i {
+  font-size: clamp(1rem, 1.52rem, 1.8rem);
+  margin-right: 16px;
+}
+
+.button-addToCart span {
+  font-size: clamp(1rem, 1.52rem, 1.8rem);
+}

@@ -112,16 +112,17 @@ const ProductDetails = () => {
       productDetails.category.name ? (
         <div className="product-details-section">
           <div className="grid wide">
-            <div className="row row-formated" style={{justifyContent: 'space-between'}}>
+            <div
+              className="row row-formated"
+              style={{ justifyContent: "space-between", padding:'3% 2%'}}
+            >
               <div className="c-5">
                 {productDetails.images && (
-                  <Carousel
-                    interval={2500}
-                  >
+                  <Carousel interval={2000}>
                     {productDetails.images.map((image, index) => (
                       <Carousel.Item key={index}>
                         <img
-                          style={{ width: "100%", maxHeight: "78vh" }}
+                          style={{ width: "100%", maxHeight: "64vh" }}
                           src={image}
                           alt="Alternate Image"
                           onError={(e) => {
@@ -139,26 +140,54 @@ const ProductDetails = () => {
                 )}
               </div>
               <div className="c-5">
-                {productDetails.title && <h1>Name: {productDetails.title}</h1>}
-                {productDetails.description && (
-                  <h1>Description: {productDetails.description}</h1>
+                {productDetails.title && (
+                  <label className="product-label">
+                    Name:{" "}
+                    <span className="product-value">
+                      {productDetails.title}
+                    </span>
+                  </label>
                 )}
-                {productDetails.price && <h1>Price: {productDetails.price}</h1>}
+                {productDetails.description && (
+                  <label className="product-label">
+                    Description:{" "}
+                    <span className="product-value">
+                      {productDetails.description}
+                    </span>
+                  </label>
+                )}
+                {productDetails.price && (
+                  <label className="product-label">
+                    Price:{" "}
+                    <span className="product-value">
+                      {productDetails.price}
+                    </span>
+                  </label>
+                )}
 
                 <div className="product-quantity">
-                  <h3>Quantity:</h3>
+                  <label className="product-label">Quantity:</label>
                   <div className="adjust-product-quantity">
-                    <button onClick={() => increaseQuantity()}>
-                      <i className="fa-solid fa-plus"></i>
-                    </button>
-                    <h3>{quantity}</h3>
-                    <button onClick={() => decreaseQuantity()}>
+                    <Button
+                      className="button-adjust"
+                      onClick={() => decreaseQuantity()}
+                    >
                       <i className="fa-solid fa-minus"></i>
-                    </button>
+                    </Button>
+                    <span className="product-value">{quantity}</span>
+                    <Button
+                      className="button-adjust"
+                      onClick={() => increaseQuantity()}
+                    >
+                      <i className="fa-solid fa-plus"></i>
+                    </Button>
                   </div>
                 </div>
-                <Button onClick={() => addToCartHandler(productDetails)}>
-                  <i className="fa-solid fa-cart-shopping cart-icon"></i>
+                <Button
+                  className="button-addToCart"
+                  onClick={() => addToCartHandler(productDetails)}
+                >
+                  <i className="fa-solid fa-cart-shopping"></i>
                   <span>Add to Cart</span>
                 </Button>
               </div>

@@ -38,3 +38,11 @@
   text-align: center;
 
 }
+
+.contact {
+  cursor: pointer;
+}
+
+.contact:hover {
+  filter: brightness(80%);
+}

@@ -63,7 +63,7 @@ const Footer = () => {
                 ></i>
                 +84 834091202
               </li>
-              <li className="footer-col--item" onClick={handleContact} style={{cursor:'pointer'}}>
+              <li className="footer-col--item contact" onClick={handleContact}>
                 <i
                   class="fa-solid fa-envelope"
                   style={{ marginRight: "12px" }}
