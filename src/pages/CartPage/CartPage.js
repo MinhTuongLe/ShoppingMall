@@ -84,34 +84,37 @@ const CartPage = () => {
                 <div>
                   {cartItems.map((cartItem) => (
                     <div className="cart-item--group__left">
-                      <Link to={`/product/${cartItem.id}`}>
-                        <img
-                          src={cartItem.images}
-                          alt="Alternate Image"
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src =
-                              "https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg";
+                      <div className="cart-item--image">
+                        <Link to={`/product/${cartItem.id}`}>
+                          <img
+                            style={{ width: "100px" }}
+                            src={cartItem.images}
+                            alt="Alternate Image"
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src =
+                                "https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg";
+                            }}
+                            className="item--image"
+                          />
+                        </Link>
+                        <Button
+                          onClick={() => {
+                            dispatch(removeFromCart(cartItem.id));
+                            toast.success("Successfully remove from cart!", {
+                              autoClose: 1000,
+                            });
                           }}
-                          className="item--image"
-                        />
-                      </Link>
-                      <button
-                        onClick={() => {
-                          dispatch(removeFromCart(cartItem.id));
-                          toast.success("Successfully remove from cart!", {
-                            autoClose: 1000,
-                          });
-                        }}
-                      >
-                        <i class="fa-solid fa-trash"></i>
-                      </button>
+                        >
+                          <i class="fa-solid fa-trash"></i>
+                        </Button>
+                      </div>
                       <div className="cart-item--group__right">
                         <h3>{cartItem.title}</h3>
                         <div>
                           <h3>Quantity:</h3>
                           <div>
-                            <button
+                            <Button
                               onClick={() => {
                                 dispatch(
                                   modifyCartQuantity({
@@ -125,9 +128,9 @@ const CartPage = () => {
                               }}
                             >
                               <i class="fa-solid fa-plus"></i>
-                            </button>
+                            </Button>
                             <h3>{cartItem.quantity}</h3>
-                            <button
+                            <Button
                               onClick={() => {
                                 dispatch(
                                   modifyCartQuantity({
@@ -141,7 +144,7 @@ const CartPage = () => {
                               }}
                             >
                               <i class="fa-solid fa-minus"></i>
-                            </button>
+                            </Button>
                           </div>
                         </div>
                         <div>

@@ -24,3 +24,9 @@
 .cart-item--group__right {
 
 }
+
+.cart-item--image {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+}

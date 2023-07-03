@@ -3,7 +3,7 @@ import "./ProductDetailsPage.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProductById } from "../../redux/ProductDetailsSlice";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import { addToCart } from "../../redux/CartSlice";
+import { addToCart, getCartTotal } from "../../redux/CartSlice";
 import { STATUS } from "../../utils/status";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
@@ -48,8 +48,8 @@ const ProductDetails = () => {
       totalPrice,
     };
     dispatch(addToCart(tempProduct));
-    navigate("/cart");
     toast.success(`Successfully add to cart!`, { autoClose: 1000 });
+    dispatch(getCartTotal());
   };
 
   useEffect(() => {
