@@ -10,7 +10,7 @@ import Error from "../../components/Error/Error";
 import Carousel from "react-bootstrap/Carousel";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from "react-toastify";
-import '../../App.scss'
+import "../../App.scss";
 import { Button } from "react-bootstrap";
 
 const ProductDetails = () => {
@@ -73,89 +73,111 @@ const ProductDetails = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  
+
+  const noProductFound = <h4 className="empty-products">No products found!</h4>;
+
   if (productDetailsStatus === STATUS.ERROR) return <Error />;
   if (productDetailsStatus === STATUS.LOADING) return <Loader />;
   return (
-    <div className="product-details-page">
-      <div>
-        <Link to="/">
+    <>
+      <div className="grid wide address">
+        <Link to="/" className="address-link">
           <i className="fas fa-home"></i>
-          <i className="fas fa-chevron-right"></i>
         </Link>
-        <Link to="/products">
+        <i className="fas fa-chevron-right address-link"></i>
+        <Link to="/products" className="address-link">
           <span>Products</span>
-          <i className="fas fa-chevron-right"></i>
         </Link>
+        <i className="fas fa-chevron-right address-link"></i>
         {productDetails.category && productDetails.category.id && (
-          <Link to={`/category/${productDetails.category.id}`}>
+          <Link
+            to={`/category/${productDetails.category.id}`}
+            className="address-link"
+          >
             <span>
               {productDetails.category.name && productDetails.category.name}
             </span>
-            <i className="fas fa-chevron-right"></i>
           </Link>
         )}
+        <i className="fas fa-chevron-right address-link"></i>
         {productDetails.title && (
-          <Link to={`/category/${productDetails.category.id}`}>
-            {productDetails.title}
-          </Link>
+          <span className="address-link">{productDetails.title}</span>
         )}
       </div>
-      {productDetails.id && <h1>{productDetails.id}</h1>}
-      {productDetails.title && <h1>{productDetails.title}</h1>}
-      <div>
-        {productDetails.images && (
-          <Carousel interval={2500} style={{ height: "85vh" }}>
-            {productDetails.images.map((image, index) => (
-              <Carousel.Item className="carousel-item">
-                <img
-                  className="d-block w-100"
-                  src={image}
-                  alt="First slide"
-                  style={{ height: "85vh" }}
-                />
-                <Carousel.Caption>
-                  <h3>Image {index + 1}</h3>
-                </Carousel.Caption>
-              </Carousel.Item>
-            ))}
-          </Carousel>
-        )}
-      </div>
-      {productDetails.description && <h1>{productDetails.description}</h1>}
-      {productDetails.price && <h1>{productDetails.price}</h1>}
-      {productDetails.category && productDetails.category.name && (
-        <h1>{productDetails.category.name}</h1>
+      {productDetails.id &&
+      productDetails.title &&
+      productDetails.images &&
+      productDetails.description &&
+      productDetails.price &&
+      productDetails.category &&
+      productDetails.category.name ? (
+        <>
+          <div className="product-details-page grid wide">
+            <div className="row">
+              <div className="c-5">
+                <div>
+                  {productDetails.images && (
+                    <Carousel interval={2500} style={{ height: "85vh" }}>
+                      {productDetails.images.map((image, index) => (
+                        <Carousel.Item className="carousel-item">
+                          <img
+                            className="d-block w-100"
+                            src={image}
+                            alt="First slide"
+                            style={{ height: "85vh" }}
+                          />
+                          <Carousel.Caption>
+                            <h3>Image {index + 1}</h3>
+                          </Carousel.Caption>
+                        </Carousel.Item>
+                      ))}
+                    </Carousel>
+                  )}
+                </div>
+              </div>
+              <div className="c-7">
+                {productDetails.title && <h1>{productDetails.title}</h1>}
+                {productDetails.description && (
+                  <h1>{productDetails.description}</h1>
+                )}
+                {productDetails.price && <h1>{productDetails.price}</h1>}
+
+                <div>
+                  <h3>Quantity:</h3>
+                  <div>
+                    <button onClick={() => increaseQuantity()}>
+                      <i className="fa-solid fa-plus"></i>
+                    </button>
+                    <h3>{quantity}</h3>
+                    <button onClick={() => decreaseQuantity()}>
+                      <i className="fa-solid fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+                <button onClick={() => addToCartHandler(productDetails)}>
+                  <i className="fa-solid fa-cart-shopping cart-icon"></i>
+                  <span>Add to Cart</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        noProductFound
       )}
-      <div>
-        <h3>Quantity:</h3>
-        <div>
-          <button onClick={() => increaseQuantity()}>
-            <i className="fa-solid fa-plus"></i>
-          </button>
-          <h3>{quantity}</h3>
-          <button onClick={() => decreaseQuantity()}>
-            <i className="fa-solid fa-minus"></i>
-          </button>
-        </div>
-      </div>
-      <button onClick={() => addToCartHandler(productDetails)}>
-        <i className="fa-solid fa-cart-shopping cart-icon"></i>
-        <span>Add to Cart</span>
-      </button>
       {showScrollToTop && (
-            <Button
-              className="scroll-to-top"
-              onClick={scrollToTop}
-              style={{
-                backgroundColor: "#5193b3",
-                border: "1px solid #fff",
-              }}
-            >
-              Scroll To Top
-            </Button>
-          )}
-    </div>
+        <Button
+          className="scroll-to-top"
+          onClick={scrollToTop}
+          style={{
+            backgroundColor: "#5193b3",
+            border: "1px solid #fff",
+          }}
+        >
+          Scroll To Top
+        </Button>
+      )}
+    </>
   );
 };
 

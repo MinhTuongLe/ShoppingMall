@@ -1,4 +1,30 @@
 .homepage {
   min-height: 85vh;
-  background-color: #26546b;
+  background-color: #fff;
+}
+
+/* Chrome & Safari */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #f54768;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #5193b3;
+}
+
+/* Firefox */
+::-moz-scrollbar {
+  width: 8px;
+}
+
+::-moz-scrollbar-thumb {
+  background-color: #f54768;
+}
+
+::-moz-scrollbar-track {
+  background-color: #5193b3;
 }

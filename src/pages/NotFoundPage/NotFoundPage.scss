@@ -1,0 +1,27 @@
+.not-found-page {
+  height: 55vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #5193b3;
+}
+
+.not-found-page h2 {
+  font-size: clamp(3rem, 3.37rem, 4rem)
+}
+
+.not-found-page p {
+  font-size: clamp(1rem, 1.18rem, 1.4rem);
+}
+
+.btn {
+  background-color: #5193b3;
+  border: 1px solid #f54768;
+  font-size: clamp(1rem, 1.18rem, 1.4rem);
+}
+
+.button-text {
+  color: #fff;
+  text-decoration: none;
+}

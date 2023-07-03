@@ -5,6 +5,7 @@ import SliderImage4 from "./slider-img-4.png";
 import SliderImage5 from "./slider-img-5.png";
 import error from "./error.png";
 import Spinner from "./spinner.svg";
+import loader from "./loader.gif"
 
 const SliderImages = [
   SliderImage1,
@@ -14,4 +15,4 @@ const SliderImages = [
   SliderImage5,
 ];
 
-export { SliderImages, error, Spinner };
+export { SliderImages, error, Spinner, loader };

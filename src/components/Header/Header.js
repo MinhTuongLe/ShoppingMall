@@ -120,11 +120,18 @@ const Header = () => {
           </div>
           <section className="switchmode">
             <ShowOnLogout>
-              <Link to="/login" className="login">Login</Link>
+              <Link to="/login" className="login">
+                Login
+              </Link>
             </ShowOnLogout>
             <ShowOnLogin>
+              <div className="user-icon"></div>
               <i class="fa-solid fa-user"></i>
-              <span className="display-name">{displayName}</span>
+              <span className="display-name">
+                {displayName.length > 10
+                  ? displayName.slice(0, 10) + " ..."
+                  : displayName}
+              </span>
               <Button
                 style={{
                   backgroundColor: "#f54768",
