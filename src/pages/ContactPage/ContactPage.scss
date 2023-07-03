@@ -46,3 +46,19 @@ input.contact-value, textarea.contact-value {
 .group-contact {
     margin-bottom: 12px;
 }
+
+.information-box {
+  background-color: #5193b3;
+  color: #fff;
+  padding: 12px 18px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+form {
+  border: solid #ccc 1px;
+  padding: 12px 18px;
+  border-radius: 5px;
+  margin-top: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}

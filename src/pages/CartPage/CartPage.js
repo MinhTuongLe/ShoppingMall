@@ -66,16 +66,16 @@ const CartPage = () => {
   const emptyCartMsg = <h4>No items found!</h4>;
   return (
     <div className="cart-page">
+      <div className="grid wide address">
+        <Link to="/" className="address-link">
+          <i className="fas fa-home"></i>
+        </Link>
+        <i className="fas fa-chevron-right address-link"></i>
+        <span className="address-link">Cart</span>
+      </div>
       <div className="grid wide">
-        <div>
-          <Link to="/">
-            <i className="fas fa-home"></i>
-            <i className="fas fa-chevron-right"></i>
-          </Link>
-          <span>Cart</span>
-        </div>
         <div className="row row-formated">
-          <h1>My Cart</h1>
+          <h1 style={{ color: "#5193b3" }}>My Cart</h1>
           {cartItems.length === 0 ? (
             emptyCartMsg
           ) : (
@@ -83,9 +83,18 @@ const CartPage = () => {
               <div style={{ backgroundColor: "orangered" }} className="c-7">
                 <div>
                   {cartItems.map((cartItem) => (
-                    <div>
+                    <div className="cart-item--group__left">
                       <Link to={`/product/${cartItem.id}`}>
-                        <img src={cartItem.images} alt="item-picture" />
+                        <img
+                          src={cartItem.images}
+                          alt="Alternate Image"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src =
+                              "https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg";
+                          }}
+                          className="item--image"
+                        />
                       </Link>
                       <button
                         onClick={() => {
@@ -97,7 +106,7 @@ const CartPage = () => {
                       >
                         <i class="fa-solid fa-trash"></i>
                       </button>
-                      <div>
+                      <div className="cart-item--group__right">
                         <h3>{cartItem.title}</h3>
                         <div>
                           <h3>Quantity:</h3>
@@ -149,7 +158,7 @@ const CartPage = () => {
                     </div>
                   ))}
                 </div>
-                <button
+                <Button
                   onClick={() => {
                     dispatch(clearCart());
                     toast.success("Successfully clear cart!", {
@@ -158,7 +167,7 @@ const CartPage = () => {
                   }}
                 >
                   Clear Cart
-                </button>
+                </Button>
               </div>
               <div style={{ backgroundColor: "skyblue" }} className="c-5">
                 <div>
@@ -182,7 +191,10 @@ const CartPage = () => {
                     <h3>{totalAmount + deliveryCharge}</h3>
                   </div>
                 </div>
-                <button onClick={handleCheckout}>Proceed to Checkout</button>
+                <Button onClick={handleCheckout}>Proceed to Checkout</Button>
+                <Link to="/">
+                  <Button>Continue Shopping</Button>
+                </Link>
               </div>
             </>
           )}

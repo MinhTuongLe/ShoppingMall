@@ -62,9 +62,9 @@ const ContactPage = () => {
         <span className="address-link">Contact</span>
       </div>
       <div className="grid wide" style={{padding:"3% 2%"}}>
-        <div className="row row-formated">
+        <div className="row row-formated" style={{justifyContent:"space-between"}}>
           <h1 style={{ color: "#5193b3" }}>Contact Us</h1>
-          <div className="c-6">
+          <div className="c-5">
             <form ref={currentForm} onSubmit={sendFeedBack}>
               <div className="group-contact">
                 <label className="contact-label">Name</label>
@@ -112,9 +112,9 @@ const ContactPage = () => {
               <Button type="submit" style={{marginTop:"16px"}}>Send Feedback</Button>
             </form>
           </div>
-          <div className="c-6">
-            <div>
-              <h1 style={{marginBottom:'18px'}}>Our Contact Information</h1>
+          <div className="c-5">
+            <div className="information-box">
+              <h1 style={{marginBottom:'18px', color:"#fff"}}>Our Contact Information</h1>
               <p className="contact-label">
                 Fill out the form or contact us through the contact information
                 below
