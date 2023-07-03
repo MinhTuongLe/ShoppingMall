@@ -14,13 +14,14 @@ import "../../App.scss";
 import { Button } from "react-bootstrap";
 
 const ProductDetails = () => {
-  const { data: productDetails, status: productDetailsStatus } = useSelector(
-    (state) => state.productDetails
-  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
+  const { data: productDetails, status: productDetailsStatus } = useSelector(
+    (state) => state.productDetails
+  );
+  const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   const increaseQuantity = () => {
     setQuantity((preQuantity) => {
@@ -53,9 +54,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     dispatch(fetchProductById(id));
-  }, []);
-
-  const [showScrollToTop, setShowScrollToTop] = useState(false);
+  }, [dispatch, id]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -79,7 +78,7 @@ const ProductDetails = () => {
   if (productDetailsStatus === STATUS.ERROR) return <Error />;
   if (productDetailsStatus === STATUS.LOADING) return <Loader />;
   return (
-    <>
+    <div className="product-details-page">
       <div className="grid wide address">
         <Link to="/" className="address-link">
           <i className="fas fa-home"></i>
@@ -111,40 +110,44 @@ const ProductDetails = () => {
       productDetails.price &&
       productDetails.category &&
       productDetails.category.name ? (
-        <>
-          <div className="product-details-page grid wide">
-            <div className="row">
+        <div className="product-details-section">
+          <div className="grid wide">
+            <div className="row row-formated" style={{justifyContent: 'space-between'}}>
               <div className="c-5">
-                <div>
-                  {productDetails.images && (
-                    <Carousel interval={2500} style={{ height: "85vh" }}>
-                      {productDetails.images.map((image, index) => (
-                        <Carousel.Item className="carousel-item">
-                          <img
-                            className="d-block w-100"
-                            src={image}
-                            alt="First slide"
-                            style={{ height: "85vh" }}
-                          />
-                          <Carousel.Caption>
-                            <h3>Image {index + 1}</h3>
-                          </Carousel.Caption>
-                        </Carousel.Item>
-                      ))}
-                    </Carousel>
-                  )}
-                </div>
-              </div>
-              <div className="c-7">
-                {productDetails.title && <h1>{productDetails.title}</h1>}
-                {productDetails.description && (
-                  <h1>{productDetails.description}</h1>
+                {productDetails.images && (
+                  <Carousel
+                    interval={2500}
+                  >
+                    {productDetails.images.map((image, index) => (
+                      <Carousel.Item key={index}>
+                        <img
+                          style={{ width: "100%", maxHeight: "78vh" }}
+                          src={image}
+                          alt="Alternate Image"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src =
+                              "https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg";
+                          }}
+                        />
+                        <Carousel.Caption>
+                          <h3>Image {index + 1}</h3>
+                        </Carousel.Caption>
+                      </Carousel.Item>
+                    ))}
+                  </Carousel>
                 )}
-                {productDetails.price && <h1>{productDetails.price}</h1>}
+              </div>
+              <div className="c-5">
+                {productDetails.title && <h1>Name: {productDetails.title}</h1>}
+                {productDetails.description && (
+                  <h1>Description: {productDetails.description}</h1>
+                )}
+                {productDetails.price && <h1>Price: {productDetails.price}</h1>}
 
-                <div>
+                <div className="product-quantity">
                   <h3>Quantity:</h3>
-                  <div>
+                  <div className="adjust-product-quantity">
                     <button onClick={() => increaseQuantity()}>
                       <i className="fa-solid fa-plus"></i>
                     </button>
@@ -154,30 +157,30 @@ const ProductDetails = () => {
                     </button>
                   </div>
                 </div>
-                <button onClick={() => addToCartHandler(productDetails)}>
+                <Button onClick={() => addToCartHandler(productDetails)}>
                   <i className="fa-solid fa-cart-shopping cart-icon"></i>
                   <span>Add to Cart</span>
-                </button>
+                </Button>
               </div>
             </div>
           </div>
-        </>
+          {showScrollToTop && (
+            <Button
+              className="scroll-to-top"
+              onClick={scrollToTop}
+              style={{
+                backgroundColor: "#5193b3",
+                border: "1px solid #fff",
+              }}
+            >
+              Scroll To Top
+            </Button>
+          )}
+        </div>
       ) : (
         noProductFound
       )}
-      {showScrollToTop && (
-        <Button
-          className="scroll-to-top"
-          onClick={scrollToTop}
-          style={{
-            backgroundColor: "#5193b3",
-            border: "1px solid #fff",
-          }}
-        >
-          Scroll To Top
-        </Button>
-      )}
-    </>
+    </div>
   );
 };
 
