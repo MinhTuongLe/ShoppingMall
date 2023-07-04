@@ -44,7 +44,7 @@ const CheckoutDetailsPage = () => {
     dispatch(getOrderTotal());
   }, []);
 
-  const emptyCartMsg = <h4>No items found</h4>;
+  const emptyCartMsg = <h4 style={{color: '#5193b3'}}>No items found!</h4>;
   const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   useEffect(() => {
@@ -68,7 +68,7 @@ const CheckoutDetailsPage = () => {
   if (loginStatus === STATUS.LOADING) return <Loader />;
 
   return (
-    <div className="cart-page">
+    <div className="checkout-details-page">
       <div className="grid wide address">
         <Link to="/" className="address-link">
           <i className="fas fa-home"></i>
@@ -80,10 +80,10 @@ const CheckoutDetailsPage = () => {
         <i className="address-link fas fa-chevron-right"></i>
         <span className="address-link">Checkout-details</span>
       </div>
-      <div className="grid wide">
+      <div className="grid wide" style={{ padding: "0 1%" }}>
         <div
           className="row row-formated"
-          style={{ justifyContent: "space-between" }}
+          style={{ justifyContent: "space-between", paddingBottom: "5%" }}
         >
           {cartItems.length === 0 ? (
             emptyCartMsg
@@ -147,7 +147,7 @@ const CheckoutDetailsPage = () => {
                       />
                     </div>
                     <Button
-                      style={{ marginTop: "5%", width: "20%" }}
+                      style={{ marginTop: "3%", width: "24%" }}
                       type="submit"
                     >
                       Checkout
@@ -155,7 +155,7 @@ const CheckoutDetailsPage = () => {
                   </div>
                 </form>
               </div>
-              <div style={{ backgroundColor: "skyblue", marginTop: "1%" }} className="c-5">
+              <div style={{ marginTop: "1%" }} className="c-5">
                 <form>
                   <h2>Checkout Summary</h2>
                   <div className="checkout-summary">
@@ -179,24 +179,19 @@ const CheckoutDetailsPage = () => {
                     </div>
                   </div>
                   {cartItems.map((cartItem) => (
-                    <div>
-                      <div>
-                        <span>{cartItem.title}</span>
-                        <div>
-                          <span>Quantity:</span>
-                          <div>
-                            <span>{cartItem.quantity}</span>
-                          </div>
+                    <div className="items-list-section">
+                      <div className="items-list">
+                        <div className="item">
+                          <h4>{cartItem.title}</h4>
                         </div>
-                        <div>
-                          <div>
-                            <span>Price:</span>
-                            <span>{cartItem.price}</span>
-                          </div>
-                          <div>
-                            <span>Sub Total:</span>
-                            <span>{cartItem.totalPrice}</span>
-                          </div>
+                        <div className="item">
+                          <span>Quantity: {cartItem.quantity}</span>
+                        </div>
+                        <div className="item">
+                          <span>Price: {cartItem.price}</span>
+                        </div>
+                        <div className="item">
+                          <span>Sub Total: {cartItem.totalPrice}</span>
                         </div>
                       </div>
                     </div>

@@ -7,12 +7,15 @@ import { toast } from "react-toastify";
 import { STATUS } from "../../utils/status";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
+import registerImage from "../../assets/images/register.png";
+
 import { useSelector } from "react-redux";
+import { Button } from "react-bootstrap";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
-  const {status: loginStatus} = useSelector(state => state.auth)
+  const { status: loginStatus } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   const registerUser = (e) => {
@@ -24,23 +27,25 @@ const Register = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const newUser = userCredential.user;
-        toast.success("Successfully register!", { autoClose: 1000});
+        toast.success("Successfully register!", { autoClose: 1000 });
         navigate("/");
       })
       .catch((error) => {
-        toast.error("Failed register!", { autoClose: 1000});
+        toast.error("Failed register!", { autoClose: 1000 });
       });
   };
   if (loginStatus === STATUS.ERROR) return <Error />;
   if (loginStatus === STATUS.LOADING) return <Loader />;
   return (
-    <div style={{ width: "100vw" }}>
+    <div className="login-page">
       <div className="grid wide">
-        <div className="row row-formated">
-          <div className="c-7">
+        <div className="row row-formated" style={{ justifyContent: "center" }}>
+          <div className="c-4">
             <div>
-              <h1>Register</h1>
-              <form onSubmit={registerUser}>
+              <form onSubmit={registerUser} className="auth-form">
+                <h2 style={{ color: "#5193b3", textAlign: "center" }}>
+                  Register
+                </h2>
                 <input
                   type="text"
                   placeholder="Email"
@@ -62,16 +67,23 @@ const Register = () => {
                   value={confirmedPassword}
                   onChange={(e) => setConfirmedPassword(e.target.value)}
                 />
-                <button type="submit">Register</button>
-                <span>
-                  Already has an account? <Link to="/login">Login</Link>
-                </span>
+                <Button type="submit" style={{ margin: "3% 0" }}>
+                  Register
+                </Button>
+                <section className="orther-choices-section">
+                  <span>
+                    Already an account?{" "}
+                    <Link to="/login" className="register">
+                      Login
+                    </Link>
+                  </span>
+                </section>
               </form>
             </div>
           </div>
-          <div className="c-5">
+          <div className="c-3 image-section">
             <img
-              src="https://vapa.vn/wp-content/uploads/2022/12/anh-3d-thien-nhien.jpeg"
+              src={registerImage}
               alt="img login"
               style={{ maxWidth: "100%" }}
             />

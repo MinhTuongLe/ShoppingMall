@@ -12,7 +12,9 @@ import "../../App.scss";
 import { STATUS } from "../../utils/status";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
-
+import "./Login.scss";
+import loginImage from "../../assets/images/login.png";
+import { Button } from "react-bootstrap";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,20 +63,20 @@ const Login = () => {
   if (loginStatus === STATUS.LOADING) return <Loader />;
 
   return (
-    <div style={{ width: "100vw" }}>
+    <div className="login-page">
       <div className="grid wide">
-        <div className="row row-formated">
-          <div className="c-5">
+        <div className="row row-formated" style={{ justifyContent: "center" }}>
+          <div className="c-3 image-section">
             <img
-              src="https://vapa.vn/wp-content/uploads/2022/12/anh-3d-thien-nhien.jpeg"
+              src={loginImage}
               alt="img login"
               style={{ maxWidth: "100%" }}
             />
           </div>
-          <div className="c-7">
+          <div className="c-4">
             <div>
-              <h1>Login</h1>
-              <form onSubmit={loginUser}>
+              <form onSubmit={loginUser} className="auth-form">
+              <h2 style={{ color: "#5193b3", textAlign: "center" }}>Login</h2>
                 <input
                   type="text"
                   placeholder="Email"
@@ -89,21 +91,21 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <button type="submit">Login</button>
-                <Link to="/reset-password">
-                  <button>Reset password</button>
+                <Button type="submit" style={{margin:"3% 0"}}>Login</Button>
+                <Link to="/reset-password" className="reset-password">
+                  Reset password
                 </Link>
-                <span>-- or --</span>
+                <span style={{margin:"3%", textAlign:"center"}}>-- or --</span>
+                <section className="orther-choices-section">
+                  <Button onClick={signInWithGoogle}>
+                    <i class="fa-brands fa-google" style={{marginRight:"12px"}}></i>
+                    Login with Google
+                  </Button>
+                  <span>
+                    Don't have an account? <Link to="/register" className="register">Register</Link>
+                  </span>
+                </section>
               </form>
-              <section>
-                <button onClick={signInWithGoogle}>
-                  <i class="fa-brands fa-google"></i>
-                  Login with Google
-                </button>
-                <span>
-                  Don't have an account? <Link to="/register">Register</Link>
-                </span>
-              </section>
             </div>
           </div>
         </div>

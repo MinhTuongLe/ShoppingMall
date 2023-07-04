@@ -1,0 +1,88 @@
+.login-page {
+  min-height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  margin: 10% 0;
+}
+
+.auth-form input {
+  padding: 4px 8px;
+  font-size: clamp(1rem, 1.18rem, 1.4rem);
+  margin: 6px 0;
+}
+
+.auth-form input:focus {
+  outline: none;
+}
+
+.reset-password {
+  text-decoration: none;
+  color: #5193b3;
+  font-size: clamp(1rem, 1.18rem, 1.4rem);
+}
+
+.orther-choices-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.orther-choices-section span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1%;
+  color: #5193b3;
+  font-size: clamp(0.8rem, 1.01rem, 1.2rem);
+}
+
+.register {
+  text-decoration: none;
+  color: #5193b3;
+  font-size: clamp(1rem, 1.18rem, 1.4rem);
+}
+
+.image-section {
+  margin-right: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reset-password-page {
+  height: 55vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reset-password-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.reset-password-section input {
+  padding: 4px 8px;
+  font-size: clamp(1rem, 1.18rem, 1.4rem);
+  margin: 5% 0;
+}
+
+.reset-password-section input:focus {
+  outline: none;
+}
+
+.orther-choices-section-2 {
+  display: flex;
+  justify-content: space-between;
+  margin: 3% 0;
+}
+
+.orther-choices-section-2--item {
+  text-decoration: none;
+  color: #5193b3;
+  font-size: clamp(1rem, 1.18rem, 1.4rem);
+}

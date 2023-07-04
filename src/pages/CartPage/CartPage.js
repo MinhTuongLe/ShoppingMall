@@ -63,7 +63,7 @@ const CartPage = () => {
 
   if (loginStatus === STATUS.ERROR) return <Error />;
   if (loginStatus === STATUS.LOADING) return <Loader />;
-  const emptyCartMsg = <h4>No items found!</h4>;
+  const emptyCartMsg = <h4 style={{color: '#5193b3'}}>No items found!</h4>;
   return (
     <div className="cart-page">
       <div className="grid wide address">
