@@ -10,6 +10,7 @@ import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
 import { Button } from "react-bootstrap";
 import "./CheckoutDetailsPage.scss";
+import {formatCurrency} from "../../utils/formatCurrency"
 
 const CheckoutDetailsPage = () => {
   const {
@@ -162,19 +163,19 @@ const CheckoutDetailsPage = () => {
                     <div className="checkout-summary-list">
                       <div className="checkout-summary-item">
                         <span>Selected {totalProducts} item(s). Price:</span>
-                        <span>{totalAmount}</span>
+                        <span>{formatCurrency(totalAmount)}</span>
                       </div>
                       <div className="checkout-summary-item">
                         <span>Discount:</span>
-                        <span>-0</span>
+                        <span>-{formatCurrency(0)}</span>
                       </div>
                       <div className="checkout-summary-item">
                         <span>Delivery Cost:</span>
-                        <span>{deliveryCharge}</span>
+                        <span>{formatCurrency(deliveryCharge)}</span>
                       </div>
                       <div className="checkout-summary-item">
                         <span>Grand Total:</span>
-                        <span>{totalAmount + deliveryCharge}</span>
+                        <span>{formatCurrency(totalAmount + deliveryCharge)}</span>
                       </div>
                     </div>
                   </div>
@@ -188,10 +189,10 @@ const CheckoutDetailsPage = () => {
                           <span>Quantity: {cartItem.quantity}</span>
                         </div>
                         <div className="item">
-                          <span>Price: {cartItem.price}</span>
+                          <span>Price: {formatCurrency(cartItem.price)}</span>
                         </div>
                         <div className="item">
-                          <span>Sub Total: {cartItem.totalPrice}</span>
+                          <span>Sub Total: {formatCurrency(cartItem.totalPrice)}</span>
                         </div>
                       </div>
                     </div>

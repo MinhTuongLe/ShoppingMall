@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from "react-toastify";
 import "../../App.scss";
 import { Button } from "react-bootstrap";
+import {formatCurrency} from "../../utils/formatCurrency"
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -160,7 +161,7 @@ const ProductDetails = () => {
                   <label className="product-label">
                     Price:{" "}
                     <span className="product-value">
-                      {productDetails.price}
+                      {formatCurrency(productDetails.price)}
                     </span>
                   </label>
                 )}

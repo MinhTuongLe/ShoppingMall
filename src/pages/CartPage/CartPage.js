@@ -16,6 +16,7 @@ import { STATUS } from "../../utils/status";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
 import { Button } from "react-bootstrap";
+import {formatCurrency} from "../../utils/formatCurrency"
 
 const CartPage = () => {
   const {
@@ -158,12 +159,12 @@ const CartPage = () => {
                         <div className="calc-section">
                           <div className="product-price">
                             <span className="cart-item--label">
-                              Price: {cartItem.price}
+                              Price: {formatCurrency(cartItem.price)}
                             </span>
                           </div>
                           <div className="product-subtotal">
                             <span className="cart-item--label">
-                              Sub Total: {cartItem.totalPrice}
+                              Sub Total: {formatCurrency(cartItem.totalPrice)}
                             </span>
                           </div>
                         </div>
@@ -200,7 +201,7 @@ const CartPage = () => {
                         style={{ marginBottom: "12px" }}
                         className="cart-item--label"
                       >
-                        {totalAmount}
+                        {formatCurrency(totalAmount)}
                       </span>
                     </div>
                     <div className="order-item">
@@ -214,7 +215,7 @@ const CartPage = () => {
                         style={{ marginBottom: "12px" }}
                         className="cart-item--label"
                       >
-                        -0
+                        -{formatCurrency(0)}
                       </span>
                     </div>
                     <div className="order-item">
@@ -228,7 +229,7 @@ const CartPage = () => {
                         style={{ marginBottom: "12px" }}
                         className="cart-item--label"
                       >
-                        {deliveryCharge}
+                        {formatCurrency(deliveryCharge)}
                       </span>
                     </div>
                   </div>
@@ -241,7 +242,7 @@ const CartPage = () => {
                       Grand Total:
                     </span>
                     <span className="cart-item--label">
-                      {totalAmount + deliveryCharge}
+                      {formatCurrency(totalAmount + deliveryCharge)}
                     </span>
                   </div>
                 </div>
