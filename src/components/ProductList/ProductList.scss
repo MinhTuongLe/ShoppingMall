@@ -132,4 +132,26 @@
   label {
     font-size: clamp(1rem, 1.18rem, 1.4rem);
   }
+
+  input[type='range'] {
+    overflow: hidden;
+    width: 120px;
+    -webkit-appearance: none;
+    background-color: #5193b3;
+  }
+  
+  input[type='range']::-webkit-slider-runnable-track {
+    height: 8px;
+    -webkit-appearance: none;
+    color: #f54768;
+  }
+  
+  input[type='range']::-webkit-slider-thumb {
+    width: 12px;
+    -webkit-appearance: none;
+    height: 12px;
+    cursor: ew-resize;
+    background: #1e3540;
+    box-shadow: -80px 0 0 80px #f54768;
+  }
 }
