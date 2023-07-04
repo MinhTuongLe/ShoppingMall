@@ -8,9 +8,9 @@ import { STATUS } from "../../utils/status";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
 import registerImage from "../../assets/images/register.png";
-
 import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
+import "./Auth.scss"
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

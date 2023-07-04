@@ -9,7 +9,7 @@ import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
 import { useSelector } from "react-redux";
 import resetPasswordImage from "../../assets/images/forgot.png";
-import "./Login.scss";
+import "./Auth.scss";
 import { Button } from "react-bootstrap";
 
 const ResetPassword = () => {
@@ -43,7 +43,7 @@ const ResetPassword = () => {
           </div>
           <div className="c-4">
             <div>
-              <form onSubmit={resetPassword}>
+              <form onSubmit={resetPassword} className="auth-form">
                 <h1 style={{color:"#5193b3", textAlign:"center"}}>Reset Password</h1>
                 <div className="reset-password-section">
                   <input

@@ -12,7 +12,7 @@ import "../../App.scss";
 import { STATUS } from "../../utils/status";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
-import "./Login.scss";
+import "./Auth.scss";
 import loginImage from "../../assets/images/login.png";
 import { Button } from "react-bootstrap";
 const Login = () => {

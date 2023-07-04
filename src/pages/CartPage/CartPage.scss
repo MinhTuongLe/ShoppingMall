@@ -79,7 +79,18 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  animation: loadingForm 0.5s ease-in-out forwards;
 }
+
+@keyframes loadingForm {
+  0% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 
 .order-item-list {
   height: 20vh;

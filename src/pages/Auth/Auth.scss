@@ -8,8 +8,17 @@
   display: flex;
   flex-direction: column;
   margin: 10% 0;
+  animation: loadingForm 0.5s ease-in-out forwards;
 }
 
+@keyframes loadingForm {
+  0% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 .auth-form input {
   padding: 4px 8px;
   font-size: clamp(1rem, 1.18rem, 1.4rem);
@@ -51,6 +60,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: loadingImage 0.5s ease-in-out forwards;
+}
+
+@keyframes loadingImage {
+  0% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .reset-password-page {
