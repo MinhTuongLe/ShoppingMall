@@ -30,8 +30,6 @@ const Slider = () => {
             <Button
               onClick={handleScrollToBody}
               style={{
-                backgroundColor: "#5193b3",
-                border: "1px solid #fff",
                 marginBottom: "24px",
                 marginTop: "12px",
               }}

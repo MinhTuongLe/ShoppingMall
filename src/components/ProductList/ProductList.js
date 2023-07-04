@@ -62,8 +62,6 @@ const ProductList = ({ products, status }) => {
             <Link to="/products">
               <Button
                 style={{
-                  backgroundColor: "#5193b3",
-                  border: "1px solid #fff",
                   marginBottom: "24px",
                   marginTop: "12px",
                 }}

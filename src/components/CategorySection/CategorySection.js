@@ -47,8 +47,6 @@ const CategorySection = ({ products, status }) => {
         <Link to={`./category/${products[0].category.id}`}>
           <Button
             style={{
-              backgroundColor: "#5193b3",
-              border: "1px solid #fff",
               marginBottom: "24px",
               marginTop: "12px",
             }}

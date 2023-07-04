@@ -198,10 +198,6 @@ const ProductDetails = () => {
             <Button
               className="scroll-to-top"
               onClick={scrollToTop}
-              style={{
-                backgroundColor: "#5193b3",
-                border: "1px solid #fff",
-              }}
             >
               Scroll To Top
             </Button>
