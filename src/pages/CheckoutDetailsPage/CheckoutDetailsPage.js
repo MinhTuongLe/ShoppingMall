@@ -9,6 +9,7 @@ import { STATUS } from "../../utils/status";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
 import { Button } from "react-bootstrap";
+import "./CheckoutDetailsPage.scss";
 
 const CheckoutDetailsPage = () => {
   const {
@@ -68,29 +69,34 @@ const CheckoutDetailsPage = () => {
 
   return (
     <div className="cart-page">
+      <div className="grid wide address">
+        <Link to="/" className="address-link">
+          <i className="fas fa-home"></i>
+        </Link>
+        <i className="fas fa-chevron-right address-link"></i>
+        <Link to="/cart" className="address-link">
+          <span>Cart</span>
+        </Link>
+        <i className="address-link fas fa-chevron-right"></i>
+        <span className="address-link">Checkout-details</span>
+      </div>
       <div className="grid wide">
-        <div>
-          <Link to="/">
-            <i className="fas fa-home"></i>
-            <i className="fas fa-chevron-right"></i>
-          </Link>
-          <Link to="/cart">
-            <span>Cart</span>
-            <i className="fas fa-chevron-right"></i>
-          </Link>
-          <span>Checkout-details</span>
-        </div>
-        <div className="row row-formated">
+        <div
+          className="row row-formated"
+          style={{ justifyContent: "space-between" }}
+        >
           {cartItems.length === 0 ? (
             emptyCartMsg
           ) : (
             <>
-              <h1>Checkout Details</h1>
-              <div style={{ backgroundColor: "orangered" }} className="c-6">
+              <h1 style={{ color: "#5193b3", marginTop: "3%" }}>
+                Checkout Details
+              </h1>
+              <div className="c-5" style={{ marginTop: "1%" }}>
                 <form onSubmit={handleSubmitForm}>
-                  <div>
-                    <h3>Delivery Information</h3>
-                    <div>
+                  <div className="checkout-details-list">
+                    <h2>Delivery Information</h2>
+                    <div className="checkout-details-item">
                       <label>Recipient Name</label>
                       <input
                         required
@@ -100,7 +106,7 @@ const CheckoutDetailsPage = () => {
                         onChange={(e) => setRecipientName(e.target.value)}
                       />
                     </div>
-                    <div>
+                    <div className="checkout-details-item">
                       <label>Address</label>
                       <input
                         required
@@ -110,7 +116,7 @@ const CheckoutDetailsPage = () => {
                         onChange={(e) => setAddress(e.target.value)}
                       />
                     </div>
-                    <div>
+                    <div className="checkout-details-item">
                       <label>Discount code</label>
                       <input
                         required
@@ -120,7 +126,7 @@ const CheckoutDetailsPage = () => {
                         onChange={(e) => setDiscountCode(e.target.value)}
                       />
                     </div>
-                    <div>
+                    <div className="checkout-details-item">
                       <label>Phone</label>
                       <input
                         required
@@ -130,81 +136,89 @@ const CheckoutDetailsPage = () => {
                         onChange={(e) => setPhone(e.target.value)}
                       />
                     </div>
-                    <label>Country</label>
-                    <CountryDropdown
-                      required
-                      valueType="short"
-                      value={country}
-                      onChange={(val) => setCountry(val)}
-                    />
-                    <button type="submit">Checkout</button>
+                    <div className="checkout-details-item">
+                      <label>Country</label>
+                      <CountryDropdown
+                        required
+                        valueType="short"
+                        value={country}
+                        style={{ padding: "3px 10px" }}
+                        onChange={(val) => setCountry(val)}
+                      />
+                    </div>
+                    <Button
+                      style={{ marginTop: "5%", width: "20%" }}
+                      type="submit"
+                    >
+                      Checkout
+                    </Button>
                   </div>
                 </form>
               </div>
-              <div style={{ backgroundColor: "skyblue" }} className="c-6">
-                <div>
-                  <div>
-                    <h2>Checkout Summary</h2>
-                    <div>
-                      <div>
-                        <h3>Selected {totalProducts} item(s). Price</h3>
-                        <h3>{totalAmount}</h3>
+              <div style={{ backgroundColor: "skyblue", marginTop: "1%" }} className="c-5">
+                <form>
+                  <h2>Checkout Summary</h2>
+                  <div className="checkout-summary">
+                    <div className="checkout-summary-list">
+                      <div className="checkout-summary-item">
+                        <span>Selected {totalProducts} item(s). Price:</span>
+                        <span>{totalAmount}</span>
                       </div>
-                      <div>
-                        <h3>Discount</h3>
-                        <h3>-0</h3>
+                      <div className="checkout-summary-item">
+                        <span>Discount:</span>
+                        <span>-0</span>
                       </div>
-                      <div>
-                        <h3>Delivery Cost</h3>
-                        <h3>{deliveryCharge}</h3>
+                      <div className="checkout-summary-item">
+                        <span>Delivery Cost:</span>
+                        <span>{deliveryCharge}</span>
                       </div>
-                    </div>
-                    <div>
-                      <h3>Grand Total:</h3>
-                      <h3>{totalAmount + deliveryCharge}</h3>
+                      <div className="checkout-summary-item">
+                        <span>Grand Total:</span>
+                        <span>{totalAmount + deliveryCharge}</span>
+                      </div>
                     </div>
                   </div>
                   {cartItems.map((cartItem) => (
                     <div>
                       <div>
-                        <h3>{cartItem.title}</h3>
+                        <span>{cartItem.title}</span>
                         <div>
-                          <h3>Quantity:</h3>
+                          <span>Quantity:</span>
                           <div>
-                            <h3>{cartItem.quantity}</h3>
+                            <span>{cartItem.quantity}</span>
                           </div>
                         </div>
                         <div>
                           <div>
-                            <h3>Price:</h3>
-                            <h3>{cartItem.price}</h3>
+                            <span>Price:</span>
+                            <span>{cartItem.price}</span>
                           </div>
                           <div>
-                            <h3>Sub Total:</h3>
-                            <h3>{cartItem.totalPrice}</h3>
+                            <span>Sub Total:</span>
+                            <span>{cartItem.totalPrice}</span>
                           </div>
                         </div>
                       </div>
                     </div>
                   ))}
-                </div>
+                </form>
               </div>
             </>
           )}
         </div>
       </div>
       {showScrollToTop && (
-            <Button
-              className="scroll-to-top"
-              onClick={scrollToTop}
-              style={{
-                backgroundColor: "#5193b3",
-                border: "1px solid #fff",
-              }}
-            >
-              Scroll To Top
-            </Button>
-          )}
+        <Button
+          className="scroll-to-top"
+          onClick={scrollToTop}
+          style={{
+            backgroundColor: "#5193b3",
+            border: "1px solid #fff",
+          }}
+        >
+          Scroll To Top
+        </Button>
+      )}
     </div>
   );
 };

@@ -73,21 +73,21 @@ const CartPage = () => {
         <i className="fas fa-chevron-right address-link"></i>
         <span className="address-link">Cart</span>
       </div>
-      <div className="grid wide">
-        <div className="row row-formated">
-          <h1 style={{ color: "#5193b3" }}>My Cart</h1>
+      <div className="grid wide" style={{padding:"3% 0"}}>
+        <div className="row row-formated" style={{justifyContent:"space-between"}}>
+          <h1 style={{ color: "#5193b3"}}>My Cart</h1>
           {cartItems.length === 0 ? (
             emptyCartMsg
           ) : (
             <>
-              <div style={{ backgroundColor: "orangered" }} className="c-7">
-                <div>
+              <div className="c-6 cart-items-list">
+                <div className="grid">
                   {cartItems.map((cartItem) => (
-                    <div className="cart-item--group__left">
-                      <div className="cart-item--image">
+                    <div className="row">
+                      <div className="cart-item--group__left c-3">
                         <Link to={`/product/${cartItem.id}`}>
                           <img
-                            style={{ width: "100px" }}
+                            style={{ width: "100%" }}
                             src={cartItem.images}
                             alt="Alternate Image"
                             onError={(e) => {
@@ -99,6 +99,7 @@ const CartPage = () => {
                           />
                         </Link>
                         <Button
+                          style={{ width: "30%", backgroundColor: "#f54768" }}
                           onClick={() => {
                             dispatch(removeFromCart(cartItem.id));
                             toast.success("Successfully remove from cart!", {
@@ -109,11 +110,13 @@ const CartPage = () => {
                           <i class="fa-solid fa-trash"></i>
                         </Button>
                       </div>
-                      <div className="cart-item--group__right">
-                        <h3>{cartItem.title}</h3>
-                        <div>
-                          <h3>Quantity:</h3>
-                          <div>
+                      <div className="cart-item--group__right c-9">
+                        <span className="cart-item--label">
+                          {cartItem.title}
+                        </span>
+                        <div className="quantity-section">
+                          <label className="cart-item--label">Quantity:</label>
+                          <div className="adjust-quantity-section">
                             <Button
                               onClick={() => {
                                 dispatch(
@@ -129,7 +132,12 @@ const CartPage = () => {
                             >
                               <i class="fa-solid fa-plus"></i>
                             </Button>
-                            <h3>{cartItem.quantity}</h3>
+                            <span
+                              className="cart-item--label"
+                              style={{ margin: "0 16px" }}
+                            >
+                              {cartItem.quantity}
+                            </span>
                             <Button
                               onClick={() => {
                                 dispatch(
@@ -147,21 +155,25 @@ const CartPage = () => {
                             </Button>
                           </div>
                         </div>
-                        <div>
-                          <div>
-                            <h3>Price:</h3>
-                            <h3>{cartItem.price}</h3>
+                        <div className="calc-section">
+                          <div className="product-price">
+                            <span className="cart-item--label">
+                              Price: {cartItem.price}
+                            </span>
                           </div>
-                          <div>
-                            <h3>Sub Total:</h3>
-                            <h3>{cartItem.totalPrice}</h3>
+                          <div className="product-subtotal">
+                            <span className="cart-item--label">
+                              Sub Total: {cartItem.totalPrice}
+                            </span>
                           </div>
                         </div>
                       </div>
+                      <hr className="product-line"></hr>
                     </div>
                   ))}
                 </div>
                 <Button
+                  style={{ backgroundColor: "#f54768" }}
                   onClick={() => {
                     dispatch(clearCart());
                     toast.success("Successfully clear cart!", {
@@ -172,32 +184,73 @@ const CartPage = () => {
                   Clear Cart
                 </Button>
               </div>
-              <div style={{ backgroundColor: "skyblue" }} className="c-5">
+              <div className="c-4 order-information-list">
                 <div>
-                  <h2>Order Summary</h2>
-                  <div>
-                    <div>
-                      <h3>Selected {totalItems} item(s). Price</h3>
-                      <h3>{totalAmount}</h3>
+                  <h2 style={{marginTop:"3%"}}>Order Summary</h2>
+                  <hr className="product-line"></hr>
+                  <div className="order-item-list">
+                    <div className="order-item">
+                      <span
+                        style={{ marginBottom: "12px" }}
+                        className="cart-item--label"
+                      >
+                        Selected {totalItems} item(s). Price:
+                      </span>
+                      <span
+                        style={{ marginBottom: "12px" }}
+                        className="cart-item--label"
+                      >
+                        {totalAmount}
+                      </span>
                     </div>
-                    <div>
-                      <h3>Discount</h3>
-                      <h3>-0</h3>
+                    <div className="order-item">
+                      <span
+                        style={{ marginBottom: "12px" }}
+                        className="cart-item--label"
+                      >
+                        Discount:
+                      </span>
+                      <span
+                        style={{ marginBottom: "12px" }}
+                        className="cart-item--label"
+                      >
+                        -0
+                      </span>
                     </div>
-                    <div>
-                      <h3>Delivery Cost</h3>
-                      <h3>{deliveryCharge}</h3>
+                    <div className="order-item">
+                      <span
+                        style={{ marginBottom: "12px" }}
+                        className="cart-item--label"
+                      >
+                        Delivery Cost:
+                      </span>
+                      <span
+                        style={{ marginBottom: "12px" }}
+                        className="cart-item--label"
+                      >
+                        {deliveryCharge}
+                      </span>
                     </div>
                   </div>
-                  <div>
-                    <h3>Grand Total:</h3>
-                    <h3>{totalAmount + deliveryCharge}</h3>
+                  <hr className="product-line"></hr>
+                  <div className="order-item">
+                    <span
+                      style={{ marginBottom: "12px" }}
+                      className="cart-item--label"
+                    >
+                      Grand Total:
+                    </span>
+                    <span className="cart-item--label">
+                      {totalAmount + deliveryCharge}
+                    </span>
                   </div>
                 </div>
-                <Button onClick={handleCheckout}>Proceed to Checkout</Button>
-                <Link to="/">
-                  <Button>Continue Shopping</Button>
-                </Link>
+                <div className="button-group">
+                  <Button onClick={handleCheckout}>Proceed to Checkout</Button>
+                  <Link to="/">
+                    <Button>Continue Shopping</Button>
+                  </Link>
+                </div>
               </div>
             </>
           )}
