@@ -47,7 +47,7 @@
 }
 
 .brand span {
-  color: #fff
+  color: #fff;
 }
 
 .category-field {
@@ -58,15 +58,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.category-field span {
-  font-size: clamp(1rem, 1.52rem, 1.8rem);
-  margin-right: 12px;
-}
-
-.category-field i {
-  font-size: clamp(24px, 1.47px, 28px);
+  span {
+    font-size: clamp(1rem, 1.52rem, 1.8rem);
+    margin-right: 12px;
+  }
+  i {
+    font-size: clamp(24px, 1.47px, 28px);
+  }
 }
 
 .categories-list {
@@ -85,22 +83,19 @@
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
   transition: height linear 0.2s;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
 }
 
 .categories-list--height {
   height: 32vh;
-}
-
-.categories-list::-webkit-scrollbar {
-  width: 0;
-}
-
-.categories-list::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.categories-list::-webkit-scrollbar-thumb {
-  background-color: transparent;
 }
 
 .categories-list--item {

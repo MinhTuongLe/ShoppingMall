@@ -41,8 +41,7 @@
 
 .contact {
   cursor: pointer;
-}
-
-.contact:hover {
-  filter: brightness(80%);
+  &:hover {
+    filter: brightness(80%);
+  }
 }

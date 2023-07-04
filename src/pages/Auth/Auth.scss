@@ -23,10 +23,9 @@
   padding: 4px 8px;
   font-size: clamp(1rem, 1.18rem, 1.4rem);
   margin: 6px 0;
-}
-
-.auth-form input:focus {
-  outline: none;
+  &:focus {
+    outline: none;
+  }
 }
 
 .reset-password {
@@ -38,15 +37,14 @@
 .orther-choices-section {
   display: flex;
   flex-direction: column;
-}
-
-.orther-choices-section span {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1%;
-  color: #5193b3;
-  font-size: clamp(0.8rem, 1.01rem, 1.2rem);
+  & span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1%;
+    color: #5193b3;
+    font-size: clamp(0.8rem, 1.01rem, 1.2rem);
+  }
 }
 
 .register {
@@ -82,16 +80,15 @@
 .reset-password-section {
   display: flex;
   flex-direction: column;
-}
+  &input {
+    padding: 4px 8px;
+    font-size: clamp(1rem, 1.18rem, 1.4rem);
+    margin: 5% 0;
+  }
 
-.reset-password-section input {
-  padding: 4px 8px;
-  font-size: clamp(1rem, 1.18rem, 1.4rem);
-  margin: 5% 0;
-}
-
-.reset-password-section input:focus {
-  outline: none;
+  &input:focus {
+    outline: none;
+  }
 }
 
 .orther-choices-section-2 {

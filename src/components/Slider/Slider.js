@@ -14,7 +14,7 @@ const Slider = () => {
     });
   };
   return (
-    <Carousel interval={3000} style={{ height: "85vh" }}>
+    <Carousel interval={3000} style={{ height: "85vh" }} wipe>
       {SliderImages.map((image) => (
         <Carousel.Item className="carousel-item">
           <img
@@ -43,4 +43,4 @@ const Slider = () => {
   );
 };
 
-export default Slider;
+export default Slider;  

@@ -14,15 +14,14 @@
   font-size: 1.4rem;
   border: none;
   outline: none;
-}
+  &:focus {
+    border: none;
+  }
 
-.search-field:focus {
-  border: none;
-}
-
-.search-field::placeholder {
-  color: #5193b3;
-  font-size: clamp(1rem, 1.52rem , 1.8rem);
+  &::placeholder {
+    color: #5193b3;
+    font-size: clamp(1rem, 1.52rem, 1.8rem);
+  }
 }
 
 .button-search {
