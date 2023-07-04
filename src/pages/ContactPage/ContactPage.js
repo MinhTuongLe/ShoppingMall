@@ -65,7 +65,7 @@ const ContactPage = () => {
         <div className="row row-formated" style={{justifyContent:"space-between"}}>
           <h1 style={{ color: "#5193b3" }}>Contact Us</h1>
           <div className="c-5">
-            <form ref={currentForm} onSubmit={sendFeedBack}>
+            <form ref={currentForm} onSubmit={sendFeedBack} className="contact-form">
               <div className="group-contact">
                 <label className="contact-label">Name</label>
                 <div>

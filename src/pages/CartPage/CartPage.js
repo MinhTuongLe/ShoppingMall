@@ -112,9 +112,9 @@ const CartPage = () => {
                         </Button>
                       </div>
                       <div className="cart-item--group__right c-9">
-                        <span className="cart-item--label">
+                        <h4 className="cart-item--label">
                           {cartItem.title}
-                        </span>
+                        </h4>
                         <div className="quantity-section">
                           <label className="cart-item--label">Quantity:</label>
                           <div className="adjust-quantity-section">
