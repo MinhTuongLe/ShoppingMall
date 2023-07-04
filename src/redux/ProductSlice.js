@@ -22,7 +22,6 @@ const ProductSlice = createSlice({
     sortProducts(state, action) {
       const { products, sort } = action.payload;
       let tempProducts = [...products];
-
       if (sort !== "latest") {
         if (sort === "lowest-price") {
           tempProducts.sort((a, b) => a.price - b.price);
@@ -35,12 +34,16 @@ const ProductSlice = createSlice({
         }
       }
       state.data = tempProducts;
-    },
+    }
   },
 });
 
-export const { setProducts, setStatus, searchFilterChange, sortProducts } =
-  ProductSlice.actions;
+export const {
+  setProducts,
+  setStatus,
+  searchFilterChange,
+  sortProducts
+} = ProductSlice.actions;
 export default ProductSlice.reducer;
 
 export const fetchProducts = (searchText) => {

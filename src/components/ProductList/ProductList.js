@@ -5,8 +5,8 @@ import { STATUS } from "../../utils/status";
 import Loader from "../Loader/Loader";
 import Error from "../Error/Error";
 import "./ProductList.scss";
-import { useDispatch } from "react-redux";
-import { sortProducts } from "../../redux/ProductSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {formatCurrency} from "../../utils/formatCurrency"
 
 const ProductList = ({ products, status }) => {
   const navigate = useNavigate();
@@ -14,8 +14,8 @@ const ProductList = ({ products, status }) => {
   const currentURL = window.location.href;
   const [currentPage, setCurrentPage] = useState(1);
   const [sort, setSort] = useState("latest");
-
   const [sortedProducts, setSortedProducts] = useState([]);
+  
 
   useEffect(() => {
     if (sort === "latest") {
@@ -98,15 +98,15 @@ const ProductList = ({ products, status }) => {
               <>
                 {/* <div>
                   <h4>Price Range</h4>
-                  <p>{`${price} VND`}</p>
-                  <div className={styles.price}>
+                  <p>{formatCurrency(price)}</p>
+                  <div>
                     <input
                       type="range"
-                      step={10000}
-                      value={price}
+                      step={formatCurrency(1000)}
+                      value={formatCurrency(price)}
                       onChange={(e) => setPrice(e.target.value)}
-                      min={minPrice}
-                      max={maxPrice}
+                      min={min_Price}
+                      max={max_Price}
                     />
                   </div>
                 </div> */}
