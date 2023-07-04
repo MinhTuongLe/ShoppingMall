@@ -1,15 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { STATUS } from "../../utils/status";
 import Loader from "../Loader/Loader";
 import Error from "../Error/Error";
 import "./ProductList.scss";
+import { useDispatch } from "react-redux";
+import { sortProducts } from "../../redux/ProductSlice";
 
 const ProductList = ({ products, status }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const currentURL = window.location.href;
   const [currentPage, setCurrentPage] = useState(1);
+  const [sort, setSort] = useState("latest");
+
+  const [sortedProducts, setSortedProducts] = useState([]);
+
+  useEffect(() => {
+    if (sort === "latest") {
+      setSortedProducts([...products]);
+    } else {
+      const sorted = [...products];
+      if (sort === "lowest-price") {
+        sorted.sort((a, b) => a.price - b.price);
+      } else if (sort === "highest-price") {
+        sorted.sort((a, b) => b.price - a.price);
+      } else if (sort === "a-z") {
+        sorted.sort((a, b) => a.title.localeCompare(b.title));
+      } else if (sort === "z-a") {
+        sorted.sort((a, b) => b.title.localeCompare(a.title));
+      }
+      setSortedProducts(sorted);
+    }
+  }, [sort, products]);
 
   let productsPerPage = 10;
   let isHomePage = true;
@@ -20,10 +44,11 @@ const ProductList = ({ products, status }) => {
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(
+  const currentProducts = sortedProducts.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
+  
   const totalPages = Math.ceil(products.length / productsPerPage);
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === totalPages;
@@ -58,6 +83,7 @@ const ProductList = ({ products, status }) => {
   const handlePageClick = (page) => {
     setCurrentPage(page);
   };
+
   const noProductFound = <h4 className="empty-products">No products found!</h4>;
 
   return (
@@ -66,7 +92,21 @@ const ProductList = ({ products, status }) => {
         noProductFound
       ) : (
         <>
-          <h1 className="title">{products[0] && "Our Products"}</h1>
+          <div className="products-heading">
+            <h1 className="title">{products[0] && "Our Products"}</h1>
+            {!isHomePage && (
+              <div className="sort-section">
+                <label>Sort by:</label>
+                <select value={sort} onChange={(e) => setSort(e.target.value)}>
+                  <option value="latest">Latest</option>
+                  <option value="lowest-price">Lowest Price</option>
+                  <option value="highest-price">Highest Price</option>
+                  <option value="a-z">A - Z</option>
+                  <option value="z-a">Z - A</option>
+                </select>
+              </div>
+            )}
+          </div>
           <div className="row row-formated">
             {currentProducts.map((product) => (
               <Link
@@ -99,7 +139,7 @@ const ProductList = ({ products, status }) => {
                   variant="secondary"
                   disabled={isFirstPage}
                   onClick={handlePreviousPage}
-                  style={{marginRight:"1%"}}
+                  style={{ marginRight: "1%" }}
                 >
                   Previous
                 </Button>
@@ -109,7 +149,7 @@ const ProductList = ({ products, status }) => {
                     variant={
                       startPage + index === currentPage ? "warning" : "primary"
                     }
-                    style={{margin:"0 1%"}}
+                    style={{ margin: "0 1%" }}
                     onClick={() => handlePageClick(startPage + index)}
                   >
                     {startPage + index}
@@ -119,7 +159,7 @@ const ProductList = ({ products, status }) => {
                   variant="secondary"
                   disabled={isLastPage}
                   onClick={handleNextPage}
-                  style={{marginLeft:"1%"}}
+                  style={{ marginLeft: "1%" }}
                 >
                   Next
                 </Button>

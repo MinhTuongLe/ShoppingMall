@@ -91,3 +91,24 @@
   margin-top: 2%;
   justify-content: center;
 }
+
+.products-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sort-section {
+  font-size: clamp(1rem, 1.52rem, 1.8rem);
+  color: #5193b3;
+  label {
+    margin-right: 12px;
+  }
+  select {
+    color: #5193b3;
+    font-size: clamp(1rem, 1.18rem, 1.4rem);
+    &:focus {
+      outline: none;
+    }
+  }
+}
