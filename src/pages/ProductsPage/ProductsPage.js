@@ -9,6 +9,7 @@ import Error from "../../components/Error/Error";
 import "../../App.scss";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
 const ProductsPage = () => {
   const [showScrollToTop, setShowScrollToTop] = useState(false);
   const {
