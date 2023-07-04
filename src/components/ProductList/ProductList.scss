@@ -114,3 +114,22 @@
     }
   }
 }
+
+.price-range-section {
+  color: #5193b3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .filter-section {
+    margin-left: 14px;
+    .filter-input-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(1rem, 1rem, 1.2rem);
+    }
+  }
+  label {
+    font-size: clamp(1rem, 1.18rem, 1.4rem);
+  }
+}
