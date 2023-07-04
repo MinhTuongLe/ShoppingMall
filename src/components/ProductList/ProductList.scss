@@ -107,6 +107,8 @@
   select {
     color: #5193b3;
     font-size: clamp(1rem, 1.18rem, 1.4rem);
+    border: none;
+    outline: none;
     &:focus {
       outline: none;
     }

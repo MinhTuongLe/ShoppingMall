@@ -12,7 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from "react-toastify";
 import "../../App.scss";
 import { Button } from "react-bootstrap";
-import {formatCurrency} from "../../utils/formatCurrency"
+import { formatCurrency } from "../../utils/formatCurrency";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -115,7 +115,7 @@ const ProductDetails = () => {
           <div className="grid wide">
             <div
               className="row row-formated"
-              style={{ justifyContent: "space-between", padding:'3% 2%'}}
+              style={{ justifyContent: "space-between", padding: "3% 2%" }}
             >
               <div className="c-5">
                 {productDetails.images && (
@@ -141,30 +141,32 @@ const ProductDetails = () => {
                 )}
               </div>
               <div className="c-5">
-                {productDetails.title && (
-                  <label className="product-label">
-                    Name:{" "}
-                    <span className="product-value">
-                      {productDetails.title}
-                    </span>
-                  </label>
-                )}
-                {productDetails.description && (
-                  <label className="product-label">
-                    Description:{" "}
-                    <span className="product-value">
-                      {productDetails.description}
-                    </span>
-                  </label>
-                )}
-                {productDetails.price && (
-                  <label className="product-label">
-                    Price:{" "}
-                    <span className="product-value">
-                      {formatCurrency(productDetails.price)}
-                    </span>
-                  </label>
-                )}
+                <div className="product-details-group">
+                  {productDetails.title && (
+                    <label className="product-label">
+                      Name:{" "}
+                      <span className="product-value">
+                        {productDetails.title}
+                      </span>
+                    </label>
+                  )}
+                  {productDetails.description && (
+                    <label className="product-label">
+                      Description:{" "}
+                      <span className="product-value">
+                        {productDetails.description}
+                      </span>
+                    </label>
+                  )}
+                  {productDetails.price && (
+                    <label className="product-label">
+                      Price:{" "}
+                      <span className="product-value">
+                        {formatCurrency(productDetails.price)}
+                      </span>
+                    </label>
+                  )}
+                </div>
 
                 <div className="product-quantity">
                   <label className="product-label">Quantity:</label>
@@ -195,10 +197,7 @@ const ProductDetails = () => {
             </div>
           </div>
           {showScrollToTop && (
-            <Button
-              className="scroll-to-top"
-              onClick={scrollToTop}
-            >
+            <Button className="scroll-to-top" onClick={scrollToTop}>
               Scroll To Top
             </Button>
           )}

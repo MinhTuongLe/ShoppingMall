@@ -18,6 +18,11 @@ h1 {
   display: flex;
 }
 
+.product-details-group {
+  display: flex;
+  flex-direction: column;
+}
+
 .product-label {
   font-size: clamp(1rem, 1.52rem, 1.8rem);
   margin: 12px 0;

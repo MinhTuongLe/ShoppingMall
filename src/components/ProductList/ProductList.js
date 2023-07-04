@@ -48,7 +48,7 @@ const ProductList = ({ products, status }) => {
     indexOfFirstProduct,
     indexOfLastProduct
   );
-  
+
   const totalPages = Math.ceil(products.length / productsPerPage);
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === totalPages;
@@ -95,16 +95,35 @@ const ProductList = ({ products, status }) => {
           <div className="products-heading">
             <h1 className="title">{products[0] && "Our Products"}</h1>
             {!isHomePage && (
-              <div className="sort-section">
-                <label>Sort by:</label>
-                <select value={sort} onChange={(e) => setSort(e.target.value)}>
-                  <option value="latest">Latest</option>
-                  <option value="lowest-price">Lowest Price</option>
-                  <option value="highest-price">Highest Price</option>
-                  <option value="a-z">A - Z</option>
-                  <option value="z-a">Z - A</option>
-                </select>
-              </div>
+              <>
+                {/* <div>
+                  <h4>Price Range</h4>
+                  <p>{`${price} VND`}</p>
+                  <div className={styles.price}>
+                    <input
+                      type="range"
+                      step={10000}
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
+                      min={minPrice}
+                      max={maxPrice}
+                    />
+                  </div>
+                </div> */}
+                <div className="sort-section">
+                  <label>Sort by:</label>
+                  <select
+                    value={sort}
+                    onChange={(e) => setSort(e.target.value)}
+                  >
+                    <option value="latest">Latest</option>
+                    <option value="lowest-price">Lowest Price</option>
+                    <option value="highest-price">Highest Price</option>
+                    <option value="a-z">A - Z</option>
+                    <option value="z-a">Z - A</option>
+                  </select>
+                </div>
+              </>
             )}
           </div>
           <div className="row row-formated">
