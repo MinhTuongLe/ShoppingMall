@@ -21,6 +21,7 @@ const Header = () => {
   const [displayName, setDisplayName] = useState("");
   const [displayMenu, setDisplayMenu] = useState(false);
   const [displaySubMenu, setDisplaySubMenu] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -87,9 +88,14 @@ const Header = () => {
               </Link>
             </ShowOnLogout>
             <ShowOnLogin>
-              <span className="display-name" onClick={logoutUser}>
-                {displayName}
-              </span>
+              <Button
+                className="display-name"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                onClick={logoutUser}
+              >
+                {isHovered ? "Logout" : displayName}
+              </Button>
             </ShowOnLogin>
           </section>
           <Link className="cart-field" to="/cart">
