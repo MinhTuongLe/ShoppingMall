@@ -90,7 +90,7 @@ const CheckoutDetailsPage = () => {
             emptyCartMsg
           ) : (
             <>
-              <h1 style={{ color: "#5193b3", marginTop: "3%" }}>
+              <h1 style={{ color: "#5193b3", marginTop: "1%" }}>
                 Checkout Details
               </h1>
               <div className="c-5" style={{ marginTop: "1%" }}>

@@ -16,7 +16,7 @@ import { STATUS } from "../../utils/status";
 import Loader from "../../components/Loader/Loader";
 import Error from "../../components/Error/Error";
 import { Button } from "react-bootstrap";
-import {formatCurrency} from "../../utils/formatCurrency"
+import { formatCurrency } from "../../utils/formatCurrency";
 
 const CartPage = () => {
   const {
@@ -64,7 +64,7 @@ const CartPage = () => {
 
   if (loginStatus === STATUS.ERROR) return <Error />;
   if (loginStatus === STATUS.LOADING) return <Loader />;
-  const emptyCartMsg = <h4 style={{color: '#5193b3'}}>No items found!</h4>;
+  const emptyCartMsg = <h4 style={{ color: "#5193b3" }}>No items found!</h4>;
   return (
     <div className="cart-page">
       <div className="grid wide address">
@@ -74,9 +74,12 @@ const CartPage = () => {
         <i className="fas fa-chevron-right address-link"></i>
         <span className="address-link">Cart</span>
       </div>
-      <div className="grid wide" style={{padding:"3% 0"}}>
-        <div className="row row-formated" style={{justifyContent:"space-between"}}>
-          <h1 style={{ color: "#5193b3"}}>My Cart</h1>
+      <div className="grid wide" style={{ padding: "1%" }}>
+        <div
+          className="row row-formated"
+          style={{ justifyContent: "space-between" }}
+        >
+          <h1 style={{ color: "#5193b3" }}>My Cart</h1>
           {cartItems.length === 0 ? (
             emptyCartMsg
           ) : (
@@ -100,7 +103,7 @@ const CartPage = () => {
                           />
                         </Link>
                         <Button
-                          style={{ width: "30%", backgroundColor: "#f54768" }}
+                          style={{ width: "40%", backgroundColor: "#f54768" }}
                           onClick={() => {
                             dispatch(removeFromCart(cartItem.id));
                             toast.success("Successfully remove from cart!", {
@@ -112,9 +115,7 @@ const CartPage = () => {
                         </Button>
                       </div>
                       <div className="cart-item--group__right c-9">
-                        <h4 className="cart-item--label">
-                          {cartItem.title}
-                        </h4>
+                        <h4 className="cart-item--label">{cartItem.title}</h4>
                         <div className="quantity-section">
                           <label className="cart-item--label">Quantity:</label>
                           <div className="adjust-quantity-section">
@@ -186,8 +187,8 @@ const CartPage = () => {
                 </Button>
               </div>
               <div className="c-4 order-information-list">
-                <div>
-                  <h2 style={{marginTop:"3%"}}>Order Summary</h2>
+                <h2>Order Summary</h2>
+                <div className="order-informaton-section">
                   <hr className="product-line"></hr>
                   <div className="order-item-list">
                     <div className="order-item">
@@ -246,12 +247,7 @@ const CartPage = () => {
                     </span>
                   </div>
                 </div>
-                <div className="button-group">
-                  <Button onClick={handleCheckout}>Proceed to Checkout</Button>
-                  <Link to="/">
-                    <Button>Continue Shopping</Button>
-                  </Link>
-                </div>
+                <Button onClick={handleCheckout} style={{marginTop:'5%'}}>Proceed to Checkout</Button>
               </div>
             </>
           )}

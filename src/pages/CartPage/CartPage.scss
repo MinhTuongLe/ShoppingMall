@@ -1,5 +1,5 @@
 .cart-page {
-  min-height: 55vh;
+  min-height: 50vh;
 }
 
 
@@ -71,15 +71,17 @@
 }
 
 .order-information-list {
-  padding: 3% 2%;
   border-radius: 5px;
   border: solid #ccc 1px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
-  max-height: 60vh;
+  animation: loadingForm 0.5s ease-in-out forwards;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  animation: loadingForm 0.5s ease-in-out forwards;
+}
+
+.order-informaton-section {
 }
 
 @keyframes loadingForm {
@@ -97,12 +99,6 @@
 }
 
 .order-item {
-  display: flex;
-  justify-content: space-between;
-}
-
-.button-group{
-  margin: 28px 0;
   display: flex;
   justify-content: space-between;
 }

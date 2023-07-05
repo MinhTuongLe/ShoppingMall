@@ -4,6 +4,7 @@
   border: 1px solid #5193b3;
   border-radius: 12px;
   width: 40%;
+  height: 80%;
   background-color: #fff;
 }
 
@@ -11,7 +12,7 @@
   width: 80%;
   padding: 12px 24px;
   color: #5193b3;
-  font-size: 1.4rem;
+  font-size: clamp(1rem, 1.18rem, 1.4rem);
   border: none;
   outline: none;
   &:focus {
@@ -20,7 +21,7 @@
 
   &::placeholder {
     color: #5193b3;
-    font-size: clamp(1rem, 1.52rem, 1.8rem);
+    font-size: clamp(1rem, 1.18rem, 1.4rem);
   }
 }
 
@@ -31,6 +32,6 @@
   padding: 0 18px;
   border-radius: 5px;
   color: #5193b3;
-  font-size: 1.4rem;
+  font-size: clamp(1rem, 1.18rem, 1.4rem);
   cursor: pointer;
 }

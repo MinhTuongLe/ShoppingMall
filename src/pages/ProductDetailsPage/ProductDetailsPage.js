@@ -133,7 +133,7 @@ const ProductDetails = () => {
                           }}
                         />
                         <Carousel.Caption>
-                          <h3>Image {index + 1}</h3>
+                          <h4>Image {index + 1}</h4>
                         </Carousel.Caption>
                       </Carousel.Item>
                     ))}
@@ -143,33 +143,33 @@ const ProductDetails = () => {
               <div className="c-5">
                 <div className="product-details-group">
                   {productDetails.title && (
-                    <label className="product-label">
+                    <span className="product-label">
                       Name:{" "}
                       <span className="product-value">
                         {productDetails.title}
                       </span>
-                    </label>
+                    </span>
                   )}
                   {productDetails.description && (
-                    <label className="product-label">
+                    <span className="product-label">
                       Description:{" "}
                       <span className="product-value">
                         {productDetails.description}
                       </span>
-                    </label>
+                    </span>
                   )}
                   {productDetails.price && (
-                    <label className="product-label">
+                    <span className="product-label">
                       Price:{" "}
                       <span className="product-value">
                         {formatCurrency(productDetails.price)}
                       </span>
-                    </label>
+                    </span>
                   )}
                 </div>
 
                 <div className="product-quantity">
-                  <label className="product-label">Quantity:</label>
+                  <span className="product-label">Quantity:</span>
                   <div className="adjust-product-quantity">
                     <Button
                       className="button-adjust"

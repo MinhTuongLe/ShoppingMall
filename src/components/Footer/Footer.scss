@@ -12,7 +12,7 @@
 
 .footer-col h3 {
   color: #fff;
-  font-size: clamp(1rem, 1.52rem, 1.8rem);
+  font-size: clamp(1rem, 1.18rem, 1.4rem);
 }
 
 .footer-col--list {
@@ -22,8 +22,7 @@
 
 .footer-col--item {
   list-style: none;
-  font-size: clamp(1rem, 1.18rem, 1.4rem);
-
+  font-size: clamp(1rem, 1.01rem, 1.2rem);
 }
 
 .copy-right {
@@ -41,6 +40,7 @@
 
 .contact {
   cursor: pointer;
+  font-size: clamp(.8rem, 0.93rem, 1.1rem);
   &:hover {
     filter: brightness(80%);
   }

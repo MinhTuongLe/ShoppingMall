@@ -1,5 +1,5 @@
 .login-page {
-  min-height: 75vh;
+  min-height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,7 +71,7 @@
 }
 
 .reset-password-page {
-  height: 55vh;
+  height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,7 +82,7 @@
   flex-direction: column;
   &input {
     padding: 4px 8px;
-    font-size: clamp(1rem, 1.18rem, 1.4rem);
+  font-size: clamp(.8rem, 0.93rem, 1.1rem);
     margin: 5% 0;
   }
 

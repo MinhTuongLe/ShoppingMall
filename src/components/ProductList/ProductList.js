@@ -185,7 +185,7 @@ const ProductList = ({ products, status }) => {
                     className="product--image"
                   />
                 </div>
-                <h6 className="product--name">{product.title}</h6>
+                <p className="product--name">{product.title}</p>
               </Link>
             ))}
             {!isHomePage && (

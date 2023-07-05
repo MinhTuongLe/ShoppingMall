@@ -1,5 +1,5 @@
 .product-details-page {
-  min-height: 55vh;
+  min-height: 50vh;
 }
 
 .product-details-section {
@@ -24,12 +24,14 @@ h1 {
 }
 
 .product-label {
-  font-size: clamp(1rem, 1.52rem, 1.8rem);
+  font-size: clamp(1rem, 1.18rem, 1.4rem);
+  font-weight: 500;
   margin: 12px 0;
 }
 
 .product-value {
   font-size: clamp(1rem, 1.18rem, 1.4rem);
+  font-weight: 300;
   line-height: 1.8rem;
 }
 
@@ -54,10 +56,10 @@ h1 {
 }
 
 .button-addToCart i {
-  font-size: clamp(1rem, 1.52rem, 1.8rem);
+  font-size: clamp(1rem, 1.18rem, 1.4rem);
   margin-right: 16px;
 }
 
 .button-addToCart span {
-  font-size: clamp(1rem, 1.52rem, 1.8rem);
+  font-size: clamp(1rem, 1.18rem, 1.4rem);
 }

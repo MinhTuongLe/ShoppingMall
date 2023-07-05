@@ -18,18 +18,11 @@ const Header = () => {
   const navigate = useNavigate();
   const { data: categories } = useSelector((state) => state.category);
   const { totalItems } = useSelector((state) => state.cart);
-  const [showCategoryList, setShowCategoryList] = useState(false);
   const [displayName, setDisplayName] = useState("");
-  const categoriesListRef = useRef(null);
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(getCartTotal());
   }, []);
-
-  const handleShowCategoryList = () => {
-    setShowCategoryList(!showCategoryList);
-  };
-
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -55,23 +48,6 @@ const Header = () => {
     });
   }, [dispatch, displayName]);
 
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (
-        categoriesListRef.current &&
-        !categoriesListRef.current.contains(e.target)
-      ) {
-        setShowCategoryList(false);
-      }
-    };
-
-    document.addEventListener("click", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
-
   const logoutUser = () => {
     signOut(auth)
       .then(() => {
@@ -93,31 +69,6 @@ const Header = () => {
             </Link>
           </h1>
           <SearchBar />
-          <div
-            className="category-field"
-            onClick={handleShowCategoryList}
-            ref={categoriesListRef}
-          >
-            <span>Categories</span>
-            <i class="fa-solid fa-caret-down"></i>
-            <ul
-              className={`categories-list ${
-                showCategoryList ? "categories-list--height" : ""
-              }`}
-            >
-              {categories.map((category) => (
-                <li key={category.id}>
-                  <Link
-                    className="categories-list--item"
-                    to={`/category/${category.id}`}
-                  >
-                    {" "}
-                    {category.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
           <section className="switchmode">
             <ShowOnLogout>
               <Link to="/login" className="login">
@@ -148,6 +99,22 @@ const Header = () => {
             <span className="cart-desc--text">Cart</span>
             <span className="cart-desc--number">{totalItems}</span>
           </Link>
+        </div>
+      </div>
+      <div className="header-bottom">
+        <div className="header-bottom--wide">
+          <ul className="categories-list">
+            {categories.map((category) => (
+              <li key={category.id}>
+                <Link
+                  className="categories-list--item"
+                  to={`/category/${category.id}`}
+                >
+                  {category.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
