@@ -30,17 +30,17 @@
 }
 
 .footer-top-section {
-
 }
 
 .footer-bottom-section {
   text-align: center;
-
 }
 
 .contact {
   cursor: pointer;
-  font-size: clamp(.8rem, 0.93rem, 1.1rem);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
   &:hover {
     filter: brightness(80%);
   }

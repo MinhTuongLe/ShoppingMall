@@ -19,6 +19,9 @@ const Header = () => {
   const { data: categories } = useSelector((state) => state.category);
   const { totalItems } = useSelector((state) => state.cart);
   const [displayName, setDisplayName] = useState("");
+  const [displayMenu, setDisplayMenu] = useState(false);
+  const [displaySubMenu, setDisplaySubMenu] = useState(false);
+
   useEffect(() => {
     dispatch(fetchCategories());
     dispatch(getCartTotal());
@@ -59,6 +62,14 @@ const Header = () => {
       });
   };
 
+  const handleMenuIconClicked = () => {
+    setDisplayMenu(true);
+  };
+
+  const handleCategoryIconClicked = () => {
+    setDisplaySubMenu(!displaySubMenu);
+  };
+
   return (
     <div className="header">
       <div className="header-top">
@@ -72,26 +83,13 @@ const Header = () => {
           <section className="switchmode">
             <ShowOnLogout>
               <Link to="/login" className="login">
-                Login
+                <Button>Login</Button>
               </Link>
             </ShowOnLogout>
             <ShowOnLogin>
-              <div className="user-icon"></div>
-              <i class="fa-solid fa-user"></i>
-              <span className="display-name">
-                {displayName.length > 10
-                  ? displayName.slice(0, 10) + " ..."
-                  : displayName}
+              <span className="display-name" onClick={logoutUser}>
+                {displayName}
               </span>
-              <Button
-                style={{
-                  backgroundColor: "#f54768",
-                  border: "1px solid #fff",
-                }}
-                onClick={logoutUser}
-              >
-                Logout
-              </Button>
             </ShowOnLogin>
           </section>
           <Link className="cart-field" to="/cart">
@@ -99,6 +97,9 @@ const Header = () => {
             <span className="cart-desc--text">Cart</span>
             <span className="cart-desc--number">{totalItems}</span>
           </Link>
+          <div className="menu-icon" onClick={handleMenuIconClicked}>
+            <i class="fa-solid fa-bars"></i>
+          </div>
         </div>
       </div>
       <div className="header-bottom">
@@ -115,6 +116,74 @@ const Header = () => {
               </li>
             ))}
           </ul>
+        </div>
+      </div>
+      <div>
+        <div
+          className="menu-items-list"
+          style={{
+            transform: displayMenu ? "translateX(0)" : "translateX(100%)",
+          }}
+        >
+          <div className="menu-items-list--top">
+            <i
+              class="fa-solid fa-xmark close-icon"
+              onClick={() => setDisplayMenu(false)}
+            ></i>
+            <h2>
+              <Link className="brand" to="/">
+                Shopping<span>Mall</span>
+              </Link>
+            </h2>
+          </div>
+          <hr className="menu-item-list--line"></hr>
+          <div className="menu-items-list--bottom">
+            <ShowOnLogout>
+              <Link
+                to="/login"
+                className="menu-item"
+                style={{ justifyContent: "space-around" }}
+              >
+                <i class="fa-solid fa-user"></i>
+                <Button style={{ width: "50%" }}>Login</Button>
+              </Link>
+            </ShowOnLogout>
+            <ShowOnLogin>
+              <div
+                className="menu-item"
+                style={{ justifyContent: "space-around" }}
+              >
+                <span className="display-name" onClick={logoutUser}>
+                  {displayName}
+                </span>
+                <Button onClick={logoutUser}>Logout</Button>
+              </div>
+            </ShowOnLogin>
+            <Link className="menu-item" to="/cart">
+              <i class="fa-solid fa-cart-shopping cart-icon"></i>
+              <div className="cart-title">
+                <span>Cart</span>
+                <span>{totalItems}</span>
+              </div>
+            </Link>
+            <div className="menu-item" onClick={handleCategoryIconClicked}>
+              Categories
+              {displaySubMenu && (
+                <ul className="categories-submenu">
+                  {categories.map((category) => (
+                    <li key={category.id}>
+                      <Link
+                        className="categories-submenu-item"
+                        to={`/category/${category.id}`}
+                      >
+                        {category.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>

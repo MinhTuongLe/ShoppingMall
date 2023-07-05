@@ -68,7 +68,7 @@ const Footer = () => {
                   class="fa-solid fa-envelope"
                   style={{ marginRight: "12px" }}
                 ></i>
-                leminhtuong09122002@gmail.com
+                leminhtuong
               </li>
             </ul>
           </div>
