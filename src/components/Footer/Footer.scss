@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30vh;
+  min-height: 30vh;
 }
 
 .footer-col {
@@ -43,5 +43,11 @@
   -webkit-line-clamp: 1;
   &:hover {
     filter: brightness(80%);
+  }
+}
+
+@media (min-width: 200px) and (max-width: 520px) {
+  .footer-col {
+    text-align: center;
   }
 }

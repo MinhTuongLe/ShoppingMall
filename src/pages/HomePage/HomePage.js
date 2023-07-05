@@ -77,7 +77,7 @@ const HomePage = () => {
               className="scroll-to-top"
               onClick={scrollToTop}
             >
-              Scroll To Top
+              To Top
             </Button>
           )}
         </>

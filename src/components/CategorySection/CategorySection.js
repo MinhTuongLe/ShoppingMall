@@ -22,7 +22,7 @@ const CategorySection = ({ products, status }) => {
         {products.slice(0, 5).map((product) => (
           <Link
             key={product.id}
-            className="c-2-4 product-section"
+            className="c-2-4 product-section xl-3 lg-4 md-6 sm-12"
             to={`/product/${product.id}`}
           >
             <div className="product-banner">{product.category.name}</div>
@@ -43,7 +43,7 @@ const CategorySection = ({ products, status }) => {
           </Link>
         ))}
       </div>
-      {isHomePage && (
+      {isHomePage && products[0] && (
         <Link to={`./category/${products[0].category.id}`}>
           <Button
             style={{

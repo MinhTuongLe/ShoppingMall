@@ -28,7 +28,7 @@ const Footer = () => {
     <div className="grid footer-section">
       <div className="grid wide">
         <div className="row footer-top-section row-formated">
-          <div className="c-3 footer-col">
+          <div className="c-3 footer-col lg-6 sm-12">
             <h3>Links</h3>
             <ul className="footer-col--list">
               <li className="footer-col--item">About us</li>
@@ -37,7 +37,7 @@ const Footer = () => {
               <li className="footer-col--item">FAQ's</li>
             </ul>
           </div>
-          <div className="c-3 footer-col">
+          <div className="c-3 footer-col lg-6 sm-12">
             <h3>Policies</h3>
             <ul className="footer-col--list">
               <li className="footer-col--item">Terms & Conditions</li>
@@ -45,7 +45,7 @@ const Footer = () => {
               <li className="footer-col--item">Data Policy</li>
             </ul>
           </div>
-          <div className="c-3 footer-col">
+          <div className="c-3 footer-col lg-6 sm-12">
             <h3>About Shopping Hub</h3>
             <ul className="footer-col--list">
               <li className="footer-col--item">Company Info</li>
@@ -53,7 +53,7 @@ const Footer = () => {
               <li className="footer-col--item">Store</li>
             </ul>
           </div>
-          <div className="c-3 footer-col">
+          <div className="c-3 footer-col lg-6 sm-12">
             <h3>Contacts</h3>
             <ul className="footer-col--list">
               <li className="footer-col--item">

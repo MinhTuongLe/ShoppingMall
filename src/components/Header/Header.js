@@ -71,8 +71,14 @@ const Header = () => {
     setDisplaySubMenu(!displaySubMenu);
   };
 
+  const handleOutsideClick = () => {
+    if (displaySubMenu) {
+      setDisplaySubMenu(false);
+    }
+  };
+
   return (
-    <div className="header">
+    <div className="header" onClick={handleOutsideClick}>
       <div className="header-top">
         <div className="header-top--wide">
           <h1>
@@ -113,7 +119,7 @@ const Header = () => {
       <div className="header-bottom">
         <div className="header-bottom--wide">
           <ul className="categories-list">
-            {categories.map((category) => (
+            {categories.slice(0, 5).map((category) => (
               <li key={category.id}>
                 <Link
                   className="categories-list--item"
@@ -173,9 +179,9 @@ const Header = () => {
             </Link>
             <div className="menu-item" onClick={handleCategoryIconClicked}>
               Categories
-              {displaySubMenu && (
-                <ul className="categories-submenu">
-                  {categories.map((category) => (
+              {
+                <ul className="categories-submenu" style={{height: displaySubMenu ? "40vh" : "0"}}>
+                  {categories.slice(0, 5).map((category) => (
                     <li key={category.id}>
                       <Link
                         className="categories-submenu-item"
@@ -186,7 +192,7 @@ const Header = () => {
                     </li>
                   ))}
                 </ul>
-              )}
+              }
             </div>
             <div className="search-bar-mobile">
               <SearchBar />

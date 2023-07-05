@@ -182,7 +182,7 @@
   .menu-items-list {
     height: 100vh;
     background: linear-gradient(to left bottom, #30576b, #5193b3);
-    z-index: 99999;
+    z-index: 9999;
     right: 0;
     top: 0;
     position: fixed;
@@ -246,13 +246,13 @@
   .categories-submenu {
     overflow-y: scroll;
     width: 80%;
-    height: 40vh;
-    display: none;
+    height: 0;
     position: absolute;
     top: 0;
     right: calc(100% + 14px);
     list-style: none;
     background: linear-gradient(to right top, #30576b, #5193b3);
+    transition: height ease 0.5s;
     padding: 0;
     li {
       margin: 0;
