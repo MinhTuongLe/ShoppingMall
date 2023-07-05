@@ -80,7 +80,9 @@ const Header = () => {
               Shopping<span>Mall</span>
             </Link>
           </h1>
-          <SearchBar />
+          <div className="search-bar">
+            <SearchBar />
+          </div>
           <section className="switchmode">
             <ShowOnLogout>
               <Link to="/login" className="login">
@@ -136,11 +138,6 @@ const Header = () => {
               class="fa-solid fa-xmark close-icon"
               onClick={() => setDisplayMenu(false)}
             ></i>
-            <h2>
-              <Link className="brand" to="/">
-                Shopping<span>Mall</span>
-              </Link>
-            </h2>
           </div>
           <hr className="menu-item-list--line"></hr>
           <div className="menu-items-list--bottom">
@@ -155,14 +152,16 @@ const Header = () => {
               </Link>
             </ShowOnLogout>
             <ShowOnLogin>
-              <div
-                className="menu-item"
-                style={{ justifyContent: "space-around" }}
-              >
+              <div className="menu-item" style={{ width: "80%" }}>
                 <span className="display-name" onClick={logoutUser}>
                   {displayName}
                 </span>
-                <Button onClick={logoutUser}>Logout</Button>
+                <i class="fa-solid fa-user user-icon"></i>
+              </div>
+              <div className="menu-item">
+                <Button onClick={logoutUser} style={{ width: "80%" }}>
+                  Logout
+                </Button>
               </div>
             </ShowOnLogin>
             <Link className="menu-item" to="/cart">
@@ -188,6 +187,9 @@ const Header = () => {
                   ))}
                 </ul>
               )}
+            </div>
+            <div className="search-bar-mobile">
+              <SearchBar />
             </div>
           </div>
         </div>
