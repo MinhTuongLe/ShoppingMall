@@ -522,7 +522,9 @@
   .categories-submenu {
     overflow-y: scroll;
     width: 80%;
-    height: 40vh;
+    height: 0;
+    transition: height ease 0.5s;
+
     display: none;
     position: absolute;
     top: 0;
@@ -667,7 +669,9 @@
   .categories-submenu {
     overflow-y: scroll;
     width: 80%;
-    height: 40vh;
+    height: 0;
+    transition: height ease 0.5s;
+
     display: none;
     position: absolute;
     top: 0;
@@ -802,8 +806,10 @@
 
   .categories-submenu {
     overflow-y: scroll;
-    width: 100%;
-    height: 40vh;
+    width: 80%;
+    height: 0;
+    transition: height ease 0.5s;
+
     display: none;
     position: absolute;
     top: 0;
@@ -944,7 +950,9 @@
   .categories-submenu {
     overflow-y: scroll;
     width: 100%;
-    height: 40vh;
+    height: 0;
+    transition: height ease 0.5s;
+
     display: none;
     position: absolute;
     top: 0;
