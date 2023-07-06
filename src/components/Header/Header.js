@@ -153,8 +153,7 @@ const Header = () => {
                 className="menu-item"
                 style={{ justifyContent: "space-around" }}
               >
-                <i class="fa-solid fa-user"></i>
-                <Button style={{ width: "50%" }} onClick={() => setDisplayMenu(false)}>Login</Button>
+                <Button className="button-login" onClick={() => setDisplayMenu(false)}>Login</Button>
               </Link>
             </ShowOnLogout>
             <ShowOnLogin>
