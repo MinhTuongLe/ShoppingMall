@@ -64,7 +64,7 @@ const ContactPage = () => {
       <div className="grid wide" style={{padding:"1%"}}>
         <div className="row row-formated" style={{justifyContent:"space-between"}}>
           <h1 style={{ color: "#5193b3" }}>Contact Us</h1>
-          <div className="c-5">
+          <div className="c-5 xl-6 lg-6 _sm-12">
             <form ref={currentForm} onSubmit={sendFeedBack} className="contact-form">
               <div className="group-contact">
                 <label className="contact-label">Name</label>
@@ -109,10 +109,10 @@ const ContactPage = () => {
                   ></textarea>
                 </div>
               </div>
-              <Button type="submit" style={{marginTop:"16px"}}>Send Feedback</Button>
+              <Button type="submit" className="button-submit">Send Feedback</Button>
             </form>
           </div>
-          <div className="c-5">
+          <div className="c-5 xl-6 lg-6 _sm-12">
             <div className="information-box">
               <h3 style={{marginBottom:'18px', color:"#fff"}}>Our Contact Information</h3>
               <p className="contact-label">
@@ -126,7 +126,7 @@ const ContactPage = () => {
                 </li>
                 <li className="contact-information--list">
                   <i class="contact-information-icon fa-solid fa-envelope"></i>
-                  leminhtuong09122002@gmail.com
+                  leminhtuong09122002 @gmail.com
                 </li>
                 <li className="contact-information--list">
                   <i class="contact-information-icon fa-solid fa-location-dot"></i>

@@ -83,11 +83,6 @@
   -webkit-line-clamp: 1;
 }
 
-.pagination {
-  margin-top: 2%;
-  justify-content: center;
-}
-
 .products-heading {
   display: flex;
   justify-content: space-between;
@@ -163,10 +158,37 @@
   }
 }
 
-
 .button-clear {
   margin-left: 18px;
 }
+
+.pagination {
+  margin-top: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 3% 0;
+}
+
+.button-navigate,
+.button-page-number {
+  color: #5193b3;
+  margin: 8px;
+  font-weight: 600;
+}
+
+.button-navigate {
+  font-size: 2.2rem
+}
+
+.button-page-number {
+  font-size: 1.4rem
+}
+
+.page-active {
+  color: #f54768;
+}
+
 @media (min-width: 500px) and (max-width: 920px) {
   .products-heading {
     display: block;

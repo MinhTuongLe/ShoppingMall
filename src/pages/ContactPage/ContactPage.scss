@@ -42,6 +42,13 @@ textarea.contact-value {
   margin: 12px 0 12px 14px;
   list-style: none;
   font-size: clamp(0.8rem, 0.93rem, 1.1rem);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  &:nth-child(2) {
+    font-size: clamp(0.6rem, 0.84rem, 1rem);
+  }
 }
 
 .contact-information-icon {
@@ -54,6 +61,10 @@ textarea.contact-value {
 
 .contact-form {
   animation: loadingContactForm 0.5s ease-in-out forwards;
+}
+
+.button-submit {
+  margin-top: 16px;
 }
 
 @keyframes loadingContactForm {
@@ -90,4 +101,25 @@ form {
   border-radius: 5px;
   border: solid #ccc 1px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 200px) and (max-width: 720px) {
+  ._sm-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .information-box {
+    margin-bottom: 5%;
+  }
+}
+
+@media (min-width: 200px) and (max-width: 520px) {
+  .button-submit {
+    width: 100%;
+  }
+  .information-box {
+    h3 {
+      text-align: center;
+    }
+  }
 }

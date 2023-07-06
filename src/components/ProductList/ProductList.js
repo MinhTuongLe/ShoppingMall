@@ -144,10 +144,7 @@ const ProductList = ({ products, status }) => {
                       />
                     </div>
                   </div>
-                  <Button
-                  className="button-clear"
-                    onClick={handleClearFilter}
-                  >
+                  <Button className="button-clear" onClick={handleClearFilter}>
                     Clear
                   </Button>
                 </div>
@@ -195,34 +192,30 @@ const ProductList = ({ products, status }) => {
             ))}
             {!isHomePage && (
               <div className="pagination">
-                <Button
-                  variant="secondary"
+                <span
+                className="button-navigate" style={{color: isFirstPage ? "#ccc" : ""}}
                   disabled={isFirstPage}
                   onClick={handlePreviousPage}
-                  style={{ marginRight: "1%" }}
                 >
-                  Previous
-                </Button>
+                  <i class="fa-solid fa-caret-left"></i>
+                </span>
+
                 {Array.from({ length: endPage - startPage + 1 }, (_, index) => (
-                  <Button
+                  <span
                     key={startPage + index}
-                    variant={
-                      startPage + index === currentPage ? "warning" : "primary"
-                    }
-                    style={{ margin: "0 1%" }}
+                    className={`button-page-number ${startPage + index === currentPage ? "page-active" : ""}`}
                     onClick={() => handlePageClick(startPage + index)}
                   >
                     {startPage + index}
-                  </Button>
+                  </span>
                 ))}
-                <Button
-                  variant="secondary"
+                <span
+                className="button-navigate" style={{color: isLastPage ? "#ccc" : ""}}
                   disabled={isLastPage}
                   onClick={handleNextPage}
-                  style={{ marginLeft: "1%" }}
                 >
-                  Next
-                </Button>
+                  <i class="fa-solid fa-caret-right"></i>
+                </span>
               </div>
             )}
           </div>
