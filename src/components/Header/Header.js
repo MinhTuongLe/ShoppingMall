@@ -154,23 +154,23 @@ const Header = () => {
                 style={{ justifyContent: "space-around" }}
               >
                 <i class="fa-solid fa-user"></i>
-                <Button style={{ width: "50%" }}>Login</Button>
+                <Button style={{ width: "50%" }} onClick={() => setDisplayMenu(false)}>Login</Button>
               </Link>
             </ShowOnLogout>
             <ShowOnLogin>
               <div className="menu-item" style={{ width: "80%" }}>
-                <span className="display-name" onClick={logoutUser}>
+                <span className="display-name">
                   {displayName}
                 </span>
                 <i class="fa-solid fa-user user-icon"></i>
               </div>
-              <div className="menu-item">
+              <div className="menu-item" onClick={() => setDisplayMenu(false)}>
                 <Button onClick={logoutUser} style={{ width: "80%" }}>
                   Logout
                 </Button>
               </div>
             </ShowOnLogin>
-            <Link className="menu-item" to="/cart">
+            <Link className="menu-item" to="/cart" onClick={() => setDisplayMenu(false)}>
               <i class="fa-solid fa-cart-shopping cart-icon"></i>
               <div className="cart-title">
                 <span>Cart</span>
@@ -182,7 +182,7 @@ const Header = () => {
               {
                 <ul className="categories-submenu" style={{height: displaySubMenu ? "40vh" : "0"}}>
                   {categories.slice(0, 5).map((category) => (
-                    <li key={category.id}>
+                    <li key={category.id} onClick={() => setDisplayMenu(false)}>
                       <Link
                         className="categories-submenu-item"
                         to={`/category/${category.id}`}

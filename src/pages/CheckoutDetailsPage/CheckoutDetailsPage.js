@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../App.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { CountryDropdown } from "react-country-region-selector";
-import { clearCart, getOrderTotal } from "../../redux/CartSlice";
+import { clearCart, getCartTotal, getOrderTotal } from "../../redux/CartSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { STATUS } from "../../utils/status";
@@ -34,6 +34,7 @@ const CheckoutDetailsPage = () => {
     e.preventDefault();
     try {
       dispatch(clearCart());
+      dispatch(getCartTotal())
       toast.success("Successfully checkout!", { autoClose: 1000 });
       navigate("/");
     } catch (error) {
