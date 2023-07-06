@@ -102,9 +102,9 @@ const ProductList = ({ products, status }) => {
   };
 
   const handleClearFilter = () => {
-    setMinPrice(0)
-    setMaxPrice(1000)
-  }
+    setMinPrice(0);
+    setMaxPrice(1000);
+  };
 
   const noProductFound = <h4 className="empty-products">No products found!</h4>;
 
@@ -117,7 +117,7 @@ const ProductList = ({ products, status }) => {
           <div className="products-heading">
             <h1 className="title">{products[0] && "Our Products"}</h1>
             {!isHomePage && (
-              <>
+              <div className="configure-section">
                 <div className="price-range-section">
                   <label>Price Range:</label>
                   <div className="filter-section">
@@ -144,7 +144,12 @@ const ProductList = ({ products, status }) => {
                       />
                     </div>
                   </div>
-                  <Button style={{marginLeft:"18px"}} onClick={handleClearFilter}>Clear Filter</Button>
+                  <Button
+                  className="button-clear"
+                    onClick={handleClearFilter}
+                  >
+                    Clear
+                  </Button>
                 </div>
                 <div className="sort-section">
                   <label>Sort by:</label>
@@ -159,7 +164,7 @@ const ProductList = ({ products, status }) => {
                     <option value="z-a">Z - A</option>
                   </select>
                 </div>
-              </>
+              </div>
             )}
           </div>
           <div className="row row-formated">

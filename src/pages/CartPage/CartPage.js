@@ -84,7 +84,7 @@ const CartPage = () => {
             emptyCartMsg
           ) : (
             <>
-              <div className="c-6 cart-items-list xl-7 md-12 sm-12">
+              <div className="c-6 cart-items-list xl-7 lg-12 md-12 sm-12">
                 <div className="grid">
                   {cartItems.map((cartItem) => (
                     <div className="row">
@@ -186,7 +186,7 @@ const CartPage = () => {
                   Clear Cart
                 </Button>
               </div>
-              <div className="c-4 order-information-list xl-5 md-12 sm-12">
+              <div className="c-4 order-information-list xl-5 lg-12 md-12 sm-12">
                 <h2>Order Summary</h2>
                 <div className="order-informaton-section">
                   <hr className="product-line"></hr>

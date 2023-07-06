@@ -81,6 +81,15 @@
     flex: 0 0 25%;
     max-width: 25%;
   }
+  .xl-4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+  }
+
+  .xl-5 {
+    flex: 0 0 41.66667%;
+    max-width: 41.66667%;
+  }
 }
 
 @media (min-width: 800px) and (max-width: 1020px) {
@@ -91,9 +100,13 @@
     flex: 0 0 25%;
     max-width: 25%;
   }
-  .xl-7 {
-    flex: 0 0 58.33333%;
-    max-width: 58.33333%;
+  .xl-4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+  }
+  .xl-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
   }
   .xl-5 {
     flex: 0 0 41.66667%;
@@ -105,21 +118,26 @@
   .grid.wide {
     max-width: 700px;
   }
+  .lg-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
   .lg-4 {
     flex: 0 0 33.33333%;
     max-width: 33.33333%;
   }
+  .lg-5 {
+    flex: 0 0 41.66667%;
+    max-width: 41.66667%;
+  }
+
   .lg-6 {
     flex: 0 0 50%;
     max-width: 50%;
   }
-  .xl-7 {
+  .lg-7 {
     flex: 0 0 58.33333%;
     max-width: 58.33333%;
-  }
-  .xl-5 {
-    flex: 0 0 41.66667%;
-    max-width: 41.66667%;
   }
 }
 @media (min-width: 600px) and (max-width: 720px) {
@@ -138,13 +156,9 @@
     flex: 0 0 100%;
     max-width: 100%;
   }
-  .xl-7 {
+  .lg-7 {
     flex: 0 0 58.33333%;
     max-width: 58.33333%;
-  }
-  .xl-5 {
-    flex: 0 0 41.66667%;
-    max-width: 41.66667%;
   }
 }
 
@@ -159,10 +173,6 @@
   .md-12 {
     flex: 0 0 100%;
     max-width: 100%;
-  }
-  .lg-6 {
-    flex: 0 0 50%;
-    max-width: 50%;
   }
 }
 

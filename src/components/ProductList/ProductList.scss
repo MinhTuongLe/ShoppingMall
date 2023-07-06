@@ -6,10 +6,6 @@
   color: #5193b3;
 }
 
-.title {
-  color: #5193b3;
-}
-
 .product-section {
   position: relative;
   text-decoration: none;
@@ -98,11 +94,21 @@
   align-items: center;
 }
 
+.title {
+  color: #5193b3;
+}
+
+.configure-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .sort-section {
   font-size: clamp(1rem, 1rem, 1.2rem);
   color: #5193b3;
   label {
-    margin-right: 12px;
+    margin-right: 4px;
   }
   select {
     color: #5193b3;
@@ -120,6 +126,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-right: 48px;
   .filter-section {
     margin-left: 14px;
     .filter-input-section {
@@ -153,5 +160,51 @@
     cursor: ew-resize;
     background: #1e3540;
     box-shadow: -80px 0 0 80px #f54768;
+  }
+}
+
+
+.button-clear {
+  margin-left: 18px;
+}
+@media (min-width: 500px) and (max-width: 920px) {
+  .products-heading {
+    display: block;
+  }
+  .price-range-section {
+    margin-right: 12px;
+  }
+}
+
+@media (min-width: 300px) and (max-width: 520px) {
+  .products-heading {
+    display: block;
+  }
+  .configure-section {
+    display: block;
+    margin: 24px 0;
+  }
+  .price-range-section {
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+}
+
+@media (min-width: 200px) and (max-width: 420px) {
+  .products-heading {
+    display: block;
+  }
+  .configure-section {
+    display: block;
+    margin: 24px 0;
+  }
+  .price-range-section {
+    flex-direction: column;
+  }
+  .sort-section {
+    text-align: center;
+  }
+  .button-clear {
+    width: 64%;
   }
 }

@@ -63,3 +63,18 @@ h1 {
 .button-addToCart span {
   font-size: clamp(1rem, 1.18rem, 1.4rem);
 }
+
+
+@media (min-width: 200px) and (max-width: 420px) { 
+  .adjust-product-quantity {
+    margin-left: 4px;
+  }
+  
+  .button-adjust {
+    margin: 0 12px;
+  } 
+  .button-addToCart {
+    width: 100%;
+    margin-left: 0;
+  }
+}

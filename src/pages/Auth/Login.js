@@ -66,14 +66,14 @@ const Login = () => {
     <div className="login-page">
       <div className="grid wide">
         <div className="row row-formated" style={{ justifyContent: "center" }}>
-          <div className="c-3 image-section">
+          <div className="c-3 image-section xl-4 md-12 sm-12">
             <img
               src={loginImage}
               alt="img login"
               style={{ maxWidth: "100%" }}
             />
           </div>
-          <div className="c-4">
+          <div className="c-4 xl-5 lg-7 md-12 sm-12">
             <div>
               <form onSubmit={loginUser} className="auth-form">
               <h2 style={{ color: "#5193b3", textAlign: "center" }}>Login</h2>
