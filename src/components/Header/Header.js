@@ -200,6 +200,11 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <div className="overlay" style={{
+            display: displayMenu ? "block" : "none",
+          }}>
+
+      </div>
     </div>
   );
 };

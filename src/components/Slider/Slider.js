@@ -3,40 +3,17 @@ import Carousel from "react-bootstrap/Carousel";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Slider.scss";
 import { SliderImages } from "../../assets/images/index";
-import { Button } from "react-bootstrap";
 const Slider = () => {
-  const handleScrollToBody = () => {
-    const getProductsList = document.getElementById("productList");
-    const productsListOffset = getProductsList.offsetTop;
-    window.scrollTo({
-      top: productsListOffset,
-      behavior: "smooth",
-    });
-  };
   return (
-    <Carousel interval={3000} style={{ height: "85vh" }} wipe>
+    <Carousel interval={3000} style={{ height:"100%", maxHeight: "80vh" }} wipe>
       {SliderImages.map((image) => (
         <Carousel.Item className="carousel-item">
           <img
             className="d-block w-100"
             src={image}
             alt="First slide"
-            style={{ height: "85vh" }}
+            style={{ height:"100%", maxHeight: "80vh" }}
           />
-          <Carousel.Caption>
-            <h3>First New Information</h3>
-            <p>Nepal's largest premium electronics brand.</p>
-            <hr className="line"></hr>
-            <Button
-              onClick={handleScrollToBody}
-              style={{
-                marginBottom: "24px",
-                marginTop: "12px",
-              }}
-            >
-              Shop Now
-            </Button>
-          </Carousel.Caption>
         </Carousel.Item>
       ))}
     </Carousel>

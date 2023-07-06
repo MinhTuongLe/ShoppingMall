@@ -1,12 +1,12 @@
 .carousel-caption {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.5);
   transform: translateY(-50%);
   animation: slideIn 1s ease-in-out;
+}
+
+.carousel .carousel-indicators button {
+  width: 3vw;
+  height: 3vw;
+  border-radius: 50%;
 }
 
 .line {

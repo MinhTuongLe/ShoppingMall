@@ -166,7 +166,7 @@ const ProductList = ({ products, status }) => {
             {currentProducts.map((product) => (
               <Link
                 key={product.id}
-                className="c-2-4 product-section xl-3 lg-4 md-6 sm-12"
+                className="c-2-4 product-section xl-3 lg-4 md-6 sm-6"
                 onClick={(e) => {
                   e.preventDefault();
                   handleViewProductDetails(product.id);
@@ -229,7 +229,7 @@ const ProductList = ({ products, status }) => {
                   marginTop: "12px",
                 }}
               >
-                Show All Products
+                Show All
               </Button>
             </Link>
           )}

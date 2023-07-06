@@ -133,6 +133,27 @@
   display: none;
 }
 
+.overlay {
+  position: fixed;
+  background-color: gray;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: none;
+  animation: fadeInOverlay 0.3s forwards;
+}
+
+@keyframes fadeInOverlay {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
 @media (min-width: 1000px) and (max-width: 1220px) {
   .header-top--wide,
   .header-bottom--wide {
@@ -848,9 +869,9 @@
     position: absolute;
   }
 
-  .user-icon{
+  .user-icon {
     display: block;
-    font-size: 1.8rem
+    font-size: 1.8rem;
   }
 }
 
@@ -993,6 +1014,6 @@
 
   .user-icon {
     display: block;
-    font-size: 1.8rem
+    font-size: 1.8rem;
   }
 }
