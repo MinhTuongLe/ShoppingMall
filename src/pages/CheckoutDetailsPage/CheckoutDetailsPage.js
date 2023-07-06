@@ -93,7 +93,7 @@ const CheckoutDetailsPage = () => {
               <h1 style={{ color: "#5193b3", marginTop: "1%" }}>
                 Checkout Details
               </h1>
-              <div className="c-5" style={{ marginTop: "1%" }}>
+              <div className="c-5 test-6 lg-12 md-12 sm-12" style={{ marginTop: "1%" }}>
                 <form onSubmit={handleSubmitForm} className="checkout-form-left">
                   <div className="checkout-details-list">
                     <h2>Delivery Information</h2>
@@ -148,7 +148,7 @@ const CheckoutDetailsPage = () => {
                       />
                     </div>
                     <Button
-                      style={{ marginTop: "3%", width: "24%" }}
+                      className="button-checkout"
                       type="submit"
                     >
                       Checkout
@@ -156,7 +156,7 @@ const CheckoutDetailsPage = () => {
                   </div>
                 </form>
               </div>
-              <div style={{ marginTop: "1%" }} className="c-5">
+              <div style={{ marginTop: "1%" }} className="c-5 test-6 lg-12 md-12 sm-12">
                 <form className="checkout-form-right">
                   <h2>Checkout Summary</h2>
                   <div className="checkout-summary">

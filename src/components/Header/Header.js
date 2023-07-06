@@ -202,7 +202,7 @@ const Header = () => {
       </div>
       <div className="overlay" style={{
             display: displayMenu ? "block" : "none",
-          }}>
+          }} onClick={() => setDisplayMenu(false)}>
 
       </div>
     </div>

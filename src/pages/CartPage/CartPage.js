@@ -84,11 +84,11 @@ const CartPage = () => {
             emptyCartMsg
           ) : (
             <>
-              <div className="c-6 cart-items-list">
+              <div className="c-6 cart-items-list xl-7 md-12 sm-12">
                 <div className="grid">
                   {cartItems.map((cartItem) => (
                     <div className="row">
-                      <div className="cart-item--group__left c-3">
+                      <div className="cart-item--group__left c-3 sm-12">
                         <Link to={`/product/${cartItem.id}`}>
                           <img
                             style={{ width: "100%" }}
@@ -103,7 +103,7 @@ const CartPage = () => {
                           />
                         </Link>
                         <Button
-                          style={{ width: "40%", backgroundColor: "#f54768" }}
+                          style={{ width: "40px", backgroundColor: "#f54768" }}
                           onClick={() => {
                             dispatch(removeFromCart(cartItem.id));
                             toast.success("Successfully remove from cart!", {
@@ -114,7 +114,7 @@ const CartPage = () => {
                           <i class="fa-solid fa-trash"></i>
                         </Button>
                       </div>
-                      <div className="cart-item--group__right c-9">
+                      <div className="cart-item--group__right c-9 sm-12">
                         <h4 className="cart-item--label">{cartItem.title}</h4>
                         <div className="quantity-section">
                           <label className="cart-item--label">Quantity:</label>
@@ -186,7 +186,7 @@ const CartPage = () => {
                   Clear Cart
                 </Button>
               </div>
-              <div className="c-4 order-information-list">
+              <div className="c-4 order-information-list xl-5 md-12 sm-12">
                 <h2>Order Summary</h2>
                 <div className="order-informaton-section">
                   <hr className="product-line"></hr>

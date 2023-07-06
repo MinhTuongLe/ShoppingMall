@@ -117,13 +117,13 @@ const ProductDetails = () => {
               className="row row-formated"
               style={{ justifyContent: "space-between", padding: "3% 2%" }}
             >
-              <div className="c-5">
+              <div className="c-5 md-12 sm-12">
                 {productDetails.images && (
                   <Carousel interval={2000}>
                     {productDetails.images.map((image, index) => (
                       <Carousel.Item key={index}>
                         <img
-                          style={{ width: "100%", maxHeight: "64vh" }}
+                          style={{ width: "100%", maxHeight: "64vh", borderRadius:"5px" }}
                           src={image}
                           alt="Alternate Image"
                           onError={(e) => {
@@ -132,15 +132,12 @@ const ProductDetails = () => {
                               "https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg";
                           }}
                         />
-                        <Carousel.Caption>
-                          <h4>Image {index + 1}</h4>
-                        </Carousel.Caption>
                       </Carousel.Item>
                     ))}
                   </Carousel>
                 )}
               </div>
-              <div className="c-5">
+              <div className="c-5 md-12 sm-12">
                 <div className="product-details-group">
                   {productDetails.title && (
                     <span className="product-label">

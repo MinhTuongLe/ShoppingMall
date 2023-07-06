@@ -68,6 +68,11 @@
   animation: loadingForm 0.5s ease-in-out forwards;
 }
 
+.button-checkout {
+  margin-top: 3%;
+  width: 24%;
+}
+
 @keyframes loadingForm {
   0% {
     transform: translateY(20px);
@@ -110,3 +115,21 @@
     transform: translateY(0);
   }
 }  
+
+
+@media (min-width: 200px) and (max-width: 620px) {
+  .button-checkout {
+    width: 100%;
+  }
+}
+
+
+@media (min-width: 700px) and (max-width: 1020px) {
+  .test-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .button-checkout {
+    width: 100%;
+  }
+}
