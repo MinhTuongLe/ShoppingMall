@@ -74,36 +74,12 @@ const ProductDetails = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const noProductFound = <h4 className="empty-products">No products found!</h4>;
+  const noProductFound = <div className="grid wide"><h4 className="empty-products">No products found!</h4></div>;
 
-  if (productDetailsStatus === STATUS.ERROR) return <Error />;
-  if (productDetailsStatus === STATUS.LOADING) return <Loader />;
-  return (
-    <div className="product-details-page">
-      <div className="grid wide address">
-        <Link to="/" className="address-link">
-          <i className="fas fa-home"></i>
-        </Link>
-        <i className="fas fa-chevron-right address-link"></i>
-        <Link to="/products" className="address-link">
-          <span>Products</span>
-        </Link>
-        <i className="fas fa-chevron-right address-link"></i>
-        {productDetails.category && productDetails.category.id && (
-          <Link
-            to={`/category/${productDetails.category.id}`}
-            className="address-link"
-          >
-            <span>
-              {productDetails.category.name && productDetails.category.name}
-            </span>
-          </Link>
-        )}
-        <i className="fas fa-chevron-right address-link"></i>
-        {productDetails.title && (
-          <span className="address-link">{productDetails.title}</span>
-        )}
-      </div>
+  const handleRender = () => {
+    if (productDetailsStatus === STATUS.ERROR) return <Error />;
+    if (productDetailsStatus === STATUS.LOADING) return <Loader />;
+    return (
       <div className="product-details-section">
         {productDetails.id &&
         productDetails.title &&
@@ -208,6 +184,36 @@ const ProductDetails = () => {
           noProductFound
         )}
       </div>
+    );
+  };
+
+  return (
+    <div className="product-details-page">
+      <div className="grid wide address">
+        <Link to="/" className="address-link">
+          <i className="fas fa-home"></i>
+        </Link>
+        <i className="fas fa-chevron-right address-link"></i>
+        <Link to="/products" className="address-link">
+          <span>Products</span>
+        </Link>
+        <i className="fas fa-chevron-right address-link"></i>
+        {productDetails.category && productDetails.category.id && (
+          <Link
+            to={`/category/${productDetails.category.id}`}
+            className="address-link"
+          >
+            <span>
+              {productDetails.category.name && productDetails.category.name}
+            </span>
+          </Link>
+        )}
+        <i className="fas fa-chevron-right address-link"></i>
+        {productDetails.title && (
+          <span className="address-link">{productDetails.title}</span>
+        )}
+      </div>
+      {handleRender()}
       <Footer />
     </div>
   );

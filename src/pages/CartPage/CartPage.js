@@ -90,7 +90,7 @@ const CartPage = () => {
                     {cartItems.map((cartItem) => (
                       <div className="row">
                         <div className="cart-item--group__left c-3 sm-12">
-                          <Link to={`/product/${cartItem.id}`}>
+                          <Link to={`/products/${cartItem.id}`}>
                             <img
                               style={{ width: "100%" }}
                               src={cartItem.images}

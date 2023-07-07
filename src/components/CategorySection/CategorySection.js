@@ -23,7 +23,7 @@ const CategorySection = ({ products, status }) => {
           <Link
             key={product.id}
             className="c-2-4 product-section xl-3 lg-4 md-6 sm-6"
-            to={`/product/${product.id}`}
+            to={`/products/${product.id}`}
           >
             <div className="product-banner">{product.category.name}</div>
 

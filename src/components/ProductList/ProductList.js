@@ -6,9 +6,12 @@ import Loader from "../Loader/Loader";
 import Error from "../Error/Error";
 import "./ProductList.scss";
 import { formatCurrency } from "../../utils/formatCurrency";
+import { useDispatch } from "react-redux";
+import { fetchProductById } from "../../redux/ProductDetailsSlice";
 
 const ProductList = ({ products, status }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const currentURL = window.location.href;
   const [currentPage, setCurrentPage] = useState(1);
   const [sort, setSort] = useState("latest");
@@ -84,7 +87,7 @@ const ProductList = ({ products, status }) => {
   if (status === STATUS.LOADING) return <Loader />;
 
   const handleViewProductDetails = (productId) => {
-    navigate(`/product/${productId}`);
+    navigate(`/products/${productId}`);
   };
 
   const handleNextPage = () => {
@@ -108,7 +111,11 @@ const ProductList = ({ products, status }) => {
     setMaxPrice(1000);
   };
 
-  const noProductFound = <h4 className="empty-products">No products found!</h4>;
+  const noProductFound = (
+    <div className="grid wide">
+      <h4 className="empty-products">No products found!</h4>
+    </div>
+  );
 
   return (
     <div className="grid wide" id="productList">
