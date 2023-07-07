@@ -6,6 +6,8 @@ import "./CategoryPage.scss";
 import "../../App.scss";
 import ProductList from "../../components/ProductList/ProductList";
 import { Button } from "react-bootstrap";
+import Footer from "../../components/Footer/Footer";
+
 const CategoryPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -38,27 +40,27 @@ const CategoryPage = () => {
   };
 
   return (
-    <div className="grid wide category-page">
-      <div className="grid wide address">
-        <Link to="/" className="address-link">
-          <i className="fas fa-home"></i>
-        </Link>
-        <i className="fas fa-chevron-right address-link"></i>
-        <span className="address-link">Category</span>
-        <i className="fas fa-chevron-right address-link"></i>
-        <span className="address-link">
-          {products[0] && products[0].category.name}
-        </span>
+    <div className="category-page">
+      <div className="category-section">
+        <div className="grid wide address">
+          <Link to="/" className="address-link">
+            <i className="fas fa-home"></i>
+          </Link>
+          <i className="fas fa-chevron-right address-link"></i>
+          <span className="address-link">Category</span>
+          <i className="fas fa-chevron-right address-link"></i>
+          <span className="address-link">
+            {products[0] && products[0].category.name}
+          </span>
+        </div>
+        <ProductList products={products} status={status} />
+        {showScrollToTop && (
+          <Button className="scroll-to-top" onClick={scrollToTop}>
+            Scroll To Top
+          </Button>
+        )}
       </div>
-      <ProductList products={products} status={status} />
-      {showScrollToTop && (
-        <Button
-          className="scroll-to-top"
-          onClick={scrollToTop}
-        >
-          Scroll To Top
-        </Button>
-      )}
+      <Footer />
     </div>
   );
 };

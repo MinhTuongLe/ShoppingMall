@@ -1,3 +1,9 @@
+.carousel {
+  height: 100%;
+  max-height: 80vh;
+  width: 100%;
+}
+
 .carousel-caption {
   transform: translateY(-50%);
   animation: slideIn 1s ease-in-out;

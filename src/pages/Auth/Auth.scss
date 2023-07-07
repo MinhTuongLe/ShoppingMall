@@ -1,4 +1,11 @@
 .login-page {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 20vh;
+}
+
+.login-section {
   min-height: 70vh;
   display: flex;
   justify-content: center;
@@ -71,18 +78,25 @@
 }
 
 .reset-password-page {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 20vh;
+}
+
+.reset-password-section {
   min-height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.reset-password-section {
+.reset-password-input {
   display: flex;
   flex-direction: column;
   &input {
     padding: 4px 8px;
-  font-size: clamp(.8rem, 0.93rem, 1.1rem);
+    font-size: clamp(0.8rem, 0.93rem, 1.1rem);
     margin: 5% 0;
   }
 

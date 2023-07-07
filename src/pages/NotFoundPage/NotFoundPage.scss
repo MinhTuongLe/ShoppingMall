@@ -1,4 +1,11 @@
 .not-found-page {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 20vh;
+}
+
+.not-found-section {
   height: 50vh;
   display: flex;
   justify-content: center;
@@ -8,7 +15,7 @@
 }
 
 .not-found-page h2 {
-  font-size: clamp(3rem, 3.37rem, 4rem)
+  font-size: clamp(3rem, 3.37rem, 4rem);
 }
 
 .not-found-page p {

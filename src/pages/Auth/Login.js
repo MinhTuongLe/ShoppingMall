@@ -15,6 +15,7 @@ import Error from "../../components/Error/Error";
 import "./Auth.scss";
 import loginImage from "../../assets/images/login.png";
 import { Button } from "react-bootstrap";
+import Footer from "../../components/Footer/Footer"
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -64,6 +65,7 @@ const Login = () => {
 
   return (
     <div className="login-page">
+    <div className="login-section">
       <div className="grid wide">
         <div className="row row-formated" style={{ justifyContent: "center" }}>
           <div className="c-3 image-section xl-4 md-12 sm-12">
@@ -110,6 +112,8 @@ const Login = () => {
           </div>
         </div>
       </div>
+    </div>
+    <Footer />
     </div>
   );
 };

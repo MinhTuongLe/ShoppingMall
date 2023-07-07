@@ -12,7 +12,7 @@ import ProductList from "../../components/ProductList/ProductList";
 import Loader from "../../components/Loader/Loader";
 import "../../App.scss";
 import { Button } from "react-bootstrap";
-
+import Footer from "../../components/Footer/Footer"
 const HomePage = () => {
   const dispatch = useDispatch();
   const { data: categories } = useSelector((state) => state.category);
@@ -83,6 +83,7 @@ const HomePage = () => {
         </>
       )}
       {isLoading && <Loader />}
+      <Footer />
     </div>
   );
 };

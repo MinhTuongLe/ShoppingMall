@@ -11,6 +11,7 @@ import registerImage from "../../assets/images/register.png";
 import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import "./Auth.scss";
+import Footer from "../../components/Footer/Footer";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,58 +40,64 @@ const Register = () => {
   if (loginStatus === STATUS.LOADING) return <Loader />;
   return (
     <div className="login-page">
-      <div className="grid wide">
-        <div className="row row-formated" style={{ justifyContent: "center" }}>
-          <div className="c-4 xl-5 lg-7 md-12 sm-12">
-            <div>
-              <form onSubmit={registerUser} className="auth-form">
-                <h2 style={{ color: "#5193b3", textAlign: "center" }}>
-                  Register
-                </h2>
-                <input
-                  type="text"
-                  placeholder="Email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <input
-                  type="password"
-                  placeholder="Confirmed Password"
-                  required
-                  value={confirmedPassword}
-                  onChange={(e) => setConfirmedPassword(e.target.value)}
-                />
-                <Button type="submit" style={{ margin: "3% 0" }}>
-                  Register
-                </Button>
-                <section className="orther-choices-section">
-                  <span>
-                    Already an account?{" "}
-                    <Link to="/login" className="register">
-                      Login
-                    </Link>
-                  </span>
-                </section>
-              </form>
+      <div className="login-section">
+        <div className="grid wide">
+          <div
+            className="row row-formated"
+            style={{ justifyContent: "center" }}
+          >
+            <div className="c-4 xl-5 lg-7 md-12 sm-12">
+              <div>
+                <form onSubmit={registerUser} className="auth-form">
+                  <h2 style={{ color: "#5193b3", textAlign: "center" }}>
+                    Register
+                  </h2>
+                  <input
+                    type="text"
+                    placeholder="Email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <input
+                    type="password"
+                    placeholder="Confirmed Password"
+                    required
+                    value={confirmedPassword}
+                    onChange={(e) => setConfirmedPassword(e.target.value)}
+                  />
+                  <Button type="submit" style={{ margin: "3% 0" }}>
+                    Register
+                  </Button>
+                  <section className="orther-choices-section">
+                    <span>
+                      Already an account?{" "}
+                      <Link to="/login" className="register">
+                        Login
+                      </Link>
+                    </span>
+                  </section>
+                </form>
+              </div>
             </div>
-          </div>
-          <div className="c-3 image-section xl-4 md-12 sm-12">
-            <img
-              src={registerImage}
-              alt="img login"
-              style={{ maxWidth: "100%" }}
-            />
+            <div className="c-3 image-section xl-4 md-12 sm-12">
+              <img
+                src={registerImage}
+                alt="img login"
+                style={{ maxWidth: "100%" }}
+              />
+            </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

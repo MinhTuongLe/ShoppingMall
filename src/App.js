@@ -14,7 +14,6 @@ import {
   NotFoundPage
 } from "./pages/index";
 import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { ToastContainer } from "react-toastify";
@@ -39,7 +38,6 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-        <Footer />
       </BrowserRouter>
     </Provider>
   );

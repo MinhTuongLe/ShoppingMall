@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import "../../App.scss";
 import { Button } from "react-bootstrap";
 import { formatCurrency } from "../../utils/formatCurrency";
-
+import Footer from "../../components/Footer/Footer";
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -104,104 +104,111 @@ const ProductDetails = () => {
           <span className="address-link">{productDetails.title}</span>
         )}
       </div>
-      {productDetails.id &&
-      productDetails.title &&
-      productDetails.images &&
-      productDetails.description &&
-      productDetails.price &&
-      productDetails.category &&
-      productDetails.category.name ? (
-        <div className="product-details-section">
-          <div className="grid wide">
-            <div
-              className="row row-formated"
-              style={{ justifyContent: "space-between", padding: "3% 2%" }}
-            >
-              <div className="c-5 md-12 sm-12">
-                {productDetails.images && (
-                  <Carousel interval={2000}>
-                    {productDetails.images.map((image, index) => (
-                      <Carousel.Item key={index}>
-                        <img
-                          style={{ width: "100%", maxHeight: "64vh", borderRadius:"5px" }}
-                          src={image}
-                          alt="Alternate Image"
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src =
-                              "https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg";
-                          }}
-                        />
-                      </Carousel.Item>
-                    ))}
-                  </Carousel>
-                )}
-              </div>
-              <div className="c-5 md-12 sm-12">
-                <div className="product-details-group">
-                  {productDetails.title && (
-                    <span className="product-label">
-                      Name:{" "}
-                      <span className="product-value">
-                        {productDetails.title}
-                      </span>
-                    </span>
-                  )}
-                  {productDetails.description && (
-                    <span className="product-label">
-                      Description:{" "}
-                      <span className="product-value">
-                        {productDetails.description}
-                      </span>
-                    </span>
-                  )}
-                  {productDetails.price && (
-                    <span className="product-label">
-                      Price:{" "}
-                      <span className="product-value">
-                        {formatCurrency(productDetails.price)}
-                      </span>
-                    </span>
+      <div className="product-details-section">
+        {productDetails.id &&
+        productDetails.title &&
+        productDetails.images &&
+        productDetails.description &&
+        productDetails.price &&
+        productDetails.category &&
+        productDetails.category.name ? (
+          <div className="product-details">
+            <div className="grid wide">
+              <div
+                className="row row-formated"
+                style={{ justifyContent: "space-between", padding: "3% 2%" }}
+              >
+                <div className="c-5 md-12 sm-12">
+                  {productDetails.images && (
+                    <Carousel interval={2000}>
+                      {productDetails.images.map((image, index) => (
+                        <Carousel.Item key={index}>
+                          <img
+                            style={{
+                              width: "100%",
+                              maxHeight: "64vh",
+                              borderRadius: "5px",
+                            }}
+                            src={image}
+                            alt="Alternate Image"
+                            onError={(e) => {
+                              e.target.onerror = null;
+                              e.target.src =
+                                "https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg";
+                            }}
+                          />
+                        </Carousel.Item>
+                      ))}
+                    </Carousel>
                   )}
                 </div>
-
-                <div className="product-quantity">
-                  <span className="product-label">Quantity:</span>
-                  <div className="adjust-product-quantity">
-                    <Button
-                      className="button-adjust"
-                      onClick={() => decreaseQuantity()}
-                    >
-                      <i className="fa-solid fa-minus"></i>
-                    </Button>
-                    <span className="product-value">{quantity}</span>
-                    <Button
-                      className="button-adjust"
-                      onClick={() => increaseQuantity()}
-                    >
-                      <i className="fa-solid fa-plus"></i>
-                    </Button>
+                <div className="c-5 md-12 sm-12">
+                  <div className="product-details-group">
+                    {productDetails.title && (
+                      <span className="product-label">
+                        Name:{" "}
+                        <span className="product-value">
+                          {productDetails.title}
+                        </span>
+                      </span>
+                    )}
+                    {productDetails.description && (
+                      <span className="product-label">
+                        Description:{" "}
+                        <span className="product-value">
+                          {productDetails.description}
+                        </span>
+                      </span>
+                    )}
+                    {productDetails.price && (
+                      <span className="product-label">
+                        Price:{" "}
+                        <span className="product-value">
+                          {formatCurrency(productDetails.price)}
+                        </span>
+                      </span>
+                    )}
                   </div>
+
+                  <div className="product-quantity">
+                    <span className="product-label">Quantity:</span>
+                    <div className="adjust-product-quantity">
+                      <Button
+                        className="button-adjust"
+                        onClick={() => decreaseQuantity()}
+                      >
+                        <i className="fa-solid fa-minus"></i>
+                      </Button>
+                      <span className="product-value">{quantity}</span>
+                      <Button
+                        className="button-adjust"
+                        onClick={() => increaseQuantity()}
+                      >
+                        <i className="fa-solid fa-plus"></i>
+                      </Button>
+                    </div>
+                  </div>
+                  <Button
+                    className="button-addToCart"
+                    onClick={() => addToCartHandler(productDetails)}
+                  >
+                    <i className="fa-solid fa-cart-shopping"></i>
+                    <span>Add to Cart</span>
+                  </Button>
                 </div>
-                <Button
-                  className="button-addToCart"
-                  onClick={() => addToCartHandler(productDetails)}
-                >
-                  <i className="fa-solid fa-cart-shopping"></i>
-                  <span>Add to Cart</span>
-                </Button>
               </div>
             </div>
+            {showScrollToTop && (
+              <Button className="scroll-to-top" onClick={scrollToTop}>
+                Scroll To Top
+              </Button>
+            )}
           </div>
-          {showScrollToTop && (
-            <Button className="scroll-to-top" onClick={scrollToTop}>
-              Scroll To Top
-            </Button>
-          )}
-        </div>
-      ) : (
-        noProductFound
-      )}
+        ) : (
+          noProductFound
+        )}
+      </div>
+      <Footer />
     </div>
   );
 };

@@ -6,13 +6,14 @@ import Error from "../../components/Error/Error";
 import { useSelector } from "react-redux";
 import './NotFoundPage.scss'
 import { Button } from 'react-bootstrap';
-
+import Footer from "../../components/Footer/Footer"
 const NotFoundPage = () => {
   const {status: loginStatus} = useSelector(state => state.auth)
   if (loginStatus === STATUS.ERROR) return <Error />;
   if (loginStatus === STATUS.LOADING) return <Loader />;
   return (
     <div className='not-found-page'>
+    <div className='not-found-section'>
        <div>
         <h2>404</h2>
         <p>Opppppsss, page not found.</p>
@@ -20,6 +21,8 @@ const NotFoundPage = () => {
           <Link className='button-text' to="/">&larr; Back to Home Page</Link>
         </Button>
       </div>
+    </div>
+    <Footer />
     </div>
   )
 }

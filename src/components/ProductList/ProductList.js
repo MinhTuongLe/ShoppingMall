@@ -5,12 +5,10 @@ import { STATUS } from "../../utils/status";
 import Loader from "../Loader/Loader";
 import Error from "../Error/Error";
 import "./ProductList.scss";
-import { useDispatch, useSelector } from "react-redux";
 import { formatCurrency } from "../../utils/formatCurrency";
 
 const ProductList = ({ products, status }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const currentURL = window.location.href;
   const [currentPage, setCurrentPage] = useState(1);
   const [sort, setSort] = useState("latest");
@@ -37,9 +35,13 @@ const ProductList = ({ products, status }) => {
       } else if (sort === "highest-price") {
         sorted.sort((a, b) => b.price - a.price);
       } else if (sort === "a-z") {
-        sorted.sort((a, b) => a.title.localeCompare(b.title));
+        sorted.sort((a, b) =>
+          a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+        );
       } else if (sort === "z-a") {
-        sorted.sort((a, b) => b.title.localeCompare(a.title));
+        sorted.sort((a, b) =>
+          b.title.toLowerCase().localeCompare(a.title.toLowerCase())
+        );
       }
       setSortedProducts(sorted);
     }
@@ -193,7 +195,8 @@ const ProductList = ({ products, status }) => {
             {!isHomePage && (
               <div className="pagination">
                 <span
-                className="button-navigate" style={{color: isFirstPage ? "#ccc" : ""}}
+                  className="button-navigate"
+                  style={{ color: isFirstPage ? "#ccc" : "" }}
                   disabled={isFirstPage}
                   onClick={handlePreviousPage}
                 >
@@ -203,14 +206,17 @@ const ProductList = ({ products, status }) => {
                 {Array.from({ length: endPage - startPage + 1 }, (_, index) => (
                   <span
                     key={startPage + index}
-                    className={`button-page-number ${startPage + index === currentPage ? "page-active" : ""}`}
+                    className={`button-page-number ${
+                      startPage + index === currentPage ? "page-active" : ""
+                    }`}
                     onClick={() => handlePageClick(startPage + index)}
                   >
                     {startPage + index}
                   </span>
                 ))}
                 <span
-                className="button-navigate" style={{color: isLastPage ? "#ccc" : ""}}
+                  className="button-navigate"
+                  style={{ color: isLastPage ? "#ccc" : "" }}
                   disabled={isLastPage}
                   onClick={handleNextPage}
                 >

@@ -9,6 +9,7 @@ import Error from "../../components/Error/Error";
 import "../../App.scss";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Footer from "../../components/Footer/Footer";
 
 const ProductsPage = () => {
   const [showScrollToTop, setShowScrollToTop] = useState(false);
@@ -43,22 +44,22 @@ const ProductsPage = () => {
 
   return (
     <div className="products-page">
-      <div className="grid wide address">
-        <Link to="/" className="address-link">
-          <i className="fas fa-home"></i>
-        </Link>
-        <i className="fas fa-chevron-right address-link"></i>
-        <span className="address-link">Products</span>
+      <div className="products-section">
+        <div className="grid wide address">
+          <Link to="/" className="address-link">
+            <i className="fas fa-home"></i>
+          </Link>
+          <i className="fas fa-chevron-right address-link"></i>
+          <span className="address-link">Products</span>
+        </div>
+        <ProductList products={products} status={productsStatus} />
+        {showScrollToTop && (
+          <Button className="scroll-to-top" onClick={scrollToTop}>
+            Scroll To Top
+          </Button>
+        )}
       </div>
-      <ProductList products={products} status={productsStatus} />
-      {showScrollToTop && (
-        <Button
-          className="scroll-to-top"
-          onClick={scrollToTop}
-        >
-          Scroll To Top
-        </Button>
-      )}
+      <Footer />
     </div>
   );
 };
