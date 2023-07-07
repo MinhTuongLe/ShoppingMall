@@ -10,7 +10,7 @@ import Error from "../../components/Error/Error";
 import registerImage from "../../assets/images/register.png";
 import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
-import "./Auth.scss"
+import "./Auth.scss";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,17 +22,18 @@ const Register = () => {
     e.preventDefault();
 
     if (password !== confirmedPassword) {
+      toast.error("Failed register!", { autoClose: 1000 });
+    } else {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const newUser = userCredential.user;
+          toast.success("Successfully register!", { autoClose: 1000 });
+          navigate("/");
+        })
+        .catch((error) => {
+          toast.error("Failed register!", { autoClose: 1000 });
+        });
     }
-
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const newUser = userCredential.user;
-        toast.success("Successfully register!", { autoClose: 1000 });
-        navigate("/");
-      })
-      .catch((error) => {
-        toast.error("Failed register!", { autoClose: 1000 });
-      });
   };
   if (loginStatus === STATUS.ERROR) return <Error />;
   if (loginStatus === STATUS.LOADING) return <Loader />;

@@ -97,7 +97,7 @@ const Header = () => {
             </ShowOnLogout>
             <ShowOnLogin>
               <Button
-                className="display-name"
+                className="display-name button-logout"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={logoutUser}
@@ -164,7 +164,7 @@ const Header = () => {
                 <i class="fa-solid fa-user user-icon"></i>
               </div>
               <div className="menu-item" onClick={() => setDisplayMenu(false)}>
-                <Button onClick={logoutUser} style={{ width: "80%" }}>
+                <Button onClick={logoutUser} style={{ width: "80%" }} className="button-logout">
                   Logout
                 </Button>
               </div>
