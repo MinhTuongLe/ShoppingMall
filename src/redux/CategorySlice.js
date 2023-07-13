@@ -70,7 +70,7 @@ export const fetchProductsByCategory = (categoryId, type, searchText) => {
     if(type === 'EACH') dispatch(setCategoriesEachProductsStatus(STATUS.LOADING));
     try {
       const response = await fetch(
-        `${BASE_URL}categories/${categoryId}/products`
+        `${BASE_URL}categories/${categoryId}`
       );
       const data = await response.json();
       if (type === "ALL") {
