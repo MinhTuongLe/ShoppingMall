@@ -40,12 +40,9 @@ const ProductsPage = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleRender = () => {
-    if (productsStatus === STATUS.LOADING) return <Loader/>;
-    if (productsStatus === STATUS.ERROR) return <Error/>;
-    return <ProductList products={products} status={productsStatus} />
-  }
-
+  if (productsStatus === STATUS.LOADING) return <Loader/>;
+  if (productsStatus === STATUS.ERROR) return <Error/>;
+  
   return (
     <div className="products-page">
       <div className="products-section">
@@ -56,7 +53,7 @@ const ProductsPage = () => {
           <i className="fas fa-chevron-right address-link"></i>
           <span className="address-link">Products</span>
         </div>
-        {handleRender()}
+        <ProductList products={products} status={productsStatus} />
         {showScrollToTop && (
           <Button className="scroll-to-top" onClick={scrollToTop}>
             Scroll To Top

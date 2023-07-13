@@ -15,17 +15,18 @@
   display: flex;
   flex-direction: column;
   margin: 10% 0;
-  animation: loadingForm 0.5s ease-in-out forwards;
+  animation: loading_AuthForm 1s ease-in-out forwards;
 }
 
-@keyframes loadingForm {
+@keyframes loading_AuthForm {
   0% {
-    transform: translateY(20px);
+    transform: translateY(-20px);
   }
   100% {
     transform: translateY(0);
   }
 }
+
 .auth-form input {
   padding: 4px 8px;
   font-size: clamp(1rem, 1.18rem, 1.4rem);
@@ -65,15 +66,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: loadingImage 0.5s ease-in-out forwards;
+  position: relative;
+}
+
+.image-section::before {
+  background-color: #fff;
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation: loadingImage 1s ease-in-out forwards;
 }
 
 @keyframes loadingImage {
   0% {
-    transform: translateY(-20px);
+    height: 100%;
   }
   100% {
-    transform: translateY(0);
+    height: 0;
   }
 }
 
